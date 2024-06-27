@@ -1,0 +1,99 @@
+.portfolio-header {
+  height: 140px;
+  background: radial-gradient(rgb(88, 38, 168), rgb(124, 70, 223));
+  box-shadow: 10px 10px 10px rgba(73, 6, 117, 0.432);
+  color: white;
+}
+
+
+.portfolio, .content {
+  background-color: rgb(236, 236, 236);
+}
+
+.portfolio-footer {
+  margin-top: 50vh;
+  height: 80px;
+  background-color: rgb(34, 34, 34);
+  color: white;
+}
+
+.home-box {
+  border: 2px solid rgb(53, 53, 53);
+  box-shadow: 4px 4px 4px rgba(94, 94, 94, 0.432);
+  border-radius: 25px;
+  background-color: rgb(224, 178, 228);
+}
+
+
+
+.portfolio-home {
+  position: absolute;
+  top: 0;
+  background-color: rgb(245, 245, 245);
+  width: 100vw;
+  height: 200vh;
+  text-align: center;
+  gap: 0;
+
+
+  h1 {
+    font-size: 50px;
+  }
+
+  h2 {
+    font-size: 50px;
+    border-radius: 50px;
+    height: 0px;
+    background-color: rgba(138, 19, 19, 0);
+    width: 80px;
+    margin-left: 80px;
+    margin-bottom: 70px;
+  }
+
+  img {
+    width: 200px;
+  }
+  .port-img-container {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    border: 3px solid rgb(105, 105, 105);
+    box-shadow: 0px 0px 10px rgb(150, 150, 150);
+    width: 200px;
+    border-radius: 25px;
+  }
+  .port-img-container:hover {
+    cursor: pointer;
+    border: 3px solid rgb(97, 139, 218);
+    box-shadow: 0px 0px 20px rgb(97, 139, 218);
+  }
+
+  h2:hover {
+    box-shadow: 30px 50px 60px 20px rgba(224, 182, 193, 0.151);
+    cursor: pointer;
+    transition: 0.3s;
+    color: rgb(226, 87, 145);
+  }
+}
+
+.port-container {
+  transition: transform 3s ease;
+  scale: 100%;
+}
+
+
+.portfolio-cats {
+  display: flex;
+  justify-content: center;
+  flex-direction: 'row';
+}
+
+.portfolio-top-box {
+  border: 1px solid rgb(163, 163, 163);
+  height: 400px;
+  width: 800px;
+}
+
+.spacer {
+  height: 20vh;
+}

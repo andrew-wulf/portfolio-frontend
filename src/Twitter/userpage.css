@@ -1,0 +1,68 @@
+
+
+
+
+.user-page {
+
+}
+      
+.user-banner {
+  width: 100vw;
+  height:20vw;
+  max-height: 20vh;
+  display: flex;
+  justify-content: center;
+  img {
+    width: 100vw;
+  }
+}
+
+.user-sub-banner {
+  width: 100;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(247, 247, 247);
+  border-bottom: 1px solid rgb(202, 202, 202);
+  margin-bottom: 1em;
+}
+
+.user-page-content {
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 5% 20% 35% 20% 1%;
+  gap: 5%;
+}
+
+.user-bio {
+  margin-top: 1em;
+  border: 2px solid rgb(51, 51, 51);
+  border-radius: 25px;
+  max-height: 300px;
+}
+
+.user-avi-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  border: 4px solid white;
+  border-radius: 25px;
+  width: 15vw;
+  height: 15vw;
+  top: 5vw;
+  left: 10vw;
+}
+
+
+
+.tweets-container {
+  display: flex;
+  max-width: 600px;
+}
+
+
+.might-like, .whats-happening {
+  border: 2px solid rgb(51, 51, 51);
+  border-radius: 25px;
+  margin-top: 2em;
+}
