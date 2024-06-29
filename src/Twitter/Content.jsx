@@ -5,6 +5,7 @@ import {Home} from './Home.jsx'
 import { TweetsIndex } from "./Tweets/TweetsIndex.jsx";
 import { TweetView } from "./Tweets/TweetView.jsx";
 import { UserPage } from "./UserPage.jsx";
+import { SignUp } from "./SignUp.jsx";
 
 export function Content(props) {
   let user = props.user;
@@ -14,6 +15,7 @@ export function Content(props) {
       <Routes>
         <Route path = "/" element= {<Redirect user={user} setUser={props.setUser}/>}/>
         <Route path = "/signin" element={<SignIn user={user}/>}/>
+        <Route path = "/signup" element={<SignUp user={user}/>}/>
 
         <Route path = "/home" element={<Home user={user}/>}/>
 

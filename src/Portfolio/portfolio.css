@@ -28,30 +28,70 @@
 
 .portfolio-home {
   position: absolute;
-  top: 0;
-  background-color: rgb(245, 245, 245);
+  display: flex;
+  background-color: rgb(248, 248, 248);
   width: 100vw;
-  height: 200vh;
+  height: 100vh;
   text-align: center;
-  gap: 0;
+  justify-content: center;
+  
+  .port-bg {
+    width: 100vw;
+    height: auto;
+    position: absolute;
+  }
 
-
+  .port-title {
+    transition: 3s;
+    font-size: 60px;
+    position: absolute;
+    top: 25%;
+  }
   h1 {
-    font-size: 50px;
+    font-size: 42px;
+    width: 6em;
+    border-radius: 10px;
   }
 
-  h2 {
-    font-size: 50px;
-    border-radius: 50px;
-    height: 0px;
-    background-color: rgba(138, 19, 19, 0);
-    width: 80px;
-    margin-left: 80px;
-    margin-bottom: 70px;
+  h4 {
+    opacity: 0%;
   }
 
+  .port-content {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    transition: 3s;
+  }
+  .img-track {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+   
+    gap: 10vmin;
+    align-items: flex-end;
+    transition: 4s ease-out;
+  }
+  .track-container {
+    width: 100vw;
+    position: absolute;
+    top: 50%;
+    display: flex;
+    opacity: 0%;
+    transition: 3s;
+    transition-delay: 3s;
+  }
+
+  .twitter-logo {
+    width: 18vmin;
+    height: 18vmin;
+  }
   img {
-    width: 200px;
+    width: auto;
+    height: auto;
   }
   .port-img-container {
     display: flex;
@@ -59,13 +99,34 @@
     overflow: hidden;
     border: 3px solid rgb(105, 105, 105);
     box-shadow: 0px 0px 10px rgb(150, 150, 150);
-    width: 200px;
+    width: 25vmin;
+    height: 25vmin;
     border-radius: 25px;
   }
-  .port-img-container:hover {
-    cursor: pointer;
-    border: 3px solid rgb(97, 139, 218);
-    box-shadow: 0px 0px 20px rgb(97, 139, 218);
+  
+
+  .port-container {
+    align-items: center;
+    justify-content: end;
+    gap: 0.4em;
+    border-radius: 25px;
+    transition: transform 3s ease;
+    &:hover{
+      transition: 2s;
+      transform: scale(1.2);
+      cursor: pointer;
+
+      .port-img-container {
+        cursor: pointer;
+        border: 3px solid rgb(97, 139, 218);
+        box-shadow: 0px 0px 20px rgb(97, 139, 218);
+      }
+      h1 {
+        color: rgb(24, 24, 24);
+      }
+
+
+    }
   }
 
   h2:hover {
@@ -74,12 +135,9 @@
     transition: 0.3s;
     color: rgb(226, 87, 145);
   }
+
 }
 
-.port-container {
-  transition: transform 3s ease;
-  scale: 100%;
-}
 
 
 .portfolio-cats {

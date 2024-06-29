@@ -11,6 +11,10 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
+import { FaTwitter } from 'react-icons/fa6';
+import { RxTwitterLogo } from 'react-icons/rx';
+
+
 export function SignIn(props) {
   const navigate = useNavigate();
 
@@ -26,7 +30,6 @@ export function SignIn(props) {
         console.log(response);
         axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.jwt;
         localStorage.setItem("jwt", response.data.jwt);
-        //navigate(-1);
         window.location.href = '/twitter/home'
       })
       .catch(error => {
@@ -63,12 +66,20 @@ export function SignIn(props) {
                       <Form.Label>Password</Form.Label>
                       <Form.Control type="password" name="password" placeholder="Password"/>
                     </Form.Group>
-              
-                    <Button variant="primary" type="submit" style={{'marginTop': '2vh'}}>
-                      Submit
-                    </Button>
-                  
+                    
+                    <Stack gap={4}>
+                      <Button variant="primary" type="submit" style={{'marginTop': '2vh'}}>
+                        Sign In
+                      </Button>
+                    
+                      <Button variant='outline-dark' type="button" 
+                      onClick={() => {window.location.href = "/twitter/signup"}}>
+                        <FaTwitter/> Create Account</Button>
+
+                    </Stack>
+
                   </Form>
+
                 </Col>
               </Row>
             </Container>
