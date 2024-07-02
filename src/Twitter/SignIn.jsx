@@ -40,52 +40,48 @@ export function SignIn(props) {
   if (props.user === "") {
     
     return (
-      <Container fluid>
-        <Row>
-          <Col xs={2} lg={3}/>
-  
-          <Col xs={8} lg={6}>
-            <Container fluid className="sign-in">
-              <Row>
-                <Col xs={3}></Col>
-                <Col xs={6}>
-                  <h1 style={{'textAlign': 'center', 'marginBottom': '3vh'}}>Sign in</h1>
-                </Col>
-              </Row>
-              
-              <Row>
-                <Col xs={3}></Col>
-                <Col xs={6}>
-              
-                  <Form onSubmit={handleSubmit} style={{'display': 'flex', 'flexDirection': 'column'}}>
-                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                      <Form.Label>Email address</Form.Label>
-                      <Form.Control type="email" name="email" placeholder="Enter email" />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                      <Form.Label>Password</Form.Label>
-                      <Form.Control type="password" name="password" placeholder="Password"/>
-                    </Form.Group>
-                    
-                    <Stack gap={4}>
-                      <Button variant="primary" type="submit" style={{'marginTop': '2vh'}}>
-                        Sign In
-                      </Button>
-                    
-                      <Button variant='outline-dark' type="button" 
-                      onClick={() => {window.location.href = "/twitter/signup"}}>
-                        <FaTwitter/> Create Account</Button>
-
-                    </Stack>
-
-                  </Form>
-
-                </Col>
-              </Row>
-            </Container>
+      <Container fluid className='sign-in-page'>
+     
+        <div className="sign-in">
+          <Row>
+            <Col xs={3}></Col>
+            <Col xs={6}>
+              <h1 style={{'textAlign': 'center', 'marginBottom': '3vh'}}>Sign in</h1>
+            </Col>
+          </Row>
           
-          </Col>
-        </Row>
+          <Row>
+            <Col xs={3}></Col>
+            <Col xs={6}>
+          
+              <Form onSubmit={handleSubmit} style={{'display': 'flex', 'flexDirection': 'column'}}>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                  <Form.Label>Email address</Form.Label>
+                  <Form.Control type="email" name="email" placeholder="Enter email" />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control type="password" name="password" placeholder="Password"/>
+                </Form.Group>
+                
+                <Stack gap={4}>
+                  <Button variant="primary" type="submit" style={{'marginTop': '2vh'}}>
+                    Sign In
+                  </Button>
+                
+                  <Button variant='outline-dark' type="button" 
+                  onClick={() => {window.location.href = "/twitter/signup"}}>
+                    <FaTwitter/> Create Account</Button>
+
+                </Stack>
+
+              </Form>
+
+            </Col>
+          </Row>
+        </div>
+          
+
   
       </Container>
     )

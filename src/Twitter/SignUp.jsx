@@ -27,11 +27,13 @@ export function SignUp(props) {
   const [emailVal, setEmailVal] = useState("");
   const [passVal, setPassVal] = useState("");
   const [displayVal, setDisplayVal] = useState("");
+  const [aviVal, setAviVal] = useState("");
+  const [bannerVal, setBannerVal] = useState("");
 
   const [page, setPage] = useState(1);
 
 
-  const login = () => {
+  const login = (params) => {
     axios.post('http://localhost:3000/sessions.json', {email: emailVal, password: passVal})
       .then(response => {
         console.log(response);
@@ -158,7 +160,7 @@ export function SignUp(props) {
     console.log('updating')
     e.preventDefault();
     let val = e.target.value;
-    val = val.replaceAll(/[^a-zA-Z0-9_]/g, '');
+    val = val.replaceAll(/[\0\n\r\t\\'";<>]/g, '');
 
     if (val.length < 24) {
       setDisplayVal(val);
@@ -265,7 +267,8 @@ export function SignUp(props) {
     avi = <>
             <h4>Add Profile Image</h4>
             <Stack gap={3}>
-              <Form.Control type="text" name="avi" placeholder="Enter Link"/>
+              <img src={aviVal} onError={() => {this.src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"}}/>
+              <Form.Control type="text" name="avi" placeholder="Enter Link" value={aviVal} onChange={(e) => {setAviVal(e.target.value)}}/>
               <Button onClick={() => {setPage(5)}}>Next</Button>
             </Stack>
           </>
@@ -275,40 +278,44 @@ export function SignUp(props) {
     banner = <>
             <h4>Add Banner Image</h4>
             <Stack gap={3}>
-              <Form.Control type="text" name="banner" placeholder="Enter Link"/>
+              <img src={bannerVal} onError={() => {this.src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/991px-Placeholder_view_vector.svg.png"}}/>
+              <Form.Control type="text" name="banner" placeholder="Enter Link" value={bannerVal} onChange={(e) => {setBannerVal(e.target.value)}}/>
               <Button onClick={() => {window.location.href = "/twitter/home"}}>Next</Button>
             </Stack>
           </>
   }
 
   return (
-    <Container className='twitter-signup'>
-      <h2>Sign Up</h2>
+    <Container fluid className='sign-in-page'>
 
-      <Form onSubmit={handleSubmit} style={{'display': 'flex', 'flexDirection': 'column'}}>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+      <div className='sign-in'>
+        <h2>Sign Up</h2>
 
-        {emailPassword}
+        <Form onSubmit={handleSubmit} style={{'display': 'flex', 'flexDirection': 'column'}}>
+          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
 
-        {username}
+          {emailPassword}
 
-        {displayName}
+          {username}
 
-        </Form.Group>
+          {displayName}
 
-      </Form>
+          </Form.Group>
 
-      <Form onSubmit={handleSubmit} style={{'display': 'flex', 'flexDirection': 'column'}}>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        </Form>
 
-        {avi}
+        <Form onSubmit={handleSubmit} style={{'display': 'flex', 'flexDirection': 'column'}}>
+          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
 
-        {banner}
+          {avi}
 
-        </Form.Group>
+          {banner}
 
-      </Form>
+          </Form.Group>
 
+        </Form>
+
+      </div>
     </Container>
   )
 }

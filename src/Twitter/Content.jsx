@@ -9,7 +9,7 @@ import { SignUp } from "./SignUp.jsx";
 
 export function Content(props) {
   let user = props.user;
-
+  
   return (
     <div className="content">
       <Routes>

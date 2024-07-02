@@ -1,8 +1,8 @@
+import { Container } from "react-bootstrap";
 
 export function Footer() {
   return (
-    <div>
-      
+    <div className="twitter-footer">
     </div>
   )
 }

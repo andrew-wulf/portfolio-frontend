@@ -41,20 +41,49 @@
     position: absolute;
   }
 
-  .port-title {
-    transition: 3s;
-    font-size: 60px;
+  .port-options {
+    display: flex;
+    flex-direction: horizontal;
     position: absolute;
     top: 25%;
+    column-gap: 20vw;
+    transition-duration: 3s;
   }
+
+  .port-headers {
+    display: flex;
+    transition-duration: 3s;
+  }
+
+  .port-title {
+    font-size: 54px;
+    transition-duration: 3s;
+  }
+
+  .port-apps, .port-about {
+    font-size: 48px;
+
+    transition-delay: 2s;
+    transition-duration: 3s;
+
+    &:hover {
+      box-shadow: 30px 50px 60px 20px rgba(224, 182, 193, 0.151);
+      cursor: pointer;
+      transition: 0.3s;
+      color: rgb(226, 87, 145);
+    }
+  }
+
+  
   h1 {
-    font-size: 42px;
+    font-size: 32px;
     width: 6em;
     border-radius: 10px;
   }
 
-  h4 {
-    opacity: 0%;
+  .port-info {
+    transition-delay: 1s;
+    transition-duration: 2s;
   }
 
   .port-content {
@@ -67,11 +96,10 @@
     transition: 3s;
   }
   .img-track {
-    width: 90%;
+    width: 85%;
     display: flex;
     flex-direction: row;
-   
-    gap: 10vmin;
+    column-gap: 4vmin;
     align-items: flex-end;
     transition: 4s ease-out;
   }
@@ -99,44 +127,20 @@
     overflow: hidden;
     border: 3px solid rgb(105, 105, 105);
     box-shadow: 0px 0px 10px rgb(150, 150, 150);
-    width: 25vmin;
-    height: 25vmin;
+    width: 24vmin;
+    height: 24vmin;
     border-radius: 25px;
   }
   
 
   .port-container {
     align-items: center;
-    justify-content: end;
-    gap: 0.4em;
+    justify-content: start;
+    width: 24vmin;
     border-radius: 25px;
     transition: transform 3s ease;
-    &:hover{
-      transition: 2s;
-      transform: scale(1.2);
-      cursor: pointer;
-
-      .port-img-container {
-        cursor: pointer;
-        border: 3px solid rgb(97, 139, 218);
-        box-shadow: 0px 0px 20px rgb(97, 139, 218);
-      }
-      h1 {
-        color: rgb(24, 24, 24);
-      }
-
-
     }
   }
-
-  h2:hover {
-    box-shadow: 30px 50px 60px 20px rgba(224, 182, 193, 0.151);
-    cursor: pointer;
-    transition: 0.3s;
-    color: rgb(226, 87, 145);
-  }
-
-}
 
 
 

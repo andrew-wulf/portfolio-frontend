@@ -1,0 +1,57 @@
+
+
+.content {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(65, 65, 65);
+  color: rgb(216, 216, 216)
+}
+
+
+.input-area {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, 0%);
+  width: 600px;
+  height: 300px;
+  
+  padding: 2em;
+  border: 2px solid black;
+  border-radius: 25px;
+}
+
+.lifeline-button {
+  border-radius: 25px;
+}
+
+
+.movie-search-results {
+
+  border: 2px solid gray;
+
+  .row {
+    &:hover {
+      cursor: pointer;
+      background-color: rgb(212, 248, 248);
+    }
+  }
+}
+
+.movies {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 3em;
+}
+
+.movie-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #212529;
+  color: #d0d6da;
+  border-radius: 15px;
+}

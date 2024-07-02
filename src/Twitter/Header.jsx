@@ -65,6 +65,9 @@ export function Header(props) {
   }
   else {
 
+    let avi = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541";
+    if (user.avi && user.avi.length > 5) {avi = user.avi}
+
     return (
     <Navbar expand="lg" className="bg-body-secondary" style={{'height': '50px'}}>
       <Container>
@@ -111,8 +114,8 @@ export function Header(props) {
             />
 
             </Form>
-              <Image src={user.avi} roundedCircle className='avi-header' />
-            <NavDropdown title={user.username} img={user.avi} id="basic-nav-dropdown">
+              <Image src={avi} roundedCircle className='avi-header' />
+            <NavDropdown title={user.username} id="basic-nav-dropdown">
               <NavDropdown.Item onClick={() => {window.location.href = `/twitter/users/${user.username}`}}>View Profile</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.1">Account</NavDropdown.Item>
               <NavDropdown.Item onClick={signOut}>Sign Out</NavDropdown.Item>
