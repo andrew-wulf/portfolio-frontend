@@ -1,6 +1,6 @@
 
 
-.content {
+.movie-content {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -54,4 +54,51 @@
   background-color: #212529;
   color: #d0d6da;
   border-radius: 15px;
+}
+
+
+
+
+.movie-menu {
+  width: 600px;
+
+}
+
+
+.movie-lobby {
+  margin-top: 4em;
+}
+
+
+.movie-front-page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  
+  background-color: #2e2e2e;
+  color: #e7e5e5ec;
+
+}
+
+.menu-options {
+  h3, h4, h5 {
+    &:hover {
+      cursor: pointer;
+      color: rgb(75, 127, 204);
+    }
+  }
+} 
+
+
+.movie-menu-selected {
+  width: 400px;
+  height: 450px;
+  border: 2px solid rgb(104, 104, 104);
+  border-radius: 25px;
+  box-shadow: 0 0 6px rgb(78, 78, 78);
+  padding: 1em;
+  
 }

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useEffect } from 'react';
+import { Loading } from './Loading';
 
 export function Redirect(props) {
 
@@ -22,4 +23,8 @@ export function Redirect(props) {
     }
   }
   useEffect(login, []);
+
+  return (
+    <Loading />
+  )
 }

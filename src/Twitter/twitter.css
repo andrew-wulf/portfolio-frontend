@@ -52,6 +52,9 @@
   border-right: solid 1px rgba(128, 128, 128, 0.624);
   border-bottom: solid 1px rgba(128, 128, 128, 0.624);
   background-color: rgb(250, 250, 250);
+
+  display: grid;
+  grid-template-columns: 6% 90%;
 }
 
 .tweet:hover {
@@ -90,12 +93,54 @@
   }
 }
 
-.user-display-name {
+.tweet-header {
+  height: 1em;
+  align-items: center;
   &:hover {
     cursor: pointer;
-    text-decoration: underline;
   }
 }
+.tweet-header p {
+  margin: 0
+}
+
+.tweet-interpunct {
+  font-size: 20px;
+}
+
+.user-display-name {
+  color:rgb(54, 54, 54);
+  font-weight: 700;
+  padding-bottom: 0.1em;
+  font-size: 15px
+}
+
+.user-username, .tweet-time {
+  color: rgb(37, 37, 37);
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.user-display-name:hover, .tweet-time:hover {
+  text-decoration: underline;
+}
+
+.tweet-content {
+  margin-top: 0.2em;
+  font-size: 14.6px;
+  line-height: 1.4em;
+  margin-bottom: 0.7em;
+}
+.tweet-text {
+  margin: 0
+}
+
+.tweet-like {
+  width:20px;
+  color: #F91880
+}
+
+
 
 .quote {
   border: 1px solid rgb(154, 154, 154);

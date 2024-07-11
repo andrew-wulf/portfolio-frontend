@@ -6,6 +6,7 @@ import { TweetsIndex } from "./Tweets/TweetsIndex.jsx";
 import { TweetView } from "./Tweets/TweetView.jsx";
 import { UserPage } from "./UserPage.jsx";
 import { SignUp } from "./SignUp.jsx";
+import { Loading } from "./Loading.jsx";
 
 export function Content(props) {
   let user = props.user;
@@ -22,6 +23,8 @@ export function Content(props) {
         <Route path = "/tweet/:id" element={<TweetView user={user}/>}/>
         
         <Route path = "/users/:name" element={<UserPage user={user}/>}/>
+
+        <Route path = "/loading" element={<Loading/>}/>
       </Routes>
      
     </div>

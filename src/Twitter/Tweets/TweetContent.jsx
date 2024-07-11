@@ -5,14 +5,14 @@ export function TweetContent(props) {
   let tweet = props.tweet;
 
   let quote = <div></div>;
-  let content = <p>{tweet.text}</p>;
+  let content = <p className="tweet-text">{tweet.text}</p>;
 
 
   if (tweet.image) {
     content = 
     <Container>
       <Row>
-        <p>{tweet.text}</p>
+        <p className="tweet-text">{tweet.text}</p>
       </Row>
 
       <Row>
@@ -31,7 +31,7 @@ export function TweetContent(props) {
     content =
     <Container>
       <Row>
-        <p>{tweet.text}</p>
+        <p className="tweet-text">{tweet.text}</p>
       </Row>
 
       <Row>

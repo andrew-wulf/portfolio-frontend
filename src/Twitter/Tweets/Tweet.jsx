@@ -8,6 +8,7 @@ import { FaRegComment } from "react-icons/fa";
 import { FaArrowUpFromBracket } from "react-icons/fa6";
 import { FaRegBookmark } from "react-icons/fa6";
 import { ImStatsBars } from "react-icons/im";
+import { LikeButton } from "./LikeButton";
 
 export function Tweet(props) {
   let tweet = props.tweet;
@@ -15,59 +16,62 @@ export function Tweet(props) {
 
    return (
 
-    <Container key={tweet.id} className='tweet' onClick={() => {window.location.href = `/twitter/tweet/${tweet.id}`}}>
+    <Container className='tweet' onClick={() => {window.location.href = `/twitter/tweet/${tweet.id}`}}>
       
-      <Row>
-        <Col>
-          <Stack direction='horizontal' gap={2} onClick={(e) => {e.stopPropagation(); window.location.href = `/twitter/users/${tweet.username}`}}>
-            <Image src={tweet.avi} roundedCircle className='avi'/>
-            <h6 className="user-display-name">{tweet.display_name}</h6>
-            <p>@{tweet.username}</p>
-    
-          </Stack>
-        </Col>
-      </Row>
+      <Image src={tweet.avi} roundedCircle className='avi'/>
 
-  
-      <TweetContent tweet={tweet}/>
-       
+      <Container>
 
-      <Row>
-        <Col xs={2}>
-          <Stack direction="horizontal" gap={2}>
-            <FaRegComment/>
-            {tweet.replies}
-          </Stack>
-        </Col>
+        <Row>
+          <Col>
+            <Stack className="tweet-header" direction='horizontal' gap={1} onClick={(e) => {e.stopPropagation(); window.location.href = `/twitter/users/${tweet.username}`}}>
+              <p className="user-display-name">{tweet.display_name}</p>
+              <p className="user-username">@{tweet.username}</p>
+              <p className="tweet-interpunct">&#183;</p>
+              <p className="tweet-time">23h</p>
+            </Stack>
+          </Col>
+        </Row>
 
-        <Col xs={2}>
-          <Stack direction="horizontal" gap={2}>
-            <FaRetweet />
-            {tweet.retweets}
-          </Stack>
-        </Col>
+        <div className="tweet-content">
+          <TweetContent tweet={tweet}/>
+        </div>
+        
 
-        <Col xs={2}>
-          <Stack direction="horizontal" gap={2}>
-            <IoMdHeartEmpty />
-            {tweet.likes}
-          </Stack>
-        </Col>
+        <Row className="tweet-footer">
+          <Col xs={2}>
+            <Stack direction="horizontal" gap={2}>
+              <FaRegComment className="tweet-reply"/>
+              {tweet.replies}
+            </Stack>
+          </Col>
 
-        <Col xs={2}>
-          <Stack direction="horizontal" gap={2}>
-            <ImStatsBars/>
-            23.4M
-          </Stack>
-        </Col>
+          <Col xs={2}>
+            <Stack direction="horizontal" gap={2}>
+              <FaRetweet className="tweet-retweet"/>
+              {tweet.retweets}
+            </Stack>
+          </Col>
 
-        <Col>
-          <Stack direction="horizontal" gap={3}>
-            <FaArrowUpFromBracket/>
-            <FaRegBookmark/>
-          </Stack>
-        </Col>
-      </Row>
+          <Col xs={3}>
+            <LikeButton tweet={tweet}/>
+          </Col>
+
+          <Col xs={2}>
+            <Stack direction="horizontal" gap={2}>
+              <ImStatsBars className="tweet-stats"/>
+              23.4M
+            </Stack>
+          </Col>
+          <Col xs={2}/>
+          <Col>
+            <Stack direction="horizontal" gap={3}>
+              <FaArrowUpFromBracket className="tweet-bookmark"/>
+              <FaRegBookmark/>
+            </Stack>
+          </Col>
+        </Row>
+      </Container>
 
     </Container>
   )

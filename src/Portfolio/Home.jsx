@@ -125,7 +125,7 @@ export function Home() {
 
 
   const handleVisit = (i) => {
-    let addresses = ['/twitter', '', '/chess', ''];
+    let addresses = ['/twitter', '/moviebattle', '/chess', ''];
     let dest = addresses[i];
 
     if (dest !== '') {

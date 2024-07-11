@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 
 
 import { TweetsIndex } from './TweetsIndex.jsx';
+import { Loading } from '../Loading.jsx';
 
 
 export function Timeline() {
@@ -23,11 +24,17 @@ export function Timeline() {
   }
   useEffect(getUserTimeline, []);
 
-  return (
-    <Container>
-      <Container style={{'maxWidth': '660px'}}>
-        <TweetsIndex tweets={tweets}/>
+  if (tweets.length > 0) {
+    return (
+      <Container>
+        <Container style={{'maxWidth': '660px'}}>
+          <TweetsIndex tweets={tweets}/>
+        </Container>
       </Container>
-    </Container>
-  )
+    )
+  }
+
+  else {
+    return (<Loading />)
+  }
 }
