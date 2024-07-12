@@ -12,8 +12,12 @@ import { FaEnvelope } from "react-icons/fa";
 import { FaBell } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
 import { RiQuillPenFill } from "react-icons/ri";
+import { FaRegBookmark } from 'react-icons/fa6';
+import { FaBookmark } from "react-icons/fa";
+import { IoPersonOutline, IoPersonSharp } from "react-icons/io5";
+
 import { CiLock } from "react-icons/ci";
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 
 
@@ -21,11 +25,38 @@ export function LeftSidebar(props) {
 
   const [accountModalVisible, setAccountModalVisible] = useState('hidden');
 
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [toggleStyle, setToggleStyle] = useState({transform: 'translate(0, 0)'});
+  const [lightVal, setLightVal] = useState('0%');
+  const [darkVal, setDarkVal] = useState('0%');
 
+  const checkboxRef = useRef(null);
+  const [checked, setChecked] = useState(false); 
 
-  let user = props.user;
-  console.log(user);
+  useEffect(() => {
+    const darkMode = document.documentElement.classList.contains('dark');
+    setIsDarkMode(darkMode);
+  }, []);
 
+  const toggleDarkMode = () => {
+    document.documentElement.classList.toggle('dark');
+    document.documentElement.classList.toggle('light');
+    setIsDarkMode(!isDarkMode);
+  };
+
+  const toggle = (e) => {
+    toggleDarkMode();
+    setChecked(e.target.checked);
+
+    if (e.target.checked) {
+      setLightVal('100%');
+      setDarkVal('0%');
+    }
+    else {
+      setLightVal('0%');
+      setDarkVal('100%');
+    }
+  }
 
   const toggleAccountModal = () => {
     if (accountModalVisible === 'visible') {
@@ -36,15 +67,20 @@ export function LeftSidebar(props) {
     }
   }
 
-
   const signOut = () => {
     delete axios.defaults.headers.common["Authorization"];
     localStorage.removeItem("jwt");
     window.location.href = "/twitter/home"
   }
 
+
+
+  let user = props.user;
+  console.log(user);
+
   let avi = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541";
   if (user.avi && user.avi.length > 5) {avi = user.avi}
+
 
   return (
   
@@ -66,7 +102,7 @@ export function LeftSidebar(props) {
       
       <div direction='horizontal' className='header-option' onClick={
         () => {window.location.href= "/twitter/home"}}>
-        <FaEnvelope/>
+        <FaSearch/>
         <div className='header-option-text'>
           <h5>Explore</h5>
         </div>
@@ -93,7 +129,7 @@ export function LeftSidebar(props) {
 
       <div direction='horizontal' className='header-option' onClick={
         () => {window.location.href= "/twitter/home"}}>
-        <FaEnvelope/>
+        <FaBookmark/>
         <div className='header-option-text'>
           <h5>Bookmarks</h5>
         </div>
@@ -102,7 +138,7 @@ export function LeftSidebar(props) {
       
       <div direction='horizontal' className='header-option' onClick={
         () => {window.location.href= "/twitter/home"}}>
-        <FaEnvelope/>
+        <IoPersonSharp/>
         <div className='header-option-text'>
           <h5>Profile</h5>
         </div>
@@ -124,7 +160,7 @@ export function LeftSidebar(props) {
         <div className='flex gap-3 place-items-center'>
           <Image src={avi} roundedCircle className='avi-header' />
 
-          <div className='flex flex-col'>
+          <div className='header-account-details'>
             <h6>{user.display_name}</h6>
             <p>{user.username}</p>
             
@@ -145,7 +181,12 @@ export function LeftSidebar(props) {
         <NavDropdown.Item onClick={signOut}>Sign Out</NavDropdown.Item>
       </NavDropdown>
         
-  
+      <div onClick={toggle} className='theme-toggle'>
+        <input type='checkbox' ref={checkboxRef}/>
+        <span className="theme-slider" style={toggleStyle}/>
+        <p style={{opacity: lightVal}}>Light</p>
+        <p style={{opacity: darkVal}}>Dark</p>
+      </div>
 
     </div>
   </div>

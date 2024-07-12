@@ -11,14 +11,21 @@ export function LikeButton(props) {
 
   const [liked, setLiked] = useState(tweet.liked_by_user);
   const [count, setCount] = useState(tweet.likes);
+  const [likeStyle, setLikeStyle] = useState({});
 
   const handleClick = (e) => {
     e.stopPropagation();
     setLiked(!liked);
     likeToggle();
 
-    if (liked) {setCount(count - 1)}
-    else {setCount(count + 1)}
+    if (liked) {
+      setCount(count - 1);
+      setLikeStyle({});
+    }
+    else {
+      setCount(count + 1);
+      setLikeStyle({animation: 'pop 1.3s'})
+    }
   }
 
   const likeToggle = () => {
@@ -30,24 +37,24 @@ export function LikeButton(props) {
         console.log(error);
       });
   }
-  
+
 
   if (liked) {
       return (
-        <Stack className="tweet-like" direction="horizontal" gap={1} onClick={handleClick}>
-          <IoMdHeart className="tweet-icon"/>
+        <div className="tweet-like" onClick={handleClick}>
+          <IoMdHeart className="tweet-icon heart" style={likeStyle}/>
           <p className="tweet-like-count">{count}</p>
 
-        </Stack>
+        </div>
       );
     }
 
   else {
     return (
-      <Stack className="tweet-unlike" direction="horizontal" gap={1} onClick={handleClick}>
+      <div className="tweet-unlike" onClick={handleClick}>
         <IoMdHeartEmpty className="tweet-icon"/>
         <p className="tweet-like-count">{count}</p>
-      </Stack>
+      </div>
     )
   }
 }

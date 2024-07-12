@@ -1,4 +1,8 @@
-
+@media (max-width: 1299px) {
+  .header-option-text, .header-account-details, .header-tweet-label, .header-option-text, .header-profile-dropdown {
+    display: none;
+  }
+}
 
 .left-sidebar-content {
   display: flex;
@@ -21,19 +25,36 @@
   align-items: center;
   column-gap: 1.6em;
   font-size: 20px;
+  border-radius: 25px;
 }
 
 .header-option-text {
-  @media(max-width: 1299px) {
-    display: none;
-  };
+  margin-top: 0.3em;
 }
 
-.header-option:hover, .header-account:hover {
+.header-account {
   border-radius: 25px;
-  border: 2px solid rgb(91, 91, 91);
-  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
+}
+
+
+.header-option:hover, .header-account:hover {
+  
+  @media (max-width: 1299px) {
+    cursor: pointer;
+    animation: shake 0.4s;
+    transform: scale(115%) translate(0.1em, 0em);
+  }
+
+  @media (min-width: 1300px) {
+    background-color: rgba(203, 211, 214, 0.514);
+    box-shadow: 3px 3px 2px rgba(37, 37, 37, 0.11);
+    cursor: pointer;
+  }
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  50% { transform: translate(-1px, -2px) rotate(-10deg); }
 }
 
 
@@ -48,7 +69,7 @@
   align-items: center;
   gap: 0.4em;
 
-  width: 70px;
+  width: 50px;
   border-radius: 25px;
 
 
@@ -62,14 +83,69 @@
   };
 }
 
-.header-tweet-label, .header-option-text, .header-profile-dropdown {
-  @media(max-width: 1299px) {
-    display: none;
-  };
-
-}
 
 
 .account-modal {
   position: absolute;
+}
+
+
+.theme-toggle {
+  display: inline-block;
+  position: relative;
+
+  background-color: rgba(73, 91, 119, 0.986);
+  color: white;
+  
+  height: 50px;
+  width: 140px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+  border-radius: 25px;
+
+  @media (max-width: 1299px) {
+    width: 50px;
+    height: 120px;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  +input:checked {
+    background-color: aliceblue;
+  }
+
+  .theme-slider {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f8f8f8;
+    -webkit-transition: 1.2s;
+    transition: 1.2s;
+
+    @media (max-width: 1299px) {
+      top: 5px;
+    }
+
+    @media (min-width: 1300px) {
+      left: 5px;
+    }
+  }
+
+  p {
+    margin-top: 0.6em;
+    transition: 0.6s;
+  }
+
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
 }

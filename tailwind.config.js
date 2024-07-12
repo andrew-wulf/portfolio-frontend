@@ -13,10 +13,12 @@ export default {
       lg: '976px',
       xl: '1440px',
     },
+
     fontFamily: {
       sans: ['Graphik', 'sans-serif'],
       serif: ['Merriweather', 'serif'],
     },
+
     extend: {
       spacing: {
         '128': '32rem',

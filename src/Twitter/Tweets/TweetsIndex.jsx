@@ -9,7 +9,7 @@ export function TweetsIndex(props) {
 
   if (tweets && tweets.length > 0) {
     return (
-            <Stack>
+            <div className="flex flex-col">
               {
                 tweets.map((tweet, i) => {
                   return (
@@ -19,7 +19,7 @@ export function TweetsIndex(props) {
                   )
                 })
               }
-            </Stack>
+            </div>
     )
   }
 }
