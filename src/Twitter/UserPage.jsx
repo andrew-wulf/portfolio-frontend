@@ -67,13 +67,13 @@ export function UserPage(props) {
         </div>
   
         <div className="user-sub-banner">
-          <Stack direction="horizontal" gap={5}>
+          <div className="flex flex-row gap-10">
             <h6>Followers: {viewedUser.followers.length}</h6>
             <h6>Following: {viewedUser.following.length}</h6>
             <h6>tweets: {tweets.length}</h6>
             <h6>Likes: {viewedUser.likes}</h6>
-            <Button style={{"visibility": editVisible}}>Edit Profile</Button>
-          </Stack>
+            <button className="bg-blue-600 hover:bg-blue-700 text-gray-200 rounded-lg w-[80px] h-[30px]" style={{"visibility": editVisible}}>Edit Profile</button>
+          </div>
         </div>
         
         <div className="user-avi-container">

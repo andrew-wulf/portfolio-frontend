@@ -6,6 +6,9 @@ import { TweetsIndex } from "./TweetsIndex";
 
 import { Container, Row, Col } from "react-bootstrap";
 
+import { FaArrowLeft } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+
 export function TweetView() {
   
   const [tweet, setTweet] = useState({});
@@ -26,27 +29,35 @@ export function TweetView() {
   }
   useEffect(getTweet, []);
 
+  let navigate = useNavigate();
+
+
   if (tweet) {
+    let subtweets = <></>;
+
     if (tweet.subtweets && tweet.subtweets.length > 0) {
-      return (
-        <Container>
-          <Row>
-            <Container style={{"maxWidth": "720px"}}>
-              <Tweet tweet={tweet}/>
-            </Container>
-          </Row>
-          <Row>
-            <Container style={{"maxWidth": "660px"}}>
-              <TweetsIndex tweets={tweet.subtweets}/>
-            </Container>
-          </Row>
-        </Container>
-      )
+      subtweets = <TweetsIndex tweets={tweet.subtweets}/>;
     }
-    else {
-      return (
-        <Tweet tweet={tweet}/>
-      )
-    }
+
+    return (
+      <div className="tweet-view">
+          <div className="flex flex-row gap-10 h-10 pl-3 place-items-center">
+            <div onClick={() => {navigate(-1)}} className=" w-8 h-8 rounded-2xl hover:cursor-pointer hover:shadow-black hover:bg-gray-300 flex align-items-center justify-content-center">
+              <FaArrowLeft />
+            </div>
+            <h4>Post</h4>
+          </div>
+          
+          <div className="big-tweet">
+            <Tweet tweet={tweet}/>
+          </div>
+
+          <div>
+            Insert Reply Here
+          </div>
+    
+          {subtweets}
+      </div>
+    )
   }
 }

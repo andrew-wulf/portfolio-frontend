@@ -26,11 +26,11 @@ export function Timeline() {
 
   if (tweets.length > 0) {
     return (
-      <Container>
-        <Container style={{'maxWidth': '660px'}}>
+      <div>
+        <div>
           <TweetsIndex tweets={tweets}/>
-        </Container>
-      </Container>
+        </div>
+      </div>
     )
   }
 

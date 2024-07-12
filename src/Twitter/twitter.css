@@ -7,9 +7,67 @@
 }
 
 .content {
-  height: 100vh;
-  overflow: scroll;
+  overflow-y: scroll;
+
+  @media (max-width: 699px) {
+  --lg-left: 65px;
+  --lg-right: 100vw;
+  --content-width: calc(100vw - 65px);
+  };
+
+  @media (min-width: 700px) {
+  --content-width: 600px;
+  --lg-left: calc((100vw - 600px) * 0.3);
+  --lg-right: calc(var(--lg-left) + 600px)
+  };
+
+  @media (min-width: 1300px) {
+    --content-width: 600px;
+    --lg-left: calc((100vw - 600px) * 0.4);
+    --lg-right: calc(var(--lg-left) + 600px)
+  };
 }
+
+.middle-container {
+  position:relative;
+  width: var(--content-width);
+  height: 100vh;
+  left: var(--lg-left);
+  padding: 0;
+  margin: 0;
+
+}
+
+.left-sidebar, .right-sidebar {
+  height: 100vh;
+  position: fixed;
+}
+
+.left-sidebar {
+  top: 0;
+  left: 0;
+  min-width: 75px;
+  width: var(--lg-left);
+
+  display: flex;
+  justify-content: center;
+
+  border: 1px solid rgb(138, 74, 22);
+}
+
+.right-sidebar {
+  top: 0;
+  left: var(--lg-right);
+  right: 15px;
+  border: 1px solid rgb(92, 22, 138);
+
+  @media (max-width: 699px) {
+    display: none;
+    }
+}
+
+
+
 
 .sign-in {
   position: absolute;
@@ -135,11 +193,30 @@
   margin: 0
 }
 
-.tweet-like {
-  width:20px;
-  color: #F91880
+.tweet-footer {
+  align-items: flex-start;
 }
 
+.tweet-like, .tweet-unlike, .tweet-retweet, .tweet-stats, .tweet-reply {
+  align-items: flex-start;
+  height:30px;
+}
+
+.tweet-like {
+  color: #f91850;
+}
+
+.tweet-unlike {
+  color: rgb(70, 70, 70);
+  align-content: center
+}
+
+.tweet-like:hover, .tweet-unlike:hover {
+}
+
+.tweet-icon {
+ align-self: flex-start;
+}
 
 
 .quote {

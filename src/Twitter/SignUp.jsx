@@ -292,7 +292,7 @@ export function SignUp(props) {
         <h2>Sign Up</h2>
 
         <Form onSubmit={handleSubmit} style={{'display': 'flex', 'flexDirection': 'column'}}>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form.Group className="mb-3">
 
           {emailPassword}
 
@@ -305,7 +305,7 @@ export function SignUp(props) {
         </Form>
 
         <Form onSubmit={handleSubmit} style={{'display': 'flex', 'flexDirection': 'column'}}>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form.Group className="mb-3">
 
           {avi}
 

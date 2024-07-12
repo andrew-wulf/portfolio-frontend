@@ -11,9 +11,9 @@ export function TweetsIndex(props) {
     return (
             <Stack>
               {
-                tweets.map(tweet => {
+                tweets.map((tweet, i) => {
                   return (
-                    <div key={tweet.id}>
+                    <div key={i}>
                       <Tweet tweet={tweet}/>
                     </div>
                   )

@@ -1,5 +1,13 @@
 
 
+.left-sidebar-content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  width: 80%;
+  justify-items: left;
+}
+
 .avi-header {
   width: 40px;
   height: 40px;
@@ -9,11 +17,59 @@
 
 .header-option {
   padding: 0.4em;
+  display: flex;
+  align-items: center;
+  column-gap: 1.6em;
+  font-size: 20px;
 }
 
-.header-option:hover {
+.header-option-text {
+  @media(max-width: 1299px) {
+    display: none;
+  };
+}
+
+.header-option:hover, .header-account:hover {
   border-radius: 25px;
   border: 2px solid rgb(91, 91, 91);
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+}
+
+
+.header-tweet {
+  background-color: rgb(34, 126, 255);
+  color: white;
+  
+  height: 50px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4em;
+
+  width: 70px;
+  border-radius: 25px;
+
+
+  &:hover {
+    background-color: rgb(11, 94, 213);
+  };
+
+  @media(min-width: 1300px) {
+    width: 220px;
+    border-radius: 25px;
+  };
+}
+
+.header-tweet-label, .header-option-text, .header-profile-dropdown {
+  @media(max-width: 1299px) {
+    display: none;
+  };
+
+}
+
+
+.account-modal {
+  position: absolute;
 }

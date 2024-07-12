@@ -40,27 +40,27 @@ export function Tweet(props) {
 
         <Row className="tweet-footer">
           <Col xs={2}>
-            <Stack direction="horizontal" gap={2}>
-              <FaRegComment className="tweet-reply"/>
-              {tweet.replies}
+            <Stack direction="horizontal" gap={2} className="tweet-reply">
+              <FaRegComment className="tweet-icon"/>
+              <p>{tweet.replies}</p>
             </Stack>
           </Col>
 
           <Col xs={2}>
-            <Stack direction="horizontal" gap={2}>
-              <FaRetweet className="tweet-retweet"/>
-              {tweet.retweets}
+            <Stack direction="horizontal" gap={2} className="tweet-retweet">
+              <FaRetweet className="tweet-icon"/>
+              <p>{tweet.retweets}</p>
             </Stack>
           </Col>
 
-          <Col xs={3}>
+          <Col xs={2}>
             <LikeButton tweet={tweet}/>
           </Col>
 
           <Col xs={2}>
-            <Stack direction="horizontal" gap={2}>
-              <ImStatsBars className="tweet-stats"/>
-              23.4M
+            <Stack direction="horizontal" gap={2} className="tweet-stats">
+              <ImStatsBars className="tweet-icon"/>
+              <p>23.4M</p>
             </Stack>
           </Col>
           <Col xs={2}/>

@@ -1,32 +1,50 @@
-import { SignIn } from "./SignIn.jsx";
+
 import { Route, Routes } from "react-router-dom";
-import { Redirect } from "./Redirect.jsx";
+
 import {Home} from './Home.jsx'
-import { TweetsIndex } from "./Tweets/TweetsIndex.jsx";
+
 import { TweetView } from "./Tweets/TweetView.jsx";
 import { UserPage } from "./UserPage.jsx";
-import { SignUp } from "./SignUp.jsx";
+
 import { Loading } from "./Loading.jsx";
+import { LeftSidebar } from "./LeftSidebar.jsx";
+import { RightSidebar } from "./RightSidebar.jsx";
 
 export function Content(props) {
   let user = props.user;
   
+  const scroll = (e) => {
+    let doc = document.querySelector('.content');
+    doc.scrollBy({
+      top: e.deltaY,
+      left: 0,
+    });
+  }
+
   return (
     <div className="content">
-      <Routes>
-        <Route path = "/" element= {<Redirect user={user} setUser={props.setUser}/>}/>
-        <Route path = "/signin" element={<SignIn user={user}/>}/>
-        <Route path = "/signup" element={<SignUp user={user}/>}/>
+      
+      <div onWheel={scroll}>
+        <LeftSidebar user={props.user}/>
+      </div>
 
-        <Route path = "/home" element={<Home user={user}/>}/>
+      <div className="middle-container">
+        <Routes>
+    
+          <Route path = "/home" element={<Home user={user}/>}/>
 
-        <Route path = "/tweet/:id" element={<TweetView user={user}/>}/>
-        
-        <Route path = "/users/:name" element={<UserPage user={user}/>}/>
+          <Route path = "/tweet/:id" element={<TweetView user={user}/>}/>
+          
+          <Route path = "/users/:name" element={<UserPage user={user}/>}/>
 
-        <Route path = "/loading" element={<Loading/>}/>
-      </Routes>
-     
+          <Route path = "/loading" element={<Loading/>}/>
+        </Routes>
+      </div>
+
+      <div onWheel={scroll}>
+        <RightSidebar />
+      </div>
+
     </div>
   )
 }

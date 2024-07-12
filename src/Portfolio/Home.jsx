@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button } from "react-bootstrap"
+
 import { Container, Row, Col } from "react-bootstrap"
 import { Stack } from "react-bootstrap";
 import {Image} from "react-bootstrap";
@@ -159,53 +159,53 @@ export function Home() {
       <div className="track-container" onMouseMove={(e) => {shift(e)}} style={{'opacity': `${appsOpacity}%`, 'transform': `translate(${trans})`, 'transition': '3s ease-out'}}>
 
         <div className="img-track" style={{'transform': `translate(${percent}%)`}} >
-          <Stack className="port-container" id="blur-1" onMouseEnter={(e) => {mouseOver(0)}} onMouseLeave={mouseLeave} style={boxStyles[0]} onClick={() => {handleClick(0)}}>
-            <Container className="port-img-container" style={imgStyles[0]}>
+          <div className="port-container" id="blur-1" onMouseEnter={(e) => {mouseOver(0)}} onMouseLeave={mouseLeave} style={boxStyles[0]} onClick={() => {handleClick(0)}}>
+            <div className="port-img-container" style={imgStyles[0]}>
               <img src={'twitter_logo.png'} className="twitter-logo" draggable='false'/>
-            </Container>
+            </div>
             <h1>Twitter</h1>
             <div className="port-info" style={{'opacity': `${infoStyles[0]}%`}}>
-              <h4 >A fully featured twitter clone. Make an account and try it out!</h4>
-              <Button>More Info</Button>
-              <Button onClick={() => {handleVisit(0)}}>Visit</Button>
+              <h4>A fully featured twitter clone. Make an account and try it out!</h4>
+              <button className="bg-blue-600 hover:bg-blue-700 text-gray-200 rounded-lg w-[80px] h-[30px]" >More Info</button>
+              <button  className="bg-blue-600 hover:bg-blue-700 text-gray-200 rounded-lg w-[80px] h-[30px] ml-3" onClick={() => {handleVisit(0)}}>Visit</button>
             </div>
-          </Stack>
+          </div>
 
-          <Stack className="port-container" id="blur-2" onMouseEnter={(e) => {mouseOver(1)}} onMouseLeave={mouseLeave} style={boxStyles[1]} onClick={() => {handleClick(1)}}>
-            <Container className="port-img-container" style={imgStyles[1]}>
+          <div className="port-container" id="blur-2" onMouseEnter={(e) => {mouseOver(1)}} onMouseLeave={mouseLeave} style={boxStyles[1]} onClick={() => {handleClick(1)}}>
+            <div className="port-img-container" style={imgStyles[1]}>
               <img src={link} draggable='false'/>
-            </Container>
+            </div>
             <h1>Movie Battle</h1>
             <div className="port-info" style={{'opacity': `${infoStyles[1]}%`}}>
               <h4>Multiplayer trivia battle royale inspired by cine2nerdle.</h4>
-              <Button>More Info</Button>
-              <Button onClick={() => {handleVisit(1)}}>Visit</Button>
+              <button className="bg-blue-600 hover:bg-blue-700 text-gray-200 rounded-lg w-[80px] h-[30px]" >More Info</button>
+              <button  className="bg-blue-600 hover:bg-blue-700 text-gray-200 rounded-lg w-[80px] h-[30px] ml-3" onClick={() => {handleVisit(1)}}>Visit</button>
             </div>
-          </Stack>
+          </div>
 
-          <Stack className="port-container" id="blur-3" onMouseEnter={(e) => {mouseOver(2)}} onMouseLeave={mouseLeave} style={boxStyles[2]} onClick={() => {handleClick(2)}}>
-            <Container className="port-img-container" style={imgStyles[2]}>
+          <div className="port-container" id="blur-3" onMouseEnter={(e) => {mouseOver(2)}} onMouseLeave={mouseLeave} style={boxStyles[2]} onClick={() => {handleClick(2)}}>
+            <div className="port-img-container" style={imgStyles[2]}>
               <img src={'assets/chess.png'} draggable='false'/>
-            </Container>
+            </div>
             <h1>Chess</h1>
             <div className="port-info" style={{'opacity': `${infoStyles[2]}%`}}>
               <h4>It's chess! Play locally, or against stockfish.</h4>
-              <Button>More Info</Button>
-              <Button onClick={() => {handleVisit(2)}}>Visit</Button>
+              <button className="bg-blue-600 hover:bg-blue-700 text-gray-200 rounded-lg w-[80px] h-[30px]" >More Info</button>
+              <button  className="bg-blue-600 hover:bg-blue-700 text-gray-200 rounded-lg w-[80px] h-[30px] ml-3" onClick={() => {handleVisit(2)}}>Visit</button>
             </div>
-          </Stack>
+          </div>
           
-          <Stack className="port-container" id="blur-4" onMouseEnter={(e) => {mouseOver(3)}} onMouseLeave={mouseLeave} style={boxStyles[3]} onClick={() => {handleClick(3)}}>
-            <Container className="port-img-container" style={imgStyles[3]}>
+          <div className="port-container" id="blur-4" onMouseEnter={(e) => {mouseOver(3)}} onMouseLeave={mouseLeave} style={boxStyles[3]} onClick={() => {handleClick(3)}}>
+            <div className="port-img-container" style={imgStyles[3]}>
               <img src={link} draggable='false'/>
-            </Container>
+            </div>
             <h1>E-Store</h1>
             <div className="port-info" style={{'opacity': `${infoStyles[3]}%`}}>
               <h4>Lightweight e-commerce project</h4>
-              <Button>More Info</Button>
-              <Button onClick={() => {handleVisit(3)}}>Visit</Button>
+              <button className="bg-blue-600 hover:bg-blue-700 text-gray-200 rounded-lg w-[80px] h-[30px]" >More Info</button>
+              <button  className="bg-blue-600 hover:bg-blue-700 text-gray-200 rounded-lg w-[80px] h-[30px] ml-3" onClick={() => {handleVisit(3)}}>Visit</button>
             </div>
-          </Stack>
+          </div>
 
           
         </div>

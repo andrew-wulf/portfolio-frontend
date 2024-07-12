@@ -1,6 +1,5 @@
-import { Header } from "./Header";
+
 import { Content } from "./Content";
-import { Footer } from "./Footer";
 
 import './twitter.css';
 
@@ -9,6 +8,9 @@ import axios from 'axios'
 import { Routes, Route } from "react-router-dom";
 import { Loading } from "./Loading";
 
+import { Redirect } from "./Redirect";
+import { SignIn } from "./SignIn";
+import { SignUp } from "./SignUp";
 
 
 export function Twitter() {
@@ -46,13 +48,13 @@ export function Twitter() {
     return (
       <div className="twitter">
         <Routes>
-          <Route path = "/home" element={<Header user={currentUser}/>}/>
-          <Route path = "/tweet/:id" element={<Header user={currentUser}/>}/>
-          <Route path = "/users/:name" element={<Header user={currentUser}/>}/>
+          <Route path = "/" element= {<Redirect user={currentUser} setUser={setCurrentUser}/>}/>
+          <Route path = "/signin" element={<SignIn user={currentUser}/>}/>
+          <Route path = "/signup" element={<SignUp user={currentUser}/>}/>
+
+          <Route path = "/*" element={<Content user={currentUser} setUser={setCurrentUser} />}/>
         </Routes>
-        
-        <Content user={currentUser} setUser={setCurrentUser} />
-        <Footer />
+    
       </div>
     );
   }

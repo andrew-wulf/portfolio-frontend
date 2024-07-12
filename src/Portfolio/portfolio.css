@@ -1,3 +1,4 @@
+
 .portfolio-header {
   height: 140px;
   background: radial-gradient(rgb(88, 38, 168), rgb(124, 70, 223));
@@ -96,11 +97,10 @@
     transition: 3s;
   }
   .img-track {
-    width: 85%;
     display: flex;
     flex-direction: row;
-    column-gap: 4vmin;
-    align-items: flex-end;
+    column-gap: 16vmin;
+    align-items: flex-start;
     transition: 4s ease-out;
   }
   .track-container {
@@ -108,6 +108,8 @@
     position: absolute;
     top: 50%;
     display: flex;
+    flex-direction: row;
+    align-items: flex-start;
     opacity: 0%;
     transition: 3s;
     transition-delay: 3s;
@@ -134,6 +136,8 @@
   
 
   .port-container {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: start;
     width: 24vmin;
