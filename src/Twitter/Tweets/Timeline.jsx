@@ -6,10 +6,12 @@ import { useState, useEffect } from 'react';
 
 import { TweetsIndex } from './TweetsIndex.jsx';
 import { Loading } from '../Loading.jsx';
+import { NewTweet } from './NewTweet.jsx';
 
 
-export function Timeline() {
-  
+export function Timeline(props) {
+  let user = props.user;
+
   const [tweets, setTweets] = useState([]);
 
   const getUserTimeline = () => {
@@ -24,9 +26,17 @@ export function Timeline() {
   }
   useEffect(getUserTimeline, []);
 
+  const handleSubmit = (id) => {
+    window.location.href = `/twitter/tweet/${id}`
+  }
+
   if (tweets.length > 0) {
     return (
       <div>
+        <div className='timeline-new-tweet'>
+          <NewTweet user={user} onSubmit={handleSubmit} minHeight={40}/>
+        </div>
+
         <div>
           <TweetsIndex tweets={tweets}/>
         </div>

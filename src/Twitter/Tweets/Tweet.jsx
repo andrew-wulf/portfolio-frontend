@@ -22,16 +22,14 @@ export function Tweet(props) {
 
       <div className="tweet-content">
 
-        <Row>
-          <Col>
-            <div className="tweet-header" onClick={(e) => {e.stopPropagation(); window.location.href = `/twitter/users/${tweet.username}`}}>
-              <p className="user-display-name">{tweet.display_name}</p>
-              <p className="user-username">@{tweet.username}</p>
-              <p className="tweet-interpunct">&#183;</p>
-              <p className="tweet-time">23h</p>
-            </div>
-          </Col>
-        </Row>
+      
+        <div className="tweet-header" onClick={(e) => {e.stopPropagation(); window.location.href = `/twitter/users/${tweet.username}`}}>
+          <p className="user-display-name">{tweet.display_name}</p>
+          <p className="user-username">@{tweet.username}</p>
+          <p className="tweet-interpunct">&#183;</p>
+          <p className="tweet-time">23h</p>
+        </div>
+
 
         <div className="tweet-content">
           <TweetContent tweet={tweet}/>

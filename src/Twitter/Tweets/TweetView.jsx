@@ -8,9 +8,11 @@ import { Container, Row, Col } from "react-bootstrap";
 
 import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { NewTweet } from "./NewTweet";
 
-export function TweetView() {
-  
+export function TweetView(props) {
+  let user = props.user;
+
   const [tweet, setTweet] = useState({});
 
   const getTweet = () => {
@@ -31,6 +33,9 @@ export function TweetView() {
 
   let navigate = useNavigate();
 
+  const handleSubmit = (id) => {
+    window.location.href = `/twitter/tweet/${id}`
+  }
 
   if (tweet) {
     let subtweets = <></>;
@@ -52,8 +57,8 @@ export function TweetView() {
             <Tweet tweet={tweet}/>
           </div>
 
-          <div>
-            Insert Reply Here
+          <div className="tweet-view-new-tweet">
+            <NewTweet user={user} onSubmit={handleSubmit} minHeight={40} placeholder={'Post your reply'} tweetID={tweet.id}/>
           </div>
     
           {subtweets}

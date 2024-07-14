@@ -2,6 +2,7 @@
 import { Content } from "./Content";
 
 import './twitter.css';
+import './css/tweets.css';
 
 import { useState, useEffect } from "react";
 import axios from 'axios'

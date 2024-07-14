@@ -4,11 +4,13 @@ import { Route, Routes } from "react-router-dom";
 import {Home} from './Home.jsx'
 
 import { TweetView } from "./Tweets/TweetView.jsx";
+import {TweetModal} from "./Tweets/TweetModal.jsx";
 import { UserPage } from "./UserPage.jsx";
 
 import { Loading } from "./Loading.jsx";
 import { LeftSidebar } from "./LeftSidebar.jsx";
 import { RightSidebar } from "./RightSidebar.jsx";
+import { useState } from "react";
 
 export function Content(props) {
   let user = props.user;
@@ -21,11 +23,19 @@ export function Content(props) {
     });
   }
 
+
+  const [tweetModalVisible, setTweetModalVisible] = useState(false);
+  
+  const toggleTweetModal = () => {
+    setTweetModalVisible(!tweetModalVisible)
+  }
+
+
   return (
     <div className="content">
       
       <div onWheel={scroll}>
-        <LeftSidebar user={props.user}/>
+        <LeftSidebar user={props.user} toggleTweetModal={toggleTweetModal}/>
       </div>
 
       <div className="middle-container">
@@ -44,6 +54,8 @@ export function Content(props) {
       <div onWheel={scroll}>
         <RightSidebar />
       </div>
+      
+      <TweetModal show={tweetModalVisible} onClose={toggleTweetModal} user={user}/>
 
     </div>
   )

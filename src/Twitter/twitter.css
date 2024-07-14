@@ -127,7 +127,7 @@
 .tweet {
   padding-left: 0.6em;
   padding-right: 0.6em;
-  padding-top: 0.4em;
+  padding-top: 0.2em;
   padding-bottom: 0.4em;
 
   border-left: solid 1px rgba(128, 128, 128, 0.624);
@@ -171,11 +171,14 @@
 
   max-width: 40px;
   max-height: 40px;
+  margin-top: 0.25em;
 
   &:hover {
     cursor: pointer;
     filter: brightness(85%)
   }
+
+  border-radius: 50%;
 }
 
 .tweet-header {
@@ -183,7 +186,6 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 0.4em;
-  border: 1px solid black;
 
   height: 1em;
   align-items: flex-start;
@@ -210,7 +212,7 @@
 .user-username, .tweet-time {
   color: rgb(37, 37, 37);
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14.5px;
 }
 
 .user-display-name:hover, .tweet-time:hover {
@@ -222,6 +224,9 @@
   font-size: 14.6px;
   line-height: 1.4em;
   margin-bottom: 0.7em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em
 }
 .tweet-text {
   margin: 0

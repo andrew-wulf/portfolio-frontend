@@ -147,7 +147,7 @@ export function LeftSidebar(props) {
       
 
       
-      <button className='header-tweet '>
+      <button className='header-tweet ' onClick={props.toggleTweetModal}>
         <RiQuillPenFill/>
         <div className='header-tweet-label'>
           <h5>Tweet</h5>
@@ -168,13 +168,6 @@ export function LeftSidebar(props) {
         </div>
       </div>
       
-      <div className='account-modal' style={{visibility: accountModalVisible}}>
-        <ListGroup>
-          <ListGroupItem>Account</ListGroupItem>
-          <ListGroupItem onClick={signOut}>Sign Out</ListGroupItem>
-        </ListGroup>
-      </div>
-
       <NavDropdown className='header-profile-dropdown'>
         <NavDropdown.Item onClick={() => {window.location.href = `/twitter/users/${user.username}`}}>View Profile</NavDropdown.Item>
         <NavDropdown.Item href="#action/3.1">Account</NavDropdown.Item>
@@ -186,6 +179,14 @@ export function LeftSidebar(props) {
         <span className="theme-slider" style={toggleStyle}/>
         <p style={{opacity: lightVal}}>Light</p>
         <p style={{opacity: darkVal}}>Dark</p>
+      </div>
+
+
+      <div className='account-modal' style={{visibility: accountModalVisible}}>
+        <ListGroup>
+          <ListGroupItem>Account</ListGroupItem>
+          <ListGroupItem onClick={signOut}>Sign Out</ListGroupItem>
+        </ListGroup>
       </div>
 
     </div>
