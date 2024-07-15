@@ -12,29 +12,78 @@ import { LikeButton } from "./LikeButton";
 
 export function Tweet(props) {
   let tweet = props.tweet;
+  
+  let parents = props.parents;
+  let view = props.view;
+  let first = props.first;
 
+  let avi = <div className="avi-container-regular">
+              <Image src={tweet.avi} roundedCircle className='avi'/>
+            </div>;
 
-   return (
+  if (parents) {
+    if (first) {
+      avi = <div className="avi-container">
+                <Image src={tweet.avi} roundedCircle className='avi'/>
+                <div className="avi-bottom-line"/>
+              </div>;
+    }
+    else {
+      if (view) {
+        avi = <div className="avi-container">
+                <div className="avi-top-line"/>
+                <Image src={tweet.avi} roundedCircle className='avi'/>
+              </div>;
+      }
+      else {
+        avi = <div className="avi-container">
+                <div className="avi-top-line"/>
+                <Image src={tweet.avi} roundedCircle className='avi'/>
+                <div className="avi-bottom-line"/>
+              </div>;
+      }
+    }
+  }
 
-    <div className='tweet' onClick={() => {window.location.href = `/twitter/tweet/${tweet.id}`}}>
+  let img = avi;
+  let header = 
+
+    <div className="tweet-header" onClick={(e) => {e.stopPropagation(); window.location.href = `/twitter/users/${tweet.username}`}}>
+      <p className="user-display-name">{tweet.display_name}</p>
+      <p className="user-username">@{tweet.username}</p>
+      <p className="tweet-interpunct">&#183;</p>
+      <p className="tweet-time">23h</p>
+    </div>;
+
+  if (view) {
+    img = <></>;
+
+    header =
+    <div className="tweet-header" onClick={(e) => {e.stopPropagation(); window.location.href = `/twitter/users/${tweet.username}`}}>
+      {avi}
+      <div className="flex flex-col gap-0 mt-1">
+        <p className="user-display-name">{tweet.display_name}</p>
+        <p className="user-username">@{tweet.username}</p>
+      </div>
+
+    </div>;
+  }
+
+  let content = 
+    
+    <>
+      {img}
       
-      <Image src={tweet.avi} roundedCircle className='avi'/>
+      <div className="">
 
-      <div className="tweet-content">
 
-      
-        <div className="tweet-header" onClick={(e) => {e.stopPropagation(); window.location.href = `/twitter/users/${tweet.username}`}}>
-          <p className="user-display-name">{tweet.display_name}</p>
-          <p className="user-username">@{tweet.username}</p>
-          <p className="tweet-interpunct">&#183;</p>
-          <p className="tweet-time">23h</p>
-        </div>
-
+        {header}
 
         <div className="tweet-content">
           <TweetContent tweet={tweet}/>
+
         </div>
-        
+
 
         <div className="tweet-footer">
 
@@ -68,7 +117,19 @@ export function Tweet(props) {
           
         </div>
       </div>
+    
+    </>
+  
+  let tweetClass = 'tweet'
 
+  if (view) {tweetClass += '-view'} 
+  if (parents) {tweetClass += '-parents'}
+  //console.log(tweetClass)
+   return (
+
+    <div className={tweetClass} onClick={() => {window.location.href = `/twitter/tweet/${tweet.id}`}}>
+      {content}
     </div>
+
   )
 }

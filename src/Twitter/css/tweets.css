@@ -72,20 +72,24 @@
   };
 }
 
+.timeline-top-bar {
+  height: 60px;
+}
 
 .timeline-new-tweet {
-  border: solid 1px rgba(128, 128, 128, 0.624);
+  border-top: solid 1px rgba(128, 128, 128, 0.624);
   background-color: rgb(250, 250, 250);
-  margin-top: 4em;
   padding-left: 0.25em;
   padding-right: 0.25em;
   padding-top: 0.8em;
+
+  .new-tweet-footer {
+    border-bottom: 1.8px solid rgb(185, 185, 185);
+  }
 }
 
 
 .tweet-view-new-tweet {
-  border-left: solid 1px rgba(128, 128, 128, 0.624);
-  border-right: solid 1px rgba(128, 128, 128, 0.624);
   border-bottom: solid 1px rgba(128, 128, 128, 0.624);
   background-color: rgb(250, 250, 250);
 

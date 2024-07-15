@@ -33,6 +33,7 @@ export function Timeline(props) {
   if (tweets.length > 0) {
     return (
       <div>
+        <div className='timeline-top-bar'/>
         <div className='timeline-new-tweet'>
           <NewTweet user={user} onSubmit={handleSubmit} minHeight={40}/>
         </div>

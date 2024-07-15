@@ -7,14 +7,18 @@ export function TweetsIndex(props) {
   let tweets = props.tweets;
   console.log('tweets: ', tweets)
 
+
+
   if (tweets && tweets.length > 0) {
     return (
             <div className="flex flex-col">
               {
                 tweets.map((tweet, i) => {
+                  let first = false;
+                  if (i === 0) { first = true}
                   return (
                     <div key={i}>
-                      <Tweet tweet={tweet}/>
+                      <Tweet tweet={tweet} parents={props.parents} view={false} first={first}/>
                     </div>
                   )
                 })

@@ -52,6 +52,8 @@
   left: var(--lg-left);
   padding: 0;
   margin: 0;
+  border-left: solid 1px rgba(128, 128, 128, 0.624);
+  border-right: solid 1px rgba(128, 128, 128, 0.624);
 }
 
 .left-sidebar, .right-sidebar {
@@ -125,19 +127,46 @@
 
 
 .tweet {
-  padding-left: 0.6em;
-  padding-right: 0.6em;
-  padding-top: 0.2em;
-  padding-bottom: 0.4em;
+  padding-left: 1em;
+  padding-right: 1em;
 
-  border-left: solid 1px rgba(128, 128, 128, 0.624);
-  border-right: solid 1px rgba(128, 128, 128, 0.624);
   border-bottom: solid 1px rgba(128, 128, 128, 0.624);
   background-color: rgb(250, 250, 250);
 
   display: flex;
   gap: 0.4em
 }
+
+.tweet-view-container {
+
+}
+
+.tweet-view-top-bar {
+  display: flex;
+  flex-direction: row;
+  gap: 2em;
+  height: 50px;
+  padding-left: 0.6em;
+  align-items: center;
+
+  background-color: rgb(250, 250, 250);
+}
+
+.tweet-view, .tweet-view-parents, .tweet-parents {
+  padding-left: 1em;
+  padding-right: 1em;
+  background-color: rgb(250, 250, 250);
+
+
+  display: flex;
+  gap: 0.4em;
+
+  &:hover {
+    background-color: rgb(240, 240, 240);
+    cursor: pointer;
+    }
+}
+
 
 .tweet:hover {
   background-color: rgb(240, 240, 240);
@@ -171,7 +200,6 @@
 
   max-width: 40px;
   max-height: 40px;
-  margin-top: 0.25em;
 
   &:hover {
     cursor: pointer;
@@ -181,7 +209,46 @@
   border-radius: 50%;
 }
 
+.avi-container {
+  width: 40px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .avi {
+    position: absolute;
+    top: 0.4em;
+    z-index: 1000
+  }
+}
+
+.avi-container-regular {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.4em;
+  overflow: hidden;
+}
+
+.avi-top-line, .avi-bottom-line {
+  position: absolute;
+  width: 2px;
+  background-color: rgba(151, 151, 151, 0.624);
+}
+
+.avi-bottom-line {
+  top: 20%;
+  height: 100%
+}
+
+.avi-top-line {
+  height: 0%;
+  top: 0
+}
+
 .tweet-header {
+  margin-bottom: 0.2em;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -193,10 +260,15 @@
   &:hover {
     cursor: pointer;
   }
+  p {
+    margin: 0
+  }
 }
-.tweet-header p {
-  margin: 0
+
+.tweet .tweet-header {
+  margin-top: 0.2em;
 }
+
 
 .tweet-interpunct {
   font-size: 20px;
@@ -219,6 +291,9 @@
   text-decoration: underline;
 }
 
+
+
+
 .tweet-content {
   margin-top: 0.2em;
   font-size: 14.6px;
@@ -228,11 +303,41 @@
   flex-direction: column;
   gap: 0.2em
 }
+
+
 .tweet-text {
   margin: 0
 }
 
+.tweet-view, .tweet-view-parents {
+  .tweet-header {
+    height: 50px;
+    line-height: 1em;
+  }
+
+  .tweet-content {
+    font-size: 18px;
+  }
+
+  .tweet-footer {
+  zoom: 105%;
+  @media (max-width: 699px) {
+    width: calc(var(--content-width) - 70px)
+  }
+
+  @media (min-width: 700px) {
+    width: 538px;
+  }
+
+  border-top: 1px solid rgba(128, 128, 128, 0.624);
+  border-bottom: 1px solid rgba(128, 128, 128, 0.624);
+  padding-top: 0.4em;
+  padding-bottom: 0.4em;
+  }
+}
+
 .tweet-footer {
+  margin-bottom: 0.4em;
   display: flex;
   
   @media (min-width: 700px) {

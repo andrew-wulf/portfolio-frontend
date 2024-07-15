@@ -39,22 +39,33 @@ export function TweetView(props) {
 
   if (tweet) {
     let subtweets = <></>;
+    let parents = <></>;
 
     if (tweet.subtweets && tweet.subtweets.length > 0) {
       subtweets = <TweetsIndex tweets={tweet.subtweets}/>;
     }
 
+    if (tweet.parents && tweet.parents.length > 0) {
+      let arr = tweet.parents;
+      let output = arr.map((item, i) => arr[arr.length - 1 - i])
+
+      console.log(output)
+      parents = <TweetsIndex tweets={output} parents={true}/>;
+    }
+
     return (
-      <div className="tweet-view">
-          <div className="flex flex-row gap-10 h-10 pl-3 place-items-center">
+      <div className="tweet-view-container">
+          <div className="tweet-view-top-bar">
             <div onClick={() => {navigate(-1)}} className=" w-8 h-8 rounded-2xl hover:cursor-pointer hover:shadow-black hover:bg-gray-300 flex align-items-center justify-content-center">
               <FaArrowLeft />
             </div>
             <h4>Post</h4>
           </div>
-          
+
+          {parents}
+
           <div className="big-tweet">
-            <Tweet tweet={tweet}/>
+            <Tweet tweet={tweet} view={true} parents={tweet.parents && tweet.parents.length > 0}/>
           </div>
 
           <div className="tweet-view-new-tweet">
