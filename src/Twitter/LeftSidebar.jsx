@@ -1,62 +1,56 @@
 import axios from 'axios'
 import './css/header.css'
 
-import {Container, Row, Col, Stack, Image, ListGroup, ListGroupItem} from 'react-bootstrap';
+import {Image, ListGroup, ListGroupItem} from 'react-bootstrap';
 import {Nav, Navbar, NavDropdown} from 'react-bootstrap';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
+
 
 import { FaHome } from "react-icons/fa";
 import { FaEnvelope } from "react-icons/fa";
 import { FaBell } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
 import { RiQuillPenFill } from "react-icons/ri";
-import { FaRegBookmark } from 'react-icons/fa6';
+
 import { FaBookmark } from "react-icons/fa";
 import { IoPersonOutline, IoPersonSharp } from "react-icons/io5";
 
-import { CiLock } from "react-icons/ci";
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
+import { FaRegMoon } from "react-icons/fa";
+import { FaSun } from "react-icons/fa";
 
 
 export function LeftSidebar(props) {
 
   const [accountModalVisible, setAccountModalVisible] = useState('hidden');
 
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [toggleStyle, setToggleStyle] = useState({transform: 'translate(0, 0)'});
-  const [lightVal, setLightVal] = useState('0%');
-  const [darkVal, setDarkVal] = useState('0%');
+  const [sunVal, setSunVal] = useState(0);
+  const [moonVal, setMoonVal] = useState(0);
 
-  const checkboxRef = useRef(null);
-  const [checked, setChecked] = useState(false); 
+  let theme = props.theme;
 
-  useEffect(() => {
-    const darkMode = document.documentElement.classList.contains('dark');
-    setIsDarkMode(darkMode);
-  }, []);
 
-  const toggleDarkMode = () => {
-    document.documentElement.classList.toggle('dark');
-    document.documentElement.classList.toggle('light');
-    setIsDarkMode(!isDarkMode);
-  };
 
-  const toggle = (e) => {
-    toggleDarkMode();
-    setChecked(e.target.checked);
-
-    if (e.target.checked) {
-      setLightVal('100%');
-      setDarkVal('0%');
+  const updateTheme = () => {
+    if (theme === 'light') {
+      setToggleStyle({transform: 'translate(200%, 0)'});
+      setSunVal(100);
+      setMoonVal(0);
     }
     else {
-      setLightVal('0%');
-      setDarkVal('100%');
+      setToggleStyle({transform: 'translate(0%, 0)'});
+      setSunVal(0);
+      setMoonVal(100);
     }
   }
+  useEffect(updateTheme, [theme]);
+
+  const toggle = () => {
+    props.themeToggle();
+  }
+  
+
 
   const toggleAccountModal = () => {
     if (accountModalVisible === 'visible') {
@@ -175,10 +169,10 @@ export function LeftSidebar(props) {
       </NavDropdown>
         
       <div onClick={toggle} className='theme-toggle'>
-        <input type='checkbox' ref={checkboxRef}/>
-        <span className="theme-slider" style={toggleStyle}/>
-        <p style={{opacity: lightVal}}>Light</p>
-        <p style={{opacity: darkVal}}>Dark</p>
+        <FaSun style={{opacity: `${sunVal}%`}}/>
+        <FaRegMoon style={{opacity: `${moonVal}%`}}/>
+        <span className="theme-slider" style={toggleStyle}>
+        </span>
       </div>
 
 

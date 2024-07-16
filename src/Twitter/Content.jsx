@@ -35,8 +35,9 @@ export function Content(props) {
     <div className="content">
       
       <div onWheel={scroll}>
-        <LeftSidebar user={props.user} toggleTweetModal={toggleTweetModal}/>
+        <LeftSidebar user={props.user} toggleTweetModal={toggleTweetModal} theme={props.theme} themeToggle={props.themeToggle}/>
       </div>
+
 
       <div className="middle-container">
         <Routes>
@@ -49,7 +50,10 @@ export function Content(props) {
 
           <Route path = "/loading" element={<Loading/>}/>
         </Routes>
+
+        <div className="extra-space"/>
       </div>
+    
 
       <div onWheel={scroll}>
         <RightSidebar />

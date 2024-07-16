@@ -10,7 +10,7 @@ export function TweetContent(props) {
 
   if (tweet.image) {
     content = 
-    <Container>
+    <div>
       <Row>
         <p className="tweet-text">{tweet.text}</p>
       </Row>
@@ -24,12 +24,12 @@ export function TweetContent(props) {
           </Container>
         </Col>
       </Row>
-    </Container>
+    </div>
   }
 
   if (tweet.video) {
     content =
-    <Container>
+    <div>
       <Row>
         <p className="tweet-text">{tweet.text}</p>
       </Row>
@@ -46,7 +46,7 @@ export function TweetContent(props) {
           </div>
         </Col>
       </Row>
-    </Container>
+    </div>
   }
 
   if (tweet.is_quote) {
@@ -105,11 +105,9 @@ export function TweetContent(props) {
 
   return (
     <div>
-      <Row>
-          <Col>
-            {content}
-          </Col>
-      </Row>
+      
+      {content}
+
       {quote}
 
     </div>

@@ -7,12 +7,15 @@ import './userpage.css'
 
 import { useState, useEffect } from "react";
 import axios from 'axios';
+import { FaArrowLeft } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 export function UserPage(props) {
 
   const [tweets, setTweets] = useState([]);
   const [viewedUser, setViewedUser] = useState({});
   const [editVisible, setEditVisible] = useState('hidden');
+  const navigate = useNavigate();
 
   const getUserTweets = () => {
     let url = window.location.href;
@@ -62,9 +65,27 @@ export function UserPage(props) {
     return (
       <div className="user-page">
         
+        <div className="user-page-top-bar">
+          <div onClick={() => {navigate(-1)}} className=" w-8 h-8 rounded-2xl hover:cursor-pointer hover:shadow-black hover:bg-gray-300 flex align-items-center justify-content-center">
+            <FaArrowLeft />
+          </div>
+          <h4>{viewedUser.display_name}</h4>
+        </div>
+        
         <div className="user-banner">
           <img src={viewedUser.banner}/>
         </div>
+      
+        <div className="user-avi-container">
+            <img src={viewedUser.avi}/>
+        </div>
+
+        <div className="user-bio">
+            
+            <h4>{viewedUser.display_name}</h4>
+            <h6>@{viewedUser.username}</h6>
+            <p>{viewedUser.bio}</p>
+          </div>
   
         <div className="user-sub-banner">
           <div className="flex flex-row gap-10">
@@ -75,45 +96,15 @@ export function UserPage(props) {
             <button className="bg-blue-600 hover:bg-blue-700 text-gray-200 rounded-lg w-[80px] h-[30px]" style={{"visibility": editVisible}}>Edit Profile</button>
           </div>
         </div>
+
+        <div className="user-tabs">
+          <h2>Tweets</h2>
+          <h2>Replies</h2>
+          <h2>Likes</h2>
+          <h2>Media</h2>
+        </div>
         
-        <div className="user-avi-container">
-            <img src={viewedUser.avi}/>
-        </div>
-  
-        <div className="user-page-content">
-  
-          <div/>
-          <div className="user-bio">
-            
-            <h3>{viewedUser.display_name}</h3>
-            <h6>@{viewedUser.username}</h6>
-            <p>{viewedUser.bio}</p>
-          </div>
-  
-          <div className="tweets-container">
-  
-            <TweetsIndex tweets={tweets}/>
-          </div>
-  
-          <div className="user-suggestions">
-            <div className="might-like">
-              <h2>You Might Like</h2>
-              <p>test</p>
-              <p>test</p>
-              <p>test</p>
-            </div>
-  
-            <div className="whats-happening">
-              <h2>What's Happening</h2>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
-            </div>
-          </div>
-  
-          <div/>
-  
-        </div>
+        <TweetsIndex tweets={tweets}/>
   
       </div>
     )

@@ -9,6 +9,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { NewTweet } from "./NewTweet";
+import { Loading } from "../Loading";
 
 export function TweetView(props) {
   let user = props.user;
@@ -37,7 +38,9 @@ export function TweetView(props) {
     window.location.href = `/twitter/tweet/${id}`
   }
 
-  if (tweet) {
+
+
+  if (tweet.username) {
     let subtweets = <></>;
     let parents = <></>;
 
@@ -74,6 +77,11 @@ export function TweetView(props) {
     
           {subtweets}
       </div>
+    )
+  }
+  else {
+    return (
+      <Loading/>
     )
   }
 }

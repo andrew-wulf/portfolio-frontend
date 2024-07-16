@@ -91,11 +91,12 @@
 
 
 .theme-toggle {
+  font-size: 25px;
   display: inline-block;
   position: relative;
 
-  background-color: rgba(73, 91, 119, 0.986);
-  color: white;
+  background-color: var(--toggle-bg);
+  color: var(--text);
   
   height: 50px;
   width: 140px;

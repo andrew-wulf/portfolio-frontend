@@ -14,7 +14,22 @@ export function RightSidebar(props) {
             style={{'borderRadius': '25px'}}
           />
         </Form>
-        <h1>test</h1>
+        
+        <div className="user-suggestions">
+            <div className="might-like">
+              <h4>You Might Like</h4>
+              <p>test</p>
+              <p>test</p>
+              <p>test</p>
+            </div>
+  
+            <div className="whats-happening">
+              <h4>What's Happening</h4>
+                <p>test</p>
+                <p>test</p>
+                <p>test</p>
+            </div>
+          </div>
       </div>
     </div>
   )

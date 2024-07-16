@@ -3,10 +3,12 @@
 .twitter {
   width: 100vw;
   height: 100vh;
-  background-color: rgb(220, 220, 220);
+  color: var(--text);
+  background-color: var(--bg);
 }
 
 .content {
+  height: 100vh;
   overflow-y: scroll;
 
   @media (max-width: 634px) {
@@ -46,19 +48,28 @@
 }
 
 .middle-container {
-  position:relative;
+  position: relative;
   width: var(--content-width);
-  height: 100vh;
   left: var(--lg-left);
   padding: 0;
   margin: 0;
-  border-left: solid 1px rgba(128, 128, 128, 0.624);
-  border-right: solid 1px rgba(128, 128, 128, 0.624);
+  background-color: var(--bg);
+
+  height: fit-content;
+  min-height: 100vh;
+ 
+  border-left: var(--border);
+  border-right: var(--border);
+}
+
+.extra-space {
+  height: 70vh;
 }
 
 .left-sidebar, .right-sidebar {
   height: 100vh;
   position: fixed;
+  background-color: var(--bg);
 }
 
 .left-sidebar {
@@ -86,6 +97,10 @@
   @media (max-width: 899px) {
     display: none;
   }
+
+  width: 360px;
+  margin-left: 2em;
+  margin-top: 0.4em;
 }
 
 
@@ -130,16 +145,54 @@
   padding-left: 1em;
   padding-right: 1em;
 
-  border-bottom: solid 1px rgba(128, 128, 128, 0.624);
-  background-color: rgb(250, 250, 250);
+  border-bottom: var(--border);
+  
+  background-color: var(--tweet-bg);
 
   display: flex;
-  gap: 0.4em
+  flex-direction: column;
 }
 
-.tweet-view-container {
+.tweet-main {
+  display: flex;
+  flex-direction: column;
 
+  margin-top: 0.4em;
+  gap: 0.1em;
 }
+
+.retweet-header {
+  font-size: 14px;
+  color: var(--text4);
+  display: flex;
+  flex-direction: row;
+  gap: 0.4em;
+  align-items: center;
+  padding-left: 1.8em;
+  width: fit-content;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.replying-to {
+  margin-top: 0.4em;
+  height: 20px;
+  display: flex;
+  gap: 0.3em;
+  font-size: 14.5px;
+  color: var(--text3);
+  p {
+    color: rgb(48, 165, 233);
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+}
+
 
 .tweet-view-top-bar {
   display: flex;
@@ -149,27 +202,28 @@
   padding-left: 0.6em;
   align-items: center;
 
-  background-color: rgb(250, 250, 250);
+  background-color: var(--tweet-bg);
+  
 }
 
 .tweet-view, .tweet-view-parents, .tweet-parents {
   padding-left: 1em;
   padding-right: 1em;
-  background-color: rgb(250, 250, 250);
-
+  background-color: var(--tweet-bg);
+  
 
   display: flex;
-  gap: 0.4em;
+  flex-direction: column;
+}
 
-  &:hover {
-    background-color: rgb(240, 240, 240);
-    cursor: pointer;
-    }
+.tweet-parents:hover {
+  background-color: var(--tweet-hover);
+  cursor: pointer;
 }
 
 
 .tweet:hover {
-  background-color: rgb(240, 240, 240);
+  background-color: var(--tweet-hover);
   cursor: pointer;
 }
 
@@ -248,13 +302,14 @@
 }
 
 .tweet-header {
-  margin-bottom: 0.2em;
+ 
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 0.4em;
 
-  height: 1em;
+  gap: 0.4em;
+  line-height: 0.8em;
+  
   align-items: flex-start;
 
   &:hover {
@@ -266,7 +321,7 @@
 }
 
 .tweet .tweet-header {
-  margin-top: 0.2em;
+  margin-top: 0.4em;
 }
 
 
@@ -275,14 +330,14 @@
 }
 
 .user-display-name {
-  color:rgb(54, 54, 54);
+  color:var(--text2);
   font-weight: 700;
   padding-bottom: 0.1em;
   font-size: 15px
 }
 
 .user-username, .tweet-time {
-  color: rgb(37, 37, 37);
+  color: var(--text3);
   font-weight: 400;
   font-size: 14.5px;
 }
@@ -295,13 +350,13 @@
 
 
 .tweet-content {
-  margin-top: 0.2em;
   font-size: 14.6px;
   line-height: 1.4em;
   margin-bottom: 0.7em;
   display: flex;
   flex-direction: column;
-  gap: 0.2em
+  gap: 0.2em;
+  margin-top: 0.2em;
 }
 
 
@@ -329,8 +384,8 @@
     width: 538px;
   }
 
-  border-top: 1px solid rgba(128, 128, 128, 0.624);
-  border-bottom: 1px solid rgba(128, 128, 128, 0.624);
+  border-top: var(--border);
+  border-bottom: var(--border);
   padding-top: 0.4em;
   padding-bottom: 0.4em;
   }
@@ -382,7 +437,8 @@
   }
 }
 
-.tweet-like, .tweet-unlike, .tweet-retweet, .tweet-stats, .tweet-reply, .tweet-bookmark, .tweet-share {
+.tweet-like, .tweet-unlike, .tweet-retweet, .tweet-no-retweet, .tweet-stats, .tweet-reply, .tweet-bookmark, .tweet-share {
+  color: var(--text4);
   display: inline-flex;
   padding-left: 0.5em;
   padding-right: 0.5em;
@@ -402,11 +458,19 @@
     font-size: 20px;
     margin-top: 0.15em;
   }
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 
 .tweet-like {
   color: #d62020;
+}
+
+.tweet-retweet {
+  color: #11a52a;
 }
 
 
@@ -418,8 +482,49 @@
 }
 
 .tweet-unlike {
-  color: rgb(70, 70, 70);
+  color: var(--text4);
   align-content: center
+}
+
+.retweet-modal-bg {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+
+  z-index: 1000;
+
+}
+
+.retweet-modal-main {
+  z-index: 1001;
+  position: absolute;
+  background-color: var(--bg);
+  color: var(--text2);
+  width: 120px;
+  height: 65px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 15px;
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.404);
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  transform: translate(-60%);
+  div {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    &:hover {
+      background-color: var(--tweet-bg);
+      cursor: pointer;
+    }
+  }
 }
 
 .tweet-like:hover, .tweet-unlike:hover {
@@ -429,7 +534,7 @@
   }
 }
 
-.tweet-retweet:hover {
+.tweet-retweet:hover, .tweet-no-retweet:hover {
   background-color: rgba(31, 218, 47, 0.137);
   p, .tweet-icon {
     color: #11a52a;
@@ -473,8 +578,6 @@
 
 
 
-
-
 .twitter-signup {
   background-color: rgb(245, 245, 245);
   height: 60vw;
@@ -482,4 +585,16 @@
   border: 2px solid rgb(156, 156, 156);
   box-shadow: 0 0 6px rgb(196, 196, 196);
   transition: 2s;
+}
+
+
+.might-like, .whats-happening {
+  border: var(--border);
+  border-radius: 25px;
+  margin-top: 2em;
+  padding: 0.4em 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
 }
