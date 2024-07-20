@@ -82,17 +82,26 @@ export function UserPage(props) {
 
         <div className="user-bio">
             
-            <h4>{viewedUser.display_name}</h4>
-            <h6>@{viewedUser.username}</h6>
-            <p>{viewedUser.bio}</p>
+          <h4>{viewedUser.display_name}</h4>
+          <h6>@{viewedUser.username}</h6>
+          <p>{viewedUser.bio}</p>
+          <div className="flex flex-row gap-2">
+            <div className="flex flex-row gap-1">
+             <h6>{viewedUser.followers}</h6>
+             <p>Followers</p>
+            </div>
+
+            <div className="flex flex-row gap-1">
+              <h6>{viewedUser.following}</h6>
+              <p>Following</p>
+            </div>
+
           </div>
+        </div>
   
         <div className="user-sub-banner">
           <div className="flex flex-row gap-10">
-            <h6>Followers: {viewedUser.followers.length}</h6>
-            <h6>Following: {viewedUser.following.length}</h6>
-            <h6>tweets: {tweets.length}</h6>
-            <h6>Likes: {viewedUser.likes}</h6>
+
             <button className="bg-blue-600 hover:bg-blue-700 text-gray-200 rounded-lg w-[80px] h-[30px]" style={{"visibility": editVisible}}>Edit Profile</button>
           </div>
         </div>

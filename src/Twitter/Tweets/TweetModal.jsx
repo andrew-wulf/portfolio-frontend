@@ -7,9 +7,12 @@ import { NewTweet } from "./NewTweet";
 export function TweetModal(props) {
   let user = props.user;
 
-  const handleSubmit = (id) => {
+  const handleSubmit = (tweet) => {
     props.onClose();
-    window.location.href = `/twitter/tweet/${id}`
+
+    if (window.location.href.includes("/twitter/home")) {
+      window.location.reload();
+    }
   }
 
 

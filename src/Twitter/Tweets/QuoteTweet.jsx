@@ -19,7 +19,9 @@ export function QuoteTweet(props) {
       <Row>
         <Col>
           <Stack direction='horizontal' gap={2}>
-            <Image src={tweet.avi} roundedCircle className='avi'/>
+            <div className="avi-container">
+              <Image src={tweet.avi} className='avi'/>
+            </div>
               <h5>{tweet.display_name}</h5>
               <p>@{tweet.username}</p>
          
@@ -40,7 +42,9 @@ export function QuoteTweet(props) {
             <Row>
               <Col>
                 <Stack direction='horizontal' gap={4}>
-                  <Image src={qt.avi} roundedCircle className='avi-quote'/>
+                  <div className="avi-container">
+                    <Image src={qt.avi} className='avi-quote'/>
+                  </div>
                   <Stack>
                     <h6>{qt.display_name}</h6>
                   </Stack>

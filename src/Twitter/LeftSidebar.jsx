@@ -152,7 +152,9 @@ export function LeftSidebar(props) {
 
       <div className='header-account' onClick={toggleAccountModal}>
         <div className='flex gap-3 place-items-center'>
-          <Image src={avi} roundedCircle className='avi-header' />
+          <div className='avi-container'>
+            <Image src={avi} className='avi-header'/>
+          </div>
 
           <div className='header-account-details'>
             <h6>{user.display_name}</h6>

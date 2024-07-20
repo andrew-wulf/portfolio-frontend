@@ -1,4 +1,5 @@
 import { Image, Stack, Container, Row, Col } from "react-bootstrap";
+import { VideoPlayer } from "./VideoPlayer";
 
 
 export function TweetContent(props) {
@@ -28,24 +29,16 @@ export function TweetContent(props) {
   }
 
   if (tweet.video) {
+    
     content =
-    <div>
-      <Row>
-        <p className="tweet-text">{tweet.text}</p>
-      </Row>
+    <div className="flex flex-col gap-3">
+      <p className="tweet-text">{tweet.text}</p>
 
-      <Row>
-        <Col xs={1}/>
-        <Col xs={10}>
-          <div className="tweet-video-container">
-            <iframe className='video' width='500' height='320' 
-              title='Youtube player'
-              sandbox='allow-same-origin allow-forms allow-popups allow-scripts allow-presentation'
-              src={tweet.video}>
-            </iframe>
-          </div>
-        </Col>
-      </Row>
+      <div className="tweet-video-container">
+        <VideoPlayer video={tweet.video}/>
+      </div>
+     
+
     </div>
   }
 
@@ -78,7 +71,9 @@ export function TweetContent(props) {
             <Row>
               <Col>
                 <Stack direction='horizontal' gap={4}>
-                  <Image src={qt.avi} roundedCircle className='avi'/>
+                  <div className="avi-container">
+                   <Image src={qt.avi} className='avi'/>
+                  </div>
                   <Stack>
                     <h6 className = 'user-display-name' onClick={(e) => {e.stopPropagation(); window.location.href = `/twitter/users/${qt.username}`}}>{qt.display_name}</h6>
                   </Stack>
@@ -105,7 +100,7 @@ export function TweetContent(props) {
 
   return (
     <div>
-      
+
       {content}
 
       {quote}

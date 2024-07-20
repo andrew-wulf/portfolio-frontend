@@ -34,8 +34,8 @@ export function TweetView(props) {
 
   let navigate = useNavigate();
 
-  const handleSubmit = (id) => {
-    window.location.href = `/twitter/tweet/${id}`
+  const handleSubmit = (tweet) => {
+    window.location.reload();
   }
 
 

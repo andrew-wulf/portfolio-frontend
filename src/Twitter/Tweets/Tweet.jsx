@@ -91,30 +91,38 @@ export function Tweet(props) {
 
   if (tweet.username) {
 
-    let avi = <div className="avi-container-regular">
-                <Image src={tweet.avi} roundedCircle className='avi'/>
-              </div>;
+    let avi = 
+              <div className="avi-container">
+                <Image src={tweet.avi} className='avi'/>
+              </div>
+            
   
     if (parents) {
       if (first) {
-        avi = <div className="avi-container">
-                  <Image src={tweet.avi} roundedCircle className='avi'/>
-                  <div className="avi-bottom-line"/>
-                </div>;
+        avi = <div className="avi-container-box">
+                <div className="avi-container">
+                  <Image src={tweet.avi} className='avi'/>
+                </div>
+                <div className="avi-bottom-line"/>
+              </div>
       }
       else {
         if (view) {
-          avi = <div className="avi-container">
+          avi = <div className="avi-container-regular">
+                  <div className="avi-container">
+                    <Image src={tweet.avi} className='avi'/>
+                  </div>
                   <div className="avi-top-line"/>
-                  <Image src={tweet.avi} roundedCircle className='avi'/>
-                </div>;
+                </div>
         }
         else {
-          avi = <div className="avi-container">
+          avi = <div className="avi-container-box">
                   <div className="avi-top-line"/>
-                  <Image src={tweet.avi} roundedCircle className='avi'/>
+                  <div className="avi-container">
+                    <Image src={tweet.avi} className='avi'/>
+                  </div>
                   <div className="avi-bottom-line"/>
-                </div>;
+                </div>
         }
       }
     }
@@ -124,9 +132,11 @@ export function Tweet(props) {
   
       <div className="tweet-header" onClick={(e) => {e.stopPropagation(); window.location.href = `/twitter/users/${tweet.username}`}}>
         <p className="user-display-name">{tweet.display_name}</p>
-        <p className="user-username">@{tweet.username}</p>
-    
-        <p className="tweet-time">&#183; {abbrTime(tweet.timestamp)}</p>
+
+        <div className="flex flex-row gap-1">
+          <p className="user-username">@{tweet.username}</p>
+          <p className="tweet-time">&#183; {abbrTime(tweet.timestamp)}</p>
+        </div>
       </div>;
     
     let viewData = <></>;

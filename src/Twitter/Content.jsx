@@ -30,6 +30,15 @@ export function Content(props) {
     setTweetModalVisible(!tweetModalVisible)
   }
 
+  const handleScroll = () => {
+    let tweets = document.getElementsByClassName('tweets-index')[0];
+    let content = document.getElementsByClassName('content')[0]
+    if (tweets) {
+      console.log(tweets.scrollHeight)
+      console.log(content.scrollTop)
+    }
+  }
+
 
   return (
     <div className="content">
