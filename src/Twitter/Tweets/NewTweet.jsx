@@ -22,13 +22,13 @@ export function NewTweet(props) {
 
   const handleUpdate = (e) => {
     e.preventDefault();
-    
+
     e.target.style.height = '0';
     e.target.style.height = Math.max(minHeight, e.target.scrollHeight) + 'px';
 
     let text = e.target.value;
 
-    if (text.length < 281) {
+    if (text.length < 141) {
       setInputVal(text);
     }
   }

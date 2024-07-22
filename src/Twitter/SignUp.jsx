@@ -11,8 +11,9 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import { useState } from 'react';
 
-import { FaTwitter } from 'react-icons/fa6';
+import { FaArrowLeft, FaTwitter } from 'react-icons/fa6';
 import { RxTwitterLogo } from 'react-icons/rx';
+import { useNavigate } from 'react-router-dom';
 
 
 export function SignUp(props) {
@@ -29,11 +30,13 @@ export function SignUp(props) {
   const [displayVal, setDisplayVal] = useState("");
   const [aviVal, setAviVal] = useState("");
   const [bannerVal, setBannerVal] = useState("");
+  const [bioVal, setBioVal] = useState("");
 
   const [page, setPage] = useState(1);
 
+  const navigate = useNavigate();
 
-  const login = (params) => {
+  const login = () => {
     axios.post('http://localhost:3000/sessions.json', {email: emailVal, password: passVal})
       .then(response => {
         console.log(response);
@@ -55,6 +58,18 @@ export function SignUp(props) {
         console.log(response);
         login(params);
         setPage(4);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  const updateUserImages = () => {
+    axios.post('http://localhost:3000/user/update.json', {avi: aviVal, banner: bannerVal, bio: bioVal})
+
+      .then(response => {
+        console.log(response);
+        window.location.href = '/twitter/home'
       })
       .catch(error => {
         console.log(error);
@@ -173,6 +188,7 @@ export function SignUp(props) {
   let displayName = "";
   let avi = "";
   let banner = "";
+  let bio = "";
 
   let emailExistsErr = "";
   let emailValidErr = "";
@@ -200,20 +216,20 @@ export function SignUp(props) {
     emailValidErr = "requires valid email address."
   }
 
-  let emailButton = <Button disabled variant="secondary" type="button" onClick={() => {setPage(2)}}>Next</Button>
+  let emailButton = <Button className='signin-button' disabled variant="secondary" type="button" onClick={() => {setPage(2)}}>Next</Button>
   if ((emailExists === false && emailValidErr === "" && emailVal.length > 8) && (passVal.length > 7 && /\d/.test(passVal) && /[A-Z]/.test(passVal))) {
-    emailButton = <Button variant="primary" type="button" onClick={() => {setPage(2)}}>Next</Button>
+    emailButton = <Button className='signin-button' variant="primary" type="button" onClick={() => {setPage(2)}}>Next</Button>
   }
 
   let userButtons = 
                     <>
-                    <Button disabled variant="primary" onClick={() => {setDisplayVal(userVal); setPage(3)}}>Continue</Button>
-                    <Button variant="secondary" onClick={() => {setPage(1)}}>Back</Button>
+                    <Button className='signin-button' disabled variant="primary" onClick={() => {setDisplayVal(userVal); setPage(3)}}>Continue</Button>
+                    <Button className='signin-button' variant="secondary" onClick={() => {setPage(1)}}>Back</Button>
                     </>
   if (userSuccess.length > 0) {
     userButtons = <>
-                    <Button variant="primary" onClick={() => {setDisplayVal(userVal); setPage(3)}}>Continue</Button>
-                    <Button variant="secondary" onClick={() => {setPage(1)}}>Back</Button>
+                    <Button className='signin-button' variant="primary" onClick={() => {setDisplayVal(userVal); setPage(3)}}>Continue</Button>
+                    <Button className='signin-button' variant="secondary" onClick={() => {setPage(1)}}>Back</Button>
                   </>
   }
 
@@ -223,15 +239,20 @@ export function SignUp(props) {
               <p>{emailExistsErr}</p>
               <p>{emailValidErr}</p>
               
-                <Stack gap={3}>
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control type="email" name="email" placeholder="example@email.com" value={emailVal} onChange={(e) => {handleEmailUpdate(e)}}/>
+                <div className='flex flex-col gap-3 place-items-center'>
+                  <div className= "signin-field">
+                    <p>Email</p>
+                    <Form.Control type="email" name="email" placeholder="example@email.com" value={emailVal} onChange={(e) => {handleEmailUpdate(e)}}/>
+                  </div>
 
-                  <p>{passValidErr}</p>
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" name="password" placeholder="Password" value={passVal} onChange={(e) => {handlePasswordUpdate(e)}}/>
+                  <div className= "signin-field">
+                    <p>{passValidErr}</p>
+                    <p>Password</p>
+                    <Form.Control type="password" name="password" placeholder="Password" value={passVal} onChange={(e) => {handlePasswordUpdate(e)}}/>
+                  </div>
+                  <div className='mt-2'/>
                   {emailButton}
-                </Stack>
+                </div>
         
             </>
   }
@@ -256,32 +277,43 @@ export function SignUp(props) {
   if (page === 3) {
     displayName = <>
                     <h3>Display Name</h3>
-                    <Stack gap={3}>
+                    <div className='flex flex-col gap-3 place-items-center'>
                       <Form.Control type="text" name="display_name" value={displayVal} onChange={(e) => {handleDisplayUpdate(e)}}/>
-                      <Button type="submit">Finish</Button>
-                    </Stack>
+                      <Button className='signin-button' type="submit">Finish</Button>
+                    </div>
                   </>
   }
 
   if (page === 4) {
     avi = <>
             <h4>Add Profile Image</h4>
-            <Stack gap={3}>
-              <img src={aviVal} onError={() => {this.src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"}}/>
+            <div className='flex flex-col gap-3 place-items-center'>
+              <img src={aviVal} className='signin-img' onError={() => {document.getElementsByClassName('signin-img')[0].src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"}}/>
               <Form.Control type="text" name="avi" placeholder="Enter Link" value={aviVal} onChange={(e) => {setAviVal(e.target.value)}}/>
-              <Button onClick={() => {setPage(5)}}>Next</Button>
-            </Stack>
+              <Button className='signin-button' onClick={() => {setPage(5)}}>Next</Button>
+            </div>
           </>
   }
 
   if (page === 5) {
     banner = <>
             <h4>Add Banner Image</h4>
-            <Stack gap={3}>
-              <img src={bannerVal} onError={() => {this.src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/991px-Placeholder_view_vector.svg.png"}}/>
+            <div className='flex flex-col gap-3 place-items-center'>
+              <img src={bannerVal} className='signin-img' onError={() => {document.getElementsByClassName('signin-img')[0].src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/991px-Placeholder_view_vector.svg.png"}}/>
               <Form.Control type="text" name="banner" placeholder="Enter Link" value={bannerVal} onChange={(e) => {setBannerVal(e.target.value)}}/>
-              <Button onClick={() => {window.location.href = "/twitter/home"}}>Next</Button>
-            </Stack>
+              <Button className='signin-button' onClick={() => {setPage(6)}}>Next</Button>
+            </div>
+          </>
+  }
+
+  if (page === 6) {
+    bio = <>
+          <h4>Add a Bio</h4>
+            <div className='flex flex-col gap-3 place-items-center'>
+            <textarea className="signin-field bio" type='textarea' placeholder={'Tell us about yourself!'} autoFocus={true} value={bioVal}
+            onChange={(e) => {setBioVal(e.target.value)}} />
+            <Button className='signin-button' onClick={updateUserImages}>Next</Button>
+            </div>
           </>
   }
 
@@ -289,7 +321,12 @@ export function SignUp(props) {
     <Container fluid className='sign-in-page'>
 
       <div className='sign-in'>
-        <h2>Sign Up</h2>
+        <div className='flex flex-row w-[100%]'>
+          <h2>Sign Up</h2>
+          <div onClick={() => {navigate(-1)}} className=" w-10 h-10 ml-auto rounded-full hover:cursor-pointer hover:shadow-black hover:bg-gray-300 flex align-items-center justify-content-center">
+              <FaArrowLeft className='size-6'/>
+            </div>
+        </div>
 
         <Form onSubmit={handleSubmit} style={{'display': 'flex', 'flexDirection': 'column'}}>
           <Form.Group className="mb-3">
@@ -310,6 +347,8 @@ export function SignUp(props) {
           {avi}
 
           {banner}
+
+          {bio}
 
           </Form.Group>
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaRetweet } from "react-icons/fa6";
 import axios from 'axios'
-import { RetweetModal } from "./RetweetModal";
+import { Modal } from "./Modal";
 
 export function RetweetButton(props) {
   let tweet = props.tweet;
@@ -43,13 +43,28 @@ export function RetweetButton(props) {
   }
 
 
+  let msg = 'Retweet';
+
+  if (retweeted) {msg = 'Undo Retweet'}
+
+  let modalContent = 
+  <div className="modal-main retweet">
+    <div onClick={(e) => {e.stopPropagation(); handleRetweet(); setModalVisible(false)}}>
+      {msg}
+    </div>
+
+    <div onClick={(e) => {e.stopPropagation(); setModalVisible(false)}}>
+      Quote
+    </div>
+  </div>;
+
   if (retweeted) {
       return (
         <div className='tweet-retweet' onClick={modalShow}>
           <FaRetweet className="tweet-icon"/>
           <p>{count}</p>
           
-          <RetweetModal show={modalVisible} onClose={handleModalClose} handleQuote={props.handleQuote} handleRetweet={handleRetweet} retweeted={retweeted}/>
+          <Modal show={modalVisible} onClose={handleModalClose} content={modalContent}/>
         </div>
       );
     }
@@ -60,7 +75,7 @@ export function RetweetButton(props) {
           <FaRetweet className="tweet-icon"/>
           <p>{count}</p>
           
-          <RetweetModal show={modalVisible} onClose={handleModalClose} handleQuote={props.handleQuote} handleRetweet={handleRetweet} retweeted={retweeted}/>
+          <Modal show={modalVisible} onClose={handleModalClose} content={modalContent}/>
         </div>
     )
   }

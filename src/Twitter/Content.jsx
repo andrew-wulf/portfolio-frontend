@@ -12,6 +12,7 @@ import { LeftSidebar } from "./LeftSidebar.jsx";
 import { RightSidebar } from "./RightSidebar.jsx";
 import { useState } from "react";
 
+
 export function Content(props) {
   let user = props.user;
   
@@ -26,18 +27,12 @@ export function Content(props) {
 
   const [tweetModalVisible, setTweetModalVisible] = useState(false);
   
+  
   const toggleTweetModal = () => {
     setTweetModalVisible(!tweetModalVisible)
   }
+  
 
-  const handleScroll = () => {
-    let tweets = document.getElementsByClassName('tweets-index')[0];
-    let content = document.getElementsByClassName('content')[0]
-    if (tweets) {
-      console.log(tweets.scrollHeight)
-      console.log(content.scrollTop)
-    }
-  }
 
 
   return (
@@ -55,7 +50,7 @@ export function Content(props) {
 
           <Route path = "/tweet/:id" element={<TweetView user={user}/>}/>
           
-          <Route path = "/users/:name" element={<UserPage user={user}/>}/>
+          <Route path = "/users/:name/*" element={<UserPage user={user}/>}/>
 
           <Route path = "/loading" element={<Loading/>}/>
         </Routes>
@@ -63,13 +58,13 @@ export function Content(props) {
         <div className="extra-space"/>
       </div>
     
-
+    
       <div onWheel={scroll}>
-        <RightSidebar />
+        <RightSidebar current={props.user}/>
       </div>
       
-      <TweetModal show={tweetModalVisible} onClose={toggleTweetModal} user={user}/>
-
+      <TweetModal show={tweetModalVisible} onClose={toggleTweetModal} user={props.user}/>
+            
     </div>
   )
 }

@@ -131,6 +131,7 @@ export function Tweet(props) {
     let header = 
   
       <div className="tweet-header" onClick={(e) => {e.stopPropagation(); window.location.href = `/twitter/users/${tweet.username}`}}>
+        
         <p className="user-display-name">{tweet.display_name}</p>
 
         <div className="flex flex-row gap-1">
@@ -174,7 +175,7 @@ export function Tweet(props) {
     let retweeted_by = <></>;
     
     if (tweet.is_retweet) {
-      retweeted_by = <div className="retweet-header"> <FaRetweet/>{tweet.retweeted_by.display_name} retweeted</div>
+      retweeted_by = <div className="retweet-header" onClick={(e) => {e.stopPropagation(); window.location.href=`/twitter/users/${tweet.retweeted_by.username}`}}> <FaRetweet/>{tweet.retweeted_by.display_name} retweeted</div>
     }
 
     let replying_to = <></>;
@@ -238,14 +239,23 @@ export function Tweet(props) {
     if (view) {tweetClass += '-view'} 
     if (parents) {tweetClass += '-parents'}
     //console.log(tweetClass)
-     return (
-  
-      <div className={tweetClass} onClick={() => {window.location.href = `/twitter/tweet/${tweet.id}`}}>
-        {content}
 
-      </div>
-  
-    )
+    if (view) {
+      return (
+        <div className={tweetClass}>
+          {content}
+        </div>
+      )
+    }
+
+    else {
+      return (
+       <div className={tweetClass} onClick={() => {window.location.href = `/twitter/tweet/${tweet.id}`}}>
+         {content}
+ 
+       </div>
+     )
+    }
   }
 
   else {

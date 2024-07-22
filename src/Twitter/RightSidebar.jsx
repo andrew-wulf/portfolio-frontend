@@ -1,7 +1,38 @@
-import { Form } from "react-bootstrap"
-
+import { Form } from 'react-bootstrap';
+import axios from 'axios'
+import { useEffect, useState } from 'react';
+import { UsersIndex } from './UsersIndex';
 
 export function RightSidebar(props) {
+
+  let current = props.current;
+
+  const [userRecs, setuserRecs] = useState([]);
+
+
+  const whoToFollow = () => {
+    axios.get(`http://localhost:3000/recommendations.json`)
+    .then(response => {
+      console.log(response);
+      setuserRecs(response.data);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  }
+  useEffect(whoToFollow, []);
+
+  
+  let users = <></>
+
+  if (current && userRecs.length > 0) {
+    users =
+    <div className="might-like">
+      <h4>Who To Follow</h4>
+      <UsersIndex current={current} users={userRecs}/>
+    </div>
+  }
+
 
   return (
     <div className="right-sidebar">
@@ -10,27 +41,22 @@ export function RightSidebar(props) {
           <Form.Control
             type="text"
             placeholder="Search"
-            className=" mr-sm-2"
+            className=" searchbar"
             style={{'borderRadius': '25px'}}
           />
         </Form>
         
         <div className="user-suggestions">
-            <div className="might-like">
-              <h4>You Might Like</h4>
-              <p>test</p>
-              <p>test</p>
-              <p>test</p>
-            </div>
-  
-            <div className="whats-happening">
+
+            {users}  
+
+            <div className="whats-happening" style={{opacity: '0%'}}>
               <h4>What's Happening</h4>
-                <p>test</p>
-                <p>test</p>
-                <p>test</p>
+
             </div>
           </div>
       </div>
     </div>
   )
+  
 }

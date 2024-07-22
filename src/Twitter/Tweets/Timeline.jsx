@@ -12,40 +12,61 @@ export function Timeline(props) {
   let user = props.user;
 
   const [tweets, setTweets] = useState([]);
+  const [suggestedTweets, setSuggestedTweets] = useState([]);
 
-  const [page, setPage] = useState(1);
+  const [tweetsPage, setTweetsPage] = useState(1);
+  const [suggestedPage, setSuggestedPage] = useState(1);
+
   const [offset, setOffset] = useState(0);
 
+  
+  const [gatherMethod, setGatherMethod] = useState('timeline');
   const [moreTweetsLeft, setMoreTweetsLeft] = useState(true);
   const [loading, setLoading] = useState(false);
 
 
 
   const getUserTimeline = () => {
-    axios.get('http://localhost:3000/tweets/timeline.json', {params: {offset: 0, limit: 20}})
+
+    axios.get(`http://localhost:3000/tweets/timeline.json`, {params: {offset: 0, limit: 20}})
       .then(response => {
         console.log(response);
         //let output = [];
        // output.push(response.data)
         setTweets(response.data);
-  
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
 
-  const getMoreTweets = (page) => {
-    axios.get('http://localhost:3000/tweets/timeline.json', {params: {offset: (offset + (page - 1) * 20), limit: 20}})
-      .then(response => {
-        console.log(response);
-   
-        if (response.data.length === 0) {
-          setMoreTweetsLeft(false)
+        if (response.data.length < 20) {
+            setGatherMethod('suggested');
+            setOffset(0);
         }
         else {
           setMoreTweetsLeft(true);
-          appendTweets(response.data);
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        setMoreTweetsLeft(false);
+      });
+  }
+
+
+  const getMoreTweets = (page) => {
+    axios.get(`http://localhost:3000/tweets/${gatherMethod}.json`, {params: {offset: offset + (page - 1) * 20, limit: 20}})
+      .then(response => {
+        console.log(response);
+        appendTweets(response.data);
+
+        if (response.data.length < 20) {
+          if (gatherMethod === 'suggested') {
+            setMoreTweetsLeft(false);
+          }
+          else {
+            setGatherMethod('suggested');
+            setOffset(0);
+          }
+        }
+        else {
+          setMoreTweetsLeft(true);
         }
       })
       .catch(error => {
@@ -54,8 +75,25 @@ export function Timeline(props) {
   }
 
 
+
+  if (tweets.length + suggestedTweets.length < 20) {
+    if (gatherMethod === 'timeline') {
+      getUserTimeline();
+    }
+    else {
+      getMoreTweets();
+    }
+  }
+
+
+
   const appendTweets = (data) => {
+
     let output = tweets;
+
+    if (gatherMethod === 'suggested') {
+      output = suggestedTweets
+    }
 
     for (let j = 0; j < data.length; j++) {
       let row = data[j];
@@ -73,19 +111,15 @@ export function Timeline(props) {
       if (unique) {output.push(row)}
     }
 
-    console.log(output);
-    setTweets([...output]);
+    //console.log(output);
+    if (gatherMethod === 'timeline') {
+      setTweets([...output])
+    }
+    else {
+      setSuggestedTweets([...output])
+    }
     setLoading(false);
   }
-
-  const handlePageLoad = () => {
-    getUserTimeline();
-  }
-  useEffect(handlePageLoad, []);
-
-
-
-  
 
 
 
@@ -100,9 +134,12 @@ export function Timeline(props) {
 
   
   const handleScroll = () => {
-    console.log(loading)
+
     let timeline = document.getElementsByClassName('tweets-index')[0];
     let content = document.getElementsByClassName('content')[0];
+
+    //console.log(timeline.scrollHeight, content.scrollTop)
+
     if (timeline) {
 
       if (content.scrollTop > (timeline.scrollHeight - 1400) && loading === false) {
@@ -115,14 +152,20 @@ export function Timeline(props) {
 
   const handleScrollLimit = () => {
     getNextPage();
-    console.log('loading...')
+    //console.log('loading...')
   }
 
 
   const getNextPage = () => {
     if (moreTweetsLeft) {
-      setPage((page + 1));
-      getMoreTweets(page + 1);
+      if (gatherMethod === 'timeline') {
+        setTweetsPage((tweetsPage + 1));
+        getMoreTweets(tweetsPage + 1);
+      }
+      else {
+        setSuggestedPage((suggestedPage + 1));
+        getMoreTweets(suggestedPage + 1);
+      }
     }
   }
 
@@ -136,6 +179,16 @@ export function Timeline(props) {
   
 
 
+  let suggested = <></>;
+  if (suggestedTweets.length > 0) {
+    suggested = <>
+                  <div className='suggested-title'>
+                    <h4>Trending Now</h4>       
+                  </div>
+                  <TweetsIndex tweets={suggestedTweets}/>      
+                </>
+  }
+
 
   let tweetLoading = <></>;
   if (loading) {
@@ -144,8 +197,8 @@ export function Timeline(props) {
                     </div>
   }
 
-  console.log(tweets)
-  if (tweets.length > 0) {
+  //console.log(tweets)
+  if (tweets.length > 0 || suggestedTweets.length > 0) {
     return (
       <div>
         <div className='timeline-top-bar'/>
@@ -155,8 +208,10 @@ export function Timeline(props) {
 
         <div className='tweets-index'>
           <TweetsIndex tweets={tweets}/>
+          {suggested}
         </div>
         
+
         {tweetLoading}
       </div>
     )

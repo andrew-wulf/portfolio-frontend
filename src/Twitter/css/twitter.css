@@ -80,13 +80,21 @@
 
   display: flex;
   justify-content: center;
-
+  z-index: 900;
 }
+
+
+.left-sidebar-content {
+  margin-top: 1em;
+  margin-left: auto;
+}
+
 
 .right-sidebar {
   top: 0;
   left: var(--lg-right);
   right: 15px;
+  z-index: 800;
 
   @media (max-width: 699px) {
     display: none;
@@ -103,6 +111,36 @@
   margin-top: 0.4em;
 }
 
+.user-index-display {
+  color:var(--text2);
+  font-weight: 700;
+  padding-bottom: 0.1em;
+  font-size: 15px;
+  margin: 0
+}
+
+.user-index-name {
+  color: var(--text3);
+  font-weight: 400;
+  font-size: 14.5px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.user-index-display {
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.user-index-follow {
+  margin-left: auto;
+  button {
+    height: 34px;
+  }
+}
 
 
 
@@ -135,11 +173,42 @@
 }
 
 .sign-in-page {
-  background-color: rgb(34, 34, 34);
+  background-color: var(--bg);
+  color: rgb(26, 26, 26);
+
   width: 100vw;
   height: 100vh;
 }
 
+.signin-button {
+  width: 220px;
+  height: 45px;
+
+  div {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+    .signin-logo {
+      margin-bottom: 0.8em;
+    }
+  }
+}
+
+.signin-field {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+
+  &.bio {
+    width: 400px;
+    min-height: 160px;
+    resize: none;
+    border-radius: 15px;
+    padding: 0.6em;
+  }
+}
 
 .tweet {
   padding-left: 1em;
@@ -282,6 +351,8 @@
 }
 
 .avi-container {
+  min-width: 40px;
+  min-height: 40px;
   width: 40px;
   height: 40px;
   position: relative;
@@ -397,6 +468,7 @@
 
 
 .tweet-text {
+  white-space: pre-wrap;
   margin: 0
 }
 
@@ -522,7 +594,11 @@
   align-content: center
 }
 
-.retweet-modal-bg {
+.tweet-retweet, .tweet-no-retweet {
+  position: relative;
+}
+
+.modal-bg {
   position: fixed;
   left: 0;
   top: 0;
@@ -530,16 +606,47 @@
   height: 100vh;
 
   z-index: 1000;
-
 }
 
-.retweet-modal-main {
+
+.modal-main {
+
   z-index: 1001;
   position: absolute;
-  background-color: var(--bg);
-  color: var(--text2);
-  width: 120px;
-  height: 65px;
+  background-color: var(--text2);
+  color: var(--bg);
+
+  width: 180px;
+  height: 100px;
+
+  &.retweet {
+    width: 120px;
+    height: 65px;
+    transform: translate(-60%, -10%);
+    background-color: var(--bg);
+    color: var(--text2);
+    
+    div {
+      &:hover {
+        background-color: var(--tweet-bg);
+        cursor: pointer;
+      }
+    }
+  }
+
+  &.account {
+    transform: translate(-5%, -180%);
+    width: 260px;
+    height: 100px;
+
+    div {
+      &:hover {
+        background-color: var(--text);
+        cursor: pointer;
+      }
+    }
+  }
+
   font-size: 15px;
   font-weight: 600;
   border-radius: 15px;
@@ -548,18 +655,17 @@
 
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+
+  margin: 0;
+  padding: 0;
   
-  transform: translate(-60%);
+ 
   div {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 100%;
-    &:hover {
-      background-color: var(--tweet-bg);
-      cursor: pointer;
-    }
   }
 }
 
@@ -632,9 +738,14 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-
+  
+  max-height: 1000px;
+  overflow: hidden;
 }
 
+.whats-happening {
+  display: none;
+}
 
 .spinner-container {
   margin-top: 2em;

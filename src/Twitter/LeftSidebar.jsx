@@ -18,13 +18,16 @@ import { useState, useEffect } from 'react';
 
 import { FaRegMoon } from "react-icons/fa";
 import { FaSun } from "react-icons/fa";
+import { Modal } from './Tweets/Modal';
 
 
 export function LeftSidebar(props) {
 
-  const [accountModalVisible, setAccountModalVisible] = useState('hidden');
+  const [accountModalVisible, setAccountModalVisible] = useState(false);
+ 
+  const [toggleVerticalStyle, setToggleVerticalStyle] = useState({transform: 'translate(0, 0)'});
+  const [toggleHorizontalStyle, setToggleHorizontalStyle] = useState({transform: 'translate(0, 0)'});
 
-  const [toggleStyle, setToggleStyle] = useState({transform: 'translate(0, 0)'});
   const [sunVal, setSunVal] = useState(0);
   const [moonVal, setMoonVal] = useState(0);
 
@@ -34,12 +37,14 @@ export function LeftSidebar(props) {
 
   const updateTheme = () => {
     if (theme === 'light') {
-      setToggleStyle({transform: 'translate(200%, 0)'});
+      setToggleHorizontalStyle({transform: 'translate(200%, 0)'});
+      setToggleVerticalStyle({transform: 'translate(0%, 150%)'});
       setSunVal(100);
       setMoonVal(0);
     }
     else {
-      setToggleStyle({transform: 'translate(0%, 0)'});
+      setToggleHorizontalStyle({transform: 'translate(0%, 0)'});
+      setToggleVerticalStyle({transform: 'translate(0%, 0%)'});
       setSunVal(0);
       setMoonVal(100);
     }
@@ -50,21 +55,21 @@ export function LeftSidebar(props) {
     props.themeToggle();
   }
   
-
-
+  
   const toggleAccountModal = () => {
-    if (accountModalVisible === 'visible') {
-      setAccountModalVisible('hidden')
-    }
-    else {
-      setAccountModalVisible('visible')
-    }
+    setAccountModalVisible(!accountModalVisible)
   }
+
+  const handleClose = () => {
+    setAccountModalVisible(false);
+  }
+
+  
 
   const signOut = () => {
     delete axios.defaults.headers.common["Authorization"];
     localStorage.removeItem("jwt");
-    window.location.href = "/twitter/home"
+    window.location.href = "/twitter/"
   }
 
 
@@ -81,8 +86,8 @@ export function LeftSidebar(props) {
   <div className='left-sidebar'>
     <div className='left-sidebar-content'>
 
-      <div className=' justify-self-center place-content-center' >
-        <Navbar.Brand href="/home"><Image src="/twitter_logo.png" width="35px"/></Navbar.Brand>
+      <div className='header-logo' >
+        <Navbar.Brand href="/twitter/home"><Image src="/twitter_logo.png" width="35px"/></Navbar.Brand>
       </div>
 
       <div direction='horizontal' className='header-option' onClick={
@@ -95,7 +100,7 @@ export function LeftSidebar(props) {
       </div>
       
       <div direction='horizontal' className='header-option' onClick={
-        () => {window.location.href= "/twitter/home"}}>
+        () => {}}>
         <FaSearch/>
         <div className='header-option-text'>
           <h5>Explore</h5>
@@ -104,7 +109,7 @@ export function LeftSidebar(props) {
       </div>
 
       <div direction='horizontal' className='header-option' onClick={
-        () => {window.location.href= "/twitter/home"}}>
+        () => {}}>
         <FaBell/>
         <div className='header-option-text'>
           <h5>Notifications</h5>
@@ -113,7 +118,7 @@ export function LeftSidebar(props) {
       </div>
 
       <div direction='horizontal' className='header-option' onClick={
-        () => {window.location.href= "/twitter/home"}}>
+        () => {}}>
         <FaEnvelope/>
         <div className='header-option-text'>
           <h5>Messages</h5>
@@ -122,7 +127,7 @@ export function LeftSidebar(props) {
       </div>
 
       <div direction='horizontal' className='header-option' onClick={
-        () => {window.location.href= "/twitter/home"}}>
+        () => {}}>
         <FaBookmark/>
         <div className='header-option-text'>
           <h5>Bookmarks</h5>
@@ -131,7 +136,7 @@ export function LeftSidebar(props) {
       </div>
       
       <div direction='horizontal' className='header-option' onClick={
-        () => {window.location.href= "/twitter/home"}}>
+        () => {window.location.href= `/twitter/users/${user.username}`}}>
         <IoPersonSharp/>
         <div className='header-option-text'>
           <h5>Profile</h5>
@@ -162,30 +167,45 @@ export function LeftSidebar(props) {
             
           </div>
         </div>
+
+        <Modal onClose={handleClose} show={accountModalVisible} content={
+            <div className='modal-main account'>
+              <div onClick={(e) => {e.stopPropagation(); setAccountModalVisible(false)}}>
+                Account
+              </div>
+          
+              <div onClick={(e) => {e.stopPropagation(); signOut(); setAccountModalVisible(false)}}>
+                Sign Out
+              </div>
+            </div>
+          }/>
       </div>
-      
-      <NavDropdown className='header-profile-dropdown'>
-        <NavDropdown.Item onClick={() => {window.location.href = `/twitter/users/${user.username}`}}>View Profile</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.1">Account</NavDropdown.Item>
-        <NavDropdown.Item onClick={signOut}>Sign Out</NavDropdown.Item>
-      </NavDropdown>
         
-      <div onClick={toggle} className='theme-toggle'>
+
+      <div onClick={toggle} className='theme-toggle horizontal'>
         <FaSun style={{opacity: `${sunVal}%`}}/>
         <FaRegMoon style={{opacity: `${moonVal}%`}}/>
-        <span className="theme-slider" style={toggleStyle}>
+        <span className="theme-slider" style={toggleHorizontalStyle}>
         </span>
       </div>
 
-
-      <div className='account-modal' style={{visibility: accountModalVisible}}>
-        <ListGroup>
-          <ListGroupItem>Account</ListGroupItem>
-          <ListGroupItem onClick={signOut}>Sign Out</ListGroupItem>
-        </ListGroup>
+      <div onClick={toggle} className='theme-toggle vertical'>
+        <FaSun style={{opacity: `${sunVal}%`}}/>
+        <FaRegMoon style={{opacity: `${moonVal}%`}}/>
+        <span className="theme-slider" style={toggleVerticalStyle}>
+        </span>
       </div>
 
+      
     </div>
   </div>
   )
 }
+
+
+
+{/* <NavDropdown className='header-profile-dropdown'>
+<NavDropdown.Item onClick={() => {window.location.href = `/twitter/users/${user.username}`}}>View Profile</NavDropdown.Item>
+<NavDropdown.Item href="#action/3.1">Account</NavDropdown.Item>
+<NavDropdown.Item onClick={signOut}>Sign Out</NavDropdown.Item>
+</NavDropdown> */}

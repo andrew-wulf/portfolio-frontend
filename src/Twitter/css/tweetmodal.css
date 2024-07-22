@@ -9,7 +9,7 @@
   z-index: 1000;
 }
 
-.modal-main {
+.tweet-modal {
   position: fixed;
   background-color: var(--tweet-bg);
   width: 80%;
@@ -25,7 +25,7 @@
 }
 
 
-.modal-main button.close {
+.tweet-modal button.close {
   font-size: 2em;
   background: none;
   border: none;

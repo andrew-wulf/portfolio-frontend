@@ -54,26 +54,35 @@ export function SignIn(props) {
             <Col xs={3}></Col>
             <Col xs={6}>
           
-              <Form onSubmit={handleSubmit} style={{'display': 'flex', 'flexDirection': 'column'}}>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                  <Form.Label>Email address</Form.Label>
-                  <Form.Control type="email" name="email" placeholder="Enter email" />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" name="password" placeholder="Password"/>
-                </Form.Group>
-                
-                <Stack gap={4}>
-                  <Button variant="primary" type="submit" style={{'marginTop': '2vh'}}>
-                    Sign In
-                  </Button>
-                
-                  <Button variant='outline-dark' type="button" 
-                  onClick={() => {window.location.href = "/twitter/signup"}}>
-                    <FaTwitter/> Create Account</Button>
+              <Form onSubmit={handleSubmit}>
+                <div className='flex flex-col gap-4 place-items-center'>
+                  <div className= "signin-field">
+                    <p>Email address</p>
+                    <Form.Control type="email" name="email" placeholder="Enter email" />
+                  </div>
+                  <div className= "signin-field">
+                    <p>Password</p>
+                    <Form.Control type="password" name="password" placeholder="Password"/>
+                  </div>
+                  
+                  <div className='flex flex-col gap-4 mt-4'>
+                    <Button variant="primary" type="submit" className='signin-button'>
+                      Sign In
+                    </Button>
+                  
+                    <Button variant='outline-dark' type="button" className='signin-button'
+                    onClick={() => {window.location.href = "/twitter/signup"}}>
+                        <div>
+                          <FaTwitter className='signin-logo'/> 
+                          <p>
+                            Create Account
+                            </p>
+                        </div>
+                    </Button>
 
-                </Stack>
+                  </div>
+                </div>
+                
 
               </Form>
 

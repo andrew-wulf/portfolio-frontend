@@ -1,8 +1,10 @@
 
 import { Content } from "./Content";
 
-import './twitter.css';
+import './css/twitter.css';
 import './css/tweets.css';
+import './css/userpage.css'
+import './css/loading.scss'
 
 import { useState, useEffect } from "react";
 import axios from 'axios'
@@ -40,6 +42,7 @@ export function Twitter() {
     
       dark: {
         '--bg': 'rgb(20, 29, 38)',
+        '--bg2': 'rgb(24, 33, 44)',
         '--text': 'rgb(230, 230, 230)',
         '--text2': 'rgb(250, 250, 250)',
         '--text3': 'rgba(250, 250, 250, 0.6)',
@@ -49,6 +52,7 @@ export function Twitter() {
         '--tweet-hover': 'rgb(34, 48, 63)',
         '--primary': 'rgba(49, 120, 219, 0.952)',
         '--secondary': 'rgba(100, 100, 100, 1)',
+        '--follow': 'rgb(225, 225, 225)',
   
         '--border': '1px solid rgba(187, 187, 187, 0.315)',
         '--border2': '1.8px solid rgba(187, 187, 187, 0.315)',
@@ -57,7 +61,8 @@ export function Twitter() {
         '--toggle-color': ''
       },
       light: {
-        '--bg': 'rgb(220, 220, 220)',
+        '--bg': 'rgb(230, 230, 230)',
+        '--bg2': 'rgb(242, 242, 242)',
         '--text': 'rgb(5, 5, 5)',
         '--text2': 'rgb(30, 30, 30)',
         '--text3': 'rgb(70, 70, 70)',
@@ -68,11 +73,12 @@ export function Twitter() {
   
         '--primary': 'rgba(49, 120, 219, 0.952)',
         '--secondary': 'rgba(100, 100, 100, 1)',
+        '--follow': 'rgba(49, 120, 219, 0.952)',
   
         '--border': '1px solid rgba(128, 128, 128, 0.624)',
         '--border2': '1.8px solid rgb(185, 185, 185)',
 
-        '--toggle-bg': 'rgba(240, 240, 240, 0.932)',
+        '--toggle-bg': 'rgba(150, 160, 170, 0.932)',
         '--toggle-color': ''
       }
     }

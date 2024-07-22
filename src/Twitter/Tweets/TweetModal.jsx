@@ -19,7 +19,7 @@ export function TweetModal(props) {
   if (props.show) {
     return (
       <div className="modal-background">
-        <section className="modal-main">
+        <section className="tweet-modal">
           {props.children}
           <button className="close" type="button" onClick={props.onClose}>
             &#x2715;
