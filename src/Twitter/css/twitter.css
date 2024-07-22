@@ -773,3 +773,15 @@
 @-webkit-keyframes spin {
   to { -webkit-transform: rotate(360deg); }
 }
+
+
+.blue-checkmark {
+  color: rgb(29, 155, 240);
+  border-radius:  50%;
+  justify-self: center;
+  transform: translate(0%, -10%);
+
+  &.profile {
+    transform: translate(0%, 0%)
+  }
+}

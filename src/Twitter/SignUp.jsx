@@ -65,7 +65,7 @@ export function SignUp(props) {
   }
 
   const updateUserImages = () => {
-    axios.post('http://localhost:3000/user/update.json', {avi: aviVal, banner: bannerVal, bio: bioVal})
+    axios.post('http://localhost:3000/user/update.json', {avi: aviVal, banner: bannerVal, bio: bioVal, verified: true})
 
       .then(response => {
         console.log(response);

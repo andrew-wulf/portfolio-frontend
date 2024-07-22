@@ -15,6 +15,7 @@ import { useState } from "react";
 
 import axios from 'axios';
 import { RetweetButton } from "./RetweetButton";
+import { MdVerified } from "react-icons/md";
 
 export function Tweet(props) {
 
@@ -90,6 +91,14 @@ export function Tweet(props) {
   let first = props.first;
 
   if (tweet.username) {
+    let display = <p className="user-display-name">{tweet.display_name}</p>
+    if (tweet.verified) {
+      display = <div className="flex gap-1">
+                  <p className="user-display-name">{tweet.display_name}</p>
+                  <p><MdVerified className="blue-checkmark"/></p>
+                </div>
+
+    }
 
     let avi = 
               <div className="avi-container">
@@ -132,7 +141,7 @@ export function Tweet(props) {
   
       <div className="tweet-header" onClick={(e) => {e.stopPropagation(); window.location.href = `/twitter/users/${tweet.username}`}}>
         
-        <p className="user-display-name">{tweet.display_name}</p>
+        {display}
 
         <div className="flex flex-row gap-1">
           <p className="user-username">@{tweet.username}</p>
@@ -153,7 +162,7 @@ export function Tweet(props) {
       <div className="tweet-header" onClick={(e) => {e.stopPropagation(); window.location.href = `/twitter/users/${tweet.username}`}}>
         {avi}
         <div className="flex flex-col gap-0 mt-1">
-          <p className="user-display-name">{tweet.display_name}</p>
+          {display}
           <p className="user-username">@{tweet.username}</p>
         </div>
   

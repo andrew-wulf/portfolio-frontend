@@ -13,6 +13,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { IoEllipsisHorizontal } from "react-icons/io5";
 import { FaEnvelope } from "react-icons/fa6";
 import { FollowButton } from "./FollowButton";
+import { MdVerified } from "react-icons/md";
 
 
 
@@ -37,7 +38,11 @@ export function UserPage(props) {
   }
 
   const getUserTweets = () => {
-    axios.get(`http://localhost:3000/tweets/users/${name}.json`)
+    let val = name;
+    if (type === 'likes' || type === 'replies') {
+      val = `${val}/${type}`
+    }
+    axios.get(`http://localhost:3000/tweets/users/${val}.json`, {params: {offset: 0, limit: 20}})
     .then(response => {
       console.log(response);
       setTweets(response.data);
@@ -86,6 +91,16 @@ export function UserPage(props) {
 
   if (viewedUser.username) {
     console.log(viewedUser);
+
+    let display = <h4>{viewedUser.display_name}</h4>;
+
+    if (user.verified) {
+      display = <div className="flex gap-1 place-items-center">
+        <h4>{viewedUser.display_name} </h4>
+        <h4><MdVerified className="blue-checkmark profile"/></h4>
+      </div>
+    }
+
     return (
       <div>
 
@@ -111,7 +126,7 @@ export function UserPage(props) {
 
           <div className="user-bio">
               <div className="ml-3 mt-3">
-                <h4>{viewedUser.display_name}</h4>
+                {display}
                 <p className="secondary-text">@{viewedUser.username}</p>
                 <p>{viewedUser.bio}</p>
                 <div className="flex flex-row gap-4">
@@ -123,9 +138,9 @@ export function UserPage(props) {
           </div>
 
           <div className="user-tabs">
-            <h2>Tweets</h2>
-            <h2>Replies</h2>
-            <h2>Likes</h2>
+            <h2 onClick={() => {window.location.href = `/twitter/users/${viewedUser.username}`}}>Tweets</h2>
+            <h2 onClick={() => {window.location.href = `/twitter/users/${viewedUser.username}/replies`}}>Replies</h2>
+            <h2 onClick={() => {window.location.href = `/twitter/users/${viewedUser.username}/likes`}}>Likes</h2>
             <h2>Media</h2>
           </div>
         </div>
