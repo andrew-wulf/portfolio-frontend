@@ -94,7 +94,7 @@ export function UserPage(props) {
 
     let display = <h4>{viewedUser.display_name}</h4>;
 
-    if (user.verified) {
+    if (viewedUser.verified) {
       display = <div className="flex gap-1 place-items-center">
         <h4>{viewedUser.display_name} </h4>
         <h4><MdVerified className="blue-checkmark profile"/></h4>
