@@ -13,7 +13,7 @@ export function FollowButton(props) {
 
 
   const followToggle = () => {
-    axios.post(`http://localhost:3000/users/${viewed.username}/follow.json`)
+    axios.post(`/users/${viewed.username}/follow.json`)
     .then(response => {
       console.log(response);
       setFollowed(!followed);

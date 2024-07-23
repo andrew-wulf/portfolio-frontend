@@ -37,7 +37,7 @@ export function SignUp(props) {
   const navigate = useNavigate();
 
   const login = () => {
-    axios.post('http://localhost:3000/sessions.json', {email: emailVal, password: passVal})
+    axios.post('/sessions.json', {email: emailVal, password: passVal})
       .then(response => {
         console.log(response);
         axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.jwt;
@@ -52,7 +52,7 @@ export function SignUp(props) {
     e.preventDefault();
     const params = new FormData();
 
-    axios.post('http://localhost:3000/users.json', {username: userVal, email: emailVal, password: passVal, password_confirmation: passVal, display_name: displayVal})
+    axios.post('/users.json', {username: userVal, email: emailVal, password: passVal, password_confirmation: passVal, display_name: displayVal})
 
       .then(response => {
         console.log(response);
@@ -65,7 +65,7 @@ export function SignUp(props) {
   }
 
   const updateUserImages = () => {
-    axios.post('http://localhost:3000/user/update.json', {avi: aviVal, banner: bannerVal, bio: bioVal, verified: true})
+    axios.post('/user/update.json', {avi: aviVal, banner: bannerVal, bio: bioVal, verified: true})
 
       .then(response => {
         console.log(response);
@@ -82,7 +82,7 @@ export function SignUp(props) {
     params.append("username", user);
     console.log(`user: ${user}`)
 
-    axios.get('http://localhost:3000/users/exists.json', {params: {username: user}})
+    axios.get('/users/exists.json', {params: {username: user}})
       .then(response => {
         console.log(response);
         setUserExists(response.data.user_exists);
@@ -121,7 +121,7 @@ export function SignUp(props) {
     params.append("email", email);
     console.log(`email: ${email}`)
 
-    axios.get('http://localhost:3000/users/exists.json', {params: {email: email}})
+    axios.get('/users/exists.json', {params: {email: email}})
       .then(response => {
         console.log(response);
         setEmailExists(response.data.user_exists);

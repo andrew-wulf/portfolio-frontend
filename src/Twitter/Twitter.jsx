@@ -18,6 +18,7 @@ import { SignUp } from "./SignUp";
 
 export function Twitter() {
 
+
   const [currentUser, setCurrentUser] = useState("none");
 
   const [theme, setTheme] = useState('light');
@@ -110,7 +111,7 @@ export function Twitter() {
   const getUser = () => {
     if (localStorage.jwt) {
       axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.jwt
-      axios.get('http://localhost:3000/user.json')
+      axios.get('/user.json')
         .then(response => {
           console.log(response);
           setCurrentUser(response.data);

@@ -13,12 +13,12 @@ export function VideoPlayer() {
     width: '400',
     playerVars: {
       color: 'white',
-      origin: 'http://localhost:3000'
+      origin: ''
     },
   }
 
 
-  let video = 'https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1&origin=http://localhost:3000'
+  let video = 'https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1&origin='
 
   let testFrame = <iframe id='player' type='text/html' className='video-player' allow="fullscreen"
                     title='Youtube player'

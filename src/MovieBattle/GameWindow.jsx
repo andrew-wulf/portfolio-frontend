@@ -39,7 +39,7 @@ export function GameWindow() {
     setInputVal("");
     setSearchResults("");
 
-    axios.post(`http://localhost:3000/movies/data/${movie.id}.json`)
+    axios.post(`/movies/data/${movie.id}.json`)
         .then(response => {
           console.log(response);
           output.data = response.data;
@@ -74,7 +74,7 @@ export function GameWindow() {
 
 
   const search = (term) => {
-    axios.post('http://localhost:3000/movies/search.json', {term: term})
+    axios.post('/movies/search.json', {term: term})
         .then(response => {
           console.log(response);
           let data = response.data;

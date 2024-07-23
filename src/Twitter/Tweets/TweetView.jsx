@@ -21,7 +21,7 @@ export function TweetView(props) {
     let x = url.lastIndexOf("/");
     let id = url.substring(x + 1, url.length);
   
-    axios.get(`http://localhost:3000/tweets/${id}.json`)
+    axios.get(`/tweets/${id}.json`)
     .then(response => {
       console.log(response);
       setTweet(response.data);
