@@ -40,7 +40,7 @@ export function NewTweet(props) {
     if (inputVal.length > 0) {
 
       if (tweetID) {
-        axios.post('http://localhost:3000/tweets/subtweet.json', {text: inputVal, tweet_id: tweetID})
+        axios.post('/tweets/subtweet.json', {text: inputVal, tweet_id: tweetID})
             .then(response => {
               console.log(response);
               setInputVal("");
@@ -55,7 +55,7 @@ export function NewTweet(props) {
       }
   
       else {
-        axios.post('http://localhost:3000/tweets/new.json', {text: inputVal})
+        axios.post('/tweets/new.json', {text: inputVal})
             .then(response => {
               console.log(response);
               setInputVal("");

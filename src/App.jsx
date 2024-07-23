@@ -7,9 +7,10 @@ import { Portfolio } from "./Portfolio/Portfolio";
 import { Chess } from "./Chess/src/Chess.jsx"
 import { MovieBattle } from "./MovieBattle/MovieBattle.jsx";
 
-
+import axios from 'axios';
 
 function App() {
+  axios.defaults.baseURL = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://andrew-wulf-portfolio.com";
 
   return (
     <div>

@@ -28,7 +28,7 @@ export function Timeline(props) {
 
   const getUserTimeline = () => {
 
-    axios.get(`http://localhost:3000/tweets/timeline.json`, {params: {offset: 0, limit: 20}})
+    axios.get(`/tweets/timeline.json`, {params: {offset: 0, limit: 20}})
       .then(response => {
         console.log(response);
         //let output = [];
@@ -51,7 +51,7 @@ export function Timeline(props) {
 
 
   const getMoreTweets = (page) => {
-    axios.get(`http://localhost:3000/tweets/${gatherMethod}.json`, {params: {offset: offset + (page - 1) * 20, limit: 20}})
+    axios.get(`/tweets/${gatherMethod}.json`, {params: {offset: offset + (page - 1) * 20, limit: 20}})
       .then(response => {
         console.log(response);
         appendTweets(response.data);

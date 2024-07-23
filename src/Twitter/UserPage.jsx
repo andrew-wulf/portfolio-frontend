@@ -42,7 +42,7 @@ export function UserPage(props) {
     if (type === 'likes' || type === 'replies') {
       val = `${val}/${type}`
     }
-    axios.get(`http://localhost:3000/tweets/users/${val}.json`, {params: {offset: 0, limit: 20}})
+    axios.get(`/tweets/users/${val}.json`, {params: {offset: 0, limit: 20}})
     .then(response => {
       console.log(response);
       setTweets(response.data);
@@ -55,7 +55,7 @@ export function UserPage(props) {
   
 
   const getUserInfo = () => {
-    axios.get(`http://localhost:3000/users/${name}.json`)
+    axios.get(`/users/${name}.json`)
     .then(response => {
       console.log(response);
       setViewedUser(response.data);

@@ -29,7 +29,7 @@ export function LikeButton(props) {
   }
 
   const likeToggle = () => {
-    axios.post(`http://localhost:3000/tweets/${tweet.id}/like.json`)
+    axios.post(`/tweets/${tweet.id}/like.json`)
       .then(response => {
         console.log(response);
       })

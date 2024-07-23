@@ -33,7 +33,7 @@ export function RetweetButton(props) {
   }
 
   const toggle = () => {
-    axios.post(`http://localhost:3000/tweets/${tweet.id}/retweet.json`)
+    axios.post(`/tweets/${tweet.id}/retweet.json`)
       .then(response => {
         console.log(response);
       })

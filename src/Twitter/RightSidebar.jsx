@@ -11,7 +11,7 @@ export function RightSidebar(props) {
 
 
   const whoToFollow = () => {
-    axios.get(`http://localhost:3000/recommendations.json`)
+    axios.get(`/recommendations.json`)
     .then(response => {
       console.log(response);
       setuserRecs(response.data);

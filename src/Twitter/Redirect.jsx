@@ -7,7 +7,7 @@ export function Redirect(props) {
   const login = () => {
     if (localStorage.jwt) {
       axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.jwt
-      axios.get('http://localhost:3000/user.json')
+      axios.get('/user.json')
         .then(response => {
           console.log(response);
           props.setUser(response.data);
