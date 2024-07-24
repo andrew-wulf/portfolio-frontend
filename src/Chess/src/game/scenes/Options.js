@@ -14,10 +14,20 @@ export class Options extends Scene
   }
 
   create () {
+    let textScale = 1;
+    if (window.innerWidth < 900) {
+        if (window.innerWidth > 650) {
+        textScale = 0.75;
+        }
+        else {
+        textScale = 0.5
+        }
+    }
+
     this.cameras.main.setBackgroundColor('rgba(25, 25, 25, 1)');
 
-    const logo = new Text(this, 420, 200, 'Options', {
-      fontFamily: 'Arial Black', fontSize: 60, color: '#ffffff',
+    const logo = new Text(this, 420 * textScale, 200 * textScale, 'Options', {
+      fontFamily: 'Arial Black', fontSize: 60 * textScale, color: '#ffffff',
       stroke: '#000000', strokeThickness: 8,
       align: 'center'
     });
@@ -25,26 +35,26 @@ export class Options extends Scene
 
     
     // labels
-    const mode_label = new Text(this, 320, 480, 'Mode: ');
+    const mode_label = new Text(this, 320 * textScale, 480 * textScale, 'Mode: ');
     mode_label.disableInteractive();
     mode_label.setColor('rgb(225,225,225,1)');
 
-    const color_label = new Text(this, 300, 360, 'Player 1: ');
+    const color_label = new Text(this, 300 * textScale, 360 * textScale, 'Player 1: ');
     color_label.disableInteractive();
     color_label.setColor('rgb(225,225,225,1)');
 
-    const depth_label = new Text(this, 300, 540, 'Depth: ');
+    const depth_label = new Text(this, 300 * textScale, 540 * textScale, 'Depth: ');
     depth_label.disableInteractive();
     depth_label.setColor('rgb(225,225,225,1)');
     depth_label.setVisible(this.options.mode !== '2-Player');
 
     // buttons
-    const mode_select = new Text(this, 540, 480, this.options.mode);
-    const color_select = new Text(this, 540, 360, this.options.p1);
-    const depth_select = new Text(this, 540, 540, this.options.depth);
+    const mode_select = new Text(this, 540 * textScale, 480 * textScale, this.options.mode);
+    const color_select = new Text(this, 540 * textScale, 360 * textScale, this.options.p1);
+    const depth_select = new Text(this, 540 * textScale, 540 * textScale, this.options.depth);
     depth_select.setVisible(this.options.mode !== '2-Player');
     
-    const save_select = new Text(this, 420, 700, 'Return');
+    const save_select = new Text(this, 420 * textScale, 700 * textScale, 'Return');
 
 
     // button handlers

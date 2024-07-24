@@ -14,24 +14,34 @@ export class MainMenu extends Scene
     }
 
     create ()
-    {
+    {   
+        let textScale = 1;
+        if (window.innerWidth < 900) {
+            if (window.innerWidth > 650) {
+            textScale = 0.75;
+            }
+            else {
+            textScale = 0.5
+            }
+        }
+
         this.cameras.main.setBackgroundColor('rgba(25, 25, 25, 1)');
 
-        this.logo = this.add.text(420, 260, 'Chess', {
-            fontFamily: 'Arial Black', fontSize: 60, color: '#ffffff',
+        this.logo = this.add.text(420 * textScale, 260 * textScale, 'Chess', {
+            fontFamily: 'Arial Black', fontSize: 60 * textScale, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         }).setDepth(100).setOrigin(0.5);
 
 
-        const new_game = this.add.text(422, 430, 'New Game', {
-            fontFamily: 'Arial Black', fontSize: 38, color: 'rgba(180,180,180,1)',
+        const new_game = this.add.text(422 * textScale, 430 * textScale, 'New Game', {
+            fontFamily: 'Arial Black', fontSize: 38 * textScale, color: 'rgba(180,180,180,1)',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         }).setDepth(100).setOrigin(0.5);
 
-        const options = this.add.text(422, 500, 'Options', {
-            fontFamily: 'Arial Black', fontSize: 38, color: 'rgba(180,180,180,1)',
+        const options = this.add.text(422 * textScale, 500 * textScale, 'Options', {
+            fontFamily: 'Arial Black', fontSize: 38 * textScale, color: 'rgba(180,180,180,1)',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         }).setDepth(100).setOrigin(0.5);

@@ -9,18 +9,58 @@
     height: 100vh;
     overflow: hidden;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
   
+  .chess-header {
+    background-color: rgb(13, 43, 10);
+  }
+
+  .chess-sidebar {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6em;
+    background-color: rgba(7, 34, 7, 0.349);
+
+    @media (min-width: 1200px) {
+      top: 0;
+      left: 0px;
+      padding: 2em;
+      width: 13vw;
+      height:100vh;
+      flex-direction: column;
+    }
+    @media (max-width: 1199px) {
+      top: 90vh;
+      left: 0;
+      width: 100vw;
+      height: 10vh;
+      flex-direction: row;
+      @media (min-width: 1000px) {
+        top: 95vh;
+        left: 0;
+        width: 100vw;
+        height: 5vh;
+        flex-direction: row;
+      }
+    }
+
+  }
+
   h1 {
     width: 100vw;
     height: auto;
-    background-color: rgb(13, 43, 10);
     color: rgb(255, 255, 255);
     text-align: center;
   }
   
+  h6 {
+    color: rgb(190, 190, 190)
+  }
   
   .button {
     width: 140px;

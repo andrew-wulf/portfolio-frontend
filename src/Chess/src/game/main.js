@@ -9,7 +9,21 @@ import { Preloader } from './scenes/Preloader';
 // https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
 
 
-const sizes = {width: 800, height: 800}
+let width = 800;
+let height = 800;
+if (window.innerWidth < 900) {
+    if (window.innerWidth > 650) {
+    width = 600;
+    height = 600;
+    }
+    else {
+    width = 400;
+    height = 400;
+    }
+}
+
+
+const sizes = {width: width, height: height}
 
 const config = {
     type: Phaser.AUTO,

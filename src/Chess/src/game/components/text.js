@@ -3,9 +3,20 @@ import {GameObjects} from 'phaser';
 
 export class Text extends GameObjects.Text {
   constructor (scene, x, y, text, style=false) {
+
+    let textScale = 1;
+    if (window.innerWidth < 900) {
+        if (window.innerWidth > 650) {
+        textScale = 0.75;
+        }
+        else {
+        textScale = 0.5
+        }
+    }
+
     if (style === false) {
       style = {
-        fontFamily: 'Arial Black', fontSize: 38, color: 'rgba(180,180,180,1)',
+        fontFamily: 'Arial Black', fontSize: 38 * textScale, color: 'rgba(180,180,180,1)',
         stroke: '#000000', strokeThickness: 8,
         align: 'center'};
     }
@@ -17,6 +28,7 @@ export class Text extends GameObjects.Text {
     this.interactive = true;
 
     scene.add.existing(this).setDepth(100).setOrigin(0.5);
+
 
     // Mouseover event
     this.on('pointerover', function () {

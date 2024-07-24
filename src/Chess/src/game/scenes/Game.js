@@ -169,8 +169,6 @@ export class Game extends Scene
 
         // ------------------------------------
 
-
-
         EventBus.emit('current-scene-ready', this);
     }
 

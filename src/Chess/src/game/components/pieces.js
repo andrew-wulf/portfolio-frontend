@@ -1,6 +1,16 @@
 import {GameObjects, Geom} from 'phaser';
 
 
+let pieceScale = 0.7;
+if (window.innerWidth < 900) {
+    if (window.innerWidth > 650) {
+    pieceScale = 0.55;
+    }
+    else {
+    pieceScale = 0.4
+    }
+}
+
 export function pieces(scene) {
   let pieces = []
   scene.squares.forEach((sq, i) => {
@@ -64,7 +74,7 @@ export class Piece extends GameObjects.Image {
       this.scene = scene;
       this.square = false;
 
-      scene.add.existing(this).setScale(0.7).setDepth(2);
+      scene.add.existing(this).setScale(pieceScale).setDepth(2);
 
       this.origin_y = 0.5
 

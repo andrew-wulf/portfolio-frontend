@@ -33,12 +33,17 @@ export function Chess()
 
     return (
         <div id="page" className='chess'>
-            <h1>Chess Game</h1>
+
+            <div className='chess-sidebar'>
+                <h6 onClick={() => {window.location.href = "/"}}>Click here to return to Portfolio</h6>
+                <h6>Refresh page to resize the window.</h6>
+                <h6>Piece & audio assets are publicly available, and made by Chess.com!</h6>
+            </div>
+
             <div id="app">
                 
                 <PhaserGame ref={phaserRef} />
 
-                   
             </div>
         </div>
     )
