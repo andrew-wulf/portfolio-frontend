@@ -18,7 +18,7 @@ export function Home() {
 
   const [infoStyles, setInfoStyles] = useState([0, 0, 0, 0]);
 
-  const [translate, setTranslate] = useState([0, 30]);
+  const [translate, setTranslate] = useState([15, 0]);
   const [headerTranslate, setHeaderTranslate] = useState([0, -5]);
   const [pageTranslate, setPageTranslate] = useState([0, 35]);
 
@@ -48,7 +48,7 @@ export function Home() {
     xOffset = anchor - e.clientX;
     
     let percentage = (xOffset / maxOffset) * 100
-    percentage = Math.max(-20, Math.min(20, percentage))
+    percentage = Math.max(-10, Math.min(10, percentage))
     
     let diff = Math.abs(percent - percentage);
     if (diff > 4) {
@@ -68,12 +68,15 @@ export function Home() {
 
       let imgs = [{}, {}, {}, {}];
       let boxes = [{'filter': `blur(1px)`}, {'filter': `blur(1px)`}, {'filter': `blur(1px)`}, {'filter': `blur(1px)`}];
+      let visibles = [0, 0, 0, 0]
   
       imgs[i] = hoverImgStyle;
       boxes[i] = hoverBoxStyle;
+      visibles[i] = 100;
   
       setImgStyles(imgs);
       setBoxStyles(boxes);
+      setInfoStyles(visibles);
     }
 
   }
@@ -83,6 +86,7 @@ export function Home() {
     if (freeze === false) {
       setImgStyles([{}, {}, {}, {}]);
       setBoxStyles([{}, {}, {}, {}]);
+      setInfoStyles([0, 0, 0, 0]);
     }
   }
   
@@ -143,7 +147,6 @@ export function Home() {
   return (
     <div className="portfolio-home">
     
-    <img className="port-bg" src='https://images.unsplash.com/photo-1531685250784-7569952593d2?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>
 
     <div className="port-content" style={{'transform': `translate(${pageTrans})`}}>
 
@@ -159,51 +162,38 @@ export function Home() {
       <div className="track-container" onMouseMove={(e) => {shift(e)}} style={{'opacity': `${appsOpacity}%`, 'transform': `translate(${trans})`, 'transition': '3s ease-out'}}>
 
         <div className="img-track" style={{'transform': `translate(${percent}%)`}} >
-          <div className="port-container" id="blur-1" onMouseEnter={(e) => {mouseOver(0)}} onMouseLeave={mouseLeave} style={boxStyles[0]} onClick={() => {handleClick(0)}}>
+          <div className="port-container" id="blur-1" onMouseEnter={(e) => {mouseOver(0)}} onMouseLeave={mouseLeave} style={boxStyles[0]} onClick={() => {handleVisit(0)}}>
             <div className="port-img-container" style={imgStyles[0]}>
               <img src={'twitter_logo.png'} className="twitter-logo" draggable='false'/>
             </div>
             <h1>Twitter</h1>
             <div className="port-info" style={{'opacity': `${infoStyles[0]}%`}}>
-              <h4>A fully featured twitter clone. Make an account and try it out!</h4>
-              <button className="bg-blue-600 hover:bg-blue-700 text-gray-200 rounded-lg w-[80px] h-[30px]" >More Info</button>
-              <button  className="bg-blue-600 hover:bg-blue-700 text-gray-200 rounded-lg w-[80px] h-[30px] ml-3" onClick={() => {handleVisit(0)}}>Visit</button>
+              <h4>Twitter clone, styled for all devices. Make an account and try it out!</h4>
+              
+            
             </div>
           </div>
 
-          <div className="port-container" id="blur-2" onMouseEnter={(e) => {mouseOver(1)}} onMouseLeave={mouseLeave} style={boxStyles[1]} onClick={() => {handleClick(1)}}>
-            <div className="port-img-container" style={imgStyles[1]}>
-              <img src={link} draggable='false'/>
-            </div>
-            <h1>Movie Battle</h1>
-            <div className="port-info" style={{'opacity': `${infoStyles[1]}%`}}>
-              <h4>Multiplayer trivia battle royale inspired by cine2nerdle.</h4>
-              <button className="bg-blue-600 hover:bg-blue-700 text-gray-200 rounded-lg w-[80px] h-[30px]" >More Info</button>
-              <button  className="bg-blue-600 hover:bg-blue-700 text-gray-200 rounded-lg w-[80px] h-[30px] ml-3" onClick={() => {handleVisit(1)}}>Visit</button>
-            </div>
-          </div>
-
-          <div className="port-container" id="blur-3" onMouseEnter={(e) => {mouseOver(2)}} onMouseLeave={mouseLeave} style={boxStyles[2]} onClick={() => {handleClick(2)}}>
+          <div className="port-container" id="blur-3" onMouseEnter={(e) => {mouseOver(2)}} onMouseLeave={mouseLeave} style={boxStyles[2]} onClick={() => {handleVisit(2)}}>
             <div className="port-img-container" style={imgStyles[2]}>
               <img src={'assets/chess.png'} draggable='false'/>
             </div>
             <h1>Chess</h1>
             <div className="port-info" style={{'opacity': `${infoStyles[2]}%`}}>
               <h4>It's chess! Play locally, or against stockfish.</h4>
-              <button className="bg-blue-600 hover:bg-blue-700 text-gray-200 rounded-lg w-[80px] h-[30px]" >More Info</button>
-              <button  className="bg-blue-600 hover:bg-blue-700 text-gray-200 rounded-lg w-[80px] h-[30px] ml-3" onClick={() => {handleVisit(2)}}>Visit</button>
+              
+            
             </div>
           </div>
-          
-          <div className="port-container" id="blur-4" onMouseEnter={(e) => {mouseOver(3)}} onMouseLeave={mouseLeave} style={boxStyles[3]} onClick={() => {handleClick(3)}}>
-            <div className="port-img-container" style={imgStyles[3]}>
-              <img src={link} draggable='false'/>
+
+          <div className="port-container" id="blur-2" onMouseEnter={(e) => {mouseOver(1)}} onMouseLeave={mouseLeave} style={boxStyles[1]}>
+            <div className="port-img-container" style={imgStyles[1]}>
+              <img src={'movie_battle.png'} draggable='false'/>
             </div>
-            <h1>E-Store</h1>
-            <div className="port-info" style={{'opacity': `${infoStyles[3]}%`}}>
-              <h4>Lightweight e-commerce project</h4>
-              <button className="bg-blue-600 hover:bg-blue-700 text-gray-200 rounded-lg w-[80px] h-[30px]" >More Info</button>
-              <button  className="bg-blue-600 hover:bg-blue-700 text-gray-200 rounded-lg w-[80px] h-[30px] ml-3" onClick={() => {handleVisit(3)}}>Visit</button>
+            <h1>Movie Battle</h1>
+            <div className="port-info" style={{'opacity': `${infoStyles[1]}%`}}>
+              <h4>Multiplayer trivia battle royale inspired by cine2nerdle. Coming soon!</h4>
+              
             </div>
           </div>
 

@@ -126,7 +126,7 @@ export function LeftSidebar(props) {
     
       </div>
 
-      <div direction='horizontal' className='header-option' onClick={
+      <div direction='horizontal' className='header-option bookmark' onClick={
         () => {}}>
         <FaBookmark/>
         <div className='header-option-text'>

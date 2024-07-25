@@ -49,6 +49,7 @@
     top: 25%;
     column-gap: 20vw;
     transition-duration: 3s;
+
   }
 
   .port-headers {
@@ -56,13 +57,22 @@
     transition-duration: 3s;
   }
 
+
   .port-title {
-    font-size: 54px;
+    font-size: 36px;
+    @media(min-width: 700px) {
+      @media(max-width: 999px) {
+        font-size: 46px;
+      }
+      @media(min-width: 1000px) {
+        font-size: 54px;
+      }
+    }
     transition-duration: 3s;
   }
 
   .port-apps, .port-about {
-    font-size: 48px;
+    font-size: 30px;
 
     transition-delay: 2s;
     transition-duration: 3s;
@@ -73,18 +83,56 @@
       transition: 0.3s;
       color: rgb(226, 87, 145);
     }
+
+    @media(min-width: 700px) {
+      @media(max-width: 999px) {
+        font-size: 38px;
+      }
+      @media(min-width: 1000px) {
+        font-size: 44px;
+      }
+    }
   }
 
   
   h1 {
-    font-size: 32px;
+    font-size: 24px;
     width: 6em;
     border-radius: 10px;
+    @media(min-width: 700px) {
+      @media(max-width: 999px) {
+        font-size: 28px;
+      }
+      @media(min-width: 1000px) {
+        font-size: 32px;
+      }
+    }
+  }
+
+  h4 {
+    font-size: 14px;
+    @media(min-width: 700px) {
+      @media(max-width: 999px) {
+        font-size: 18px;
+      }
+      @media(min-width: 1000px) {
+        font-size: 22px;
+      }
+    }
   }
 
   .port-info {
-    transition-delay: 1s;
-    transition-duration: 2s;
+    width: 140px;
+    transition-delay: 0s;
+    transition-duration: 1s;
+    @media(min-width: 700px) {
+      @media(max-width: 999px) {
+        width: 190px;
+      }
+      @media(min-width: 1000px) {
+        width: 280px
+      }
+    }
   }
 
   .port-content {
@@ -99,7 +147,7 @@
   .img-track {
     display: flex;
     flex-direction: row;
-    column-gap: 16vmin;
+    column-gap: 10vw;
     align-items: flex-start;
     transition: 4s ease-out;
   }
@@ -116,8 +164,8 @@
   }
 
   .twitter-logo {
-    width: 18vmin;
-    height: 18vmin;
+    width: 65%;
+    height: 65%;
   }
   img {
     width: auto;
@@ -126,12 +174,22 @@
   .port-img-container {
     display: flex;
     justify-content: center;
+    align-items: center;
     overflow: hidden;
     border: 3px solid rgb(105, 105, 105);
     box-shadow: 0px 0px 10px rgb(150, 150, 150);
-    width: 24vmin;
-    height: 24vmin;
+    width: 120px;
+    height: 120px;
     border-radius: 25px;
+
+    @media(min-width: 750px) {
+      width: 160px;
+      height: 160px
+    }
+    @media(min-width: 1000px) {
+      width: 200px;
+      height: 200px
+    }
   }
   
 
@@ -140,9 +198,17 @@
     flex-direction: column;
     align-items: center;
     justify-content: start;
-    width: 24vmin;
+    width: 120px;
     border-radius: 25px;
-    transition: transform 3s ease;
+    transition: transform 1s ease;
+
+    @media(min-width: 750px) {
+      width: 160px;
+    }
+    @media(min-width: 750px) {
+      width: 200px;
+ 
+    }
     }
   }
 

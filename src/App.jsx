@@ -16,7 +16,7 @@ function App() {
     <div>
       <Routes>
         <Route path="/*" element={<Portfolio />}/>
-        <Route path="/twitter*" element={<Twitter />}/>
+        <Route path="/twitter/*" element={<Twitter />}/>
         <Route path="/chess" element={<Chess />}/>
         <Route path="/moviebattle" element={<MovieBattle />}/>
       </Routes>

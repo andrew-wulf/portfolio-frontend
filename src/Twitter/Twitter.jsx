@@ -18,6 +18,8 @@ import { SignUp } from "./SignUp";
 
 export function Twitter() {
 
+  axios.defaults.baseURL = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://andrew-wulf-portfolio.com";
+
 
   const [currentUser, setCurrentUser] = useState("none");
 
