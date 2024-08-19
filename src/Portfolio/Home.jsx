@@ -155,7 +155,7 @@ export function Home() {
 
         <div className="port-options">
           <h2 className="port-about" style={{'opacity': `${opacity}%`}}>About Me</h2>
-          <h2 className="port-apps" onClick={revealPortfolio} style={{'opacity': `${opacity}%`}}>My Portfolio.</h2>
+          <h2 className="port-apps" onClick={revealPortfolio} style={{'opacity': `${opacity}%`}}>Projects</h2>
         </div>
       </div>
 
@@ -168,7 +168,7 @@ export function Home() {
             </div>
             <h1>Twitter</h1>
             <div className="port-info" style={{'opacity': `${infoStyles[0]}%`}}>
-              <h4>Twitter clone, styled for all devices. Make an account and try it out!</h4>
+              <h4>Full-stack CRUD Twitter clone, styled for all devices. Make an account and try it out!</h4>
               
             
             </div>
@@ -180,7 +180,7 @@ export function Home() {
             </div>
             <h1>Chess</h1>
             <div className="port-info" style={{'opacity': `${infoStyles[2]}%`}}>
-              <h4>It's chess! Play locally, or against stockfish.</h4>
+              <h4>Html game built with Phaser.js</h4>
               
             
             </div>
