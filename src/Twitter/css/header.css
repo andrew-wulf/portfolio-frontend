@@ -62,12 +62,11 @@
 .header-account {
   border-radius: 25px;
   position: relative;
-
 }
 
 
 .header-option:hover, .header-account:hover {
-  
+
   @media (max-width: 1299px) {
     cursor: pointer;
     animation: shake 0.4s;

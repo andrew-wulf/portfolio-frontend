@@ -6,6 +6,21 @@ import {Image} from "react-bootstrap";
 
 import { BiCameraMovie } from "react-icons/bi";
 
+import { FaGithub } from "react-icons/fa6";
+import { IoInformationCircleOutline } from "react-icons/io5";
+
+import reactIcon from '../assets/react.svg'
+import jsIcon from '../assets/nodejs.svg'
+import htmlIcon from '../assets/html5.svg'
+import cssIcon from '../assets/css.svg'
+import pythonIcon from '../assets/python.svg'
+import railsIcon from '../assets/rails.svg'
+import sqlIcon from '../assets/sql.svg'
+import rubygemsIcon from '../assets/rubygems.svg'
+import djangoIcon from '../assets/django.svg'
+import postgresqlIcon from '../assets/postgresql.svg'
+
+
 export function Home() {
   let link = "https://images.unsplash.com/photo-1582845512747-e42001c95638?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 
@@ -16,27 +31,16 @@ export function Home() {
   const [freeze, setFreeze] = useState(false);
 
 
-  const [infoStyles, setInfoStyles] = useState([0, 0, 0, 0]);
+  const [infoStyles, setInfoStyles] = useState([100, 100, 100, 100]);
 
-  const [translate, setTranslate] = useState([15, 0]);
+  const [translate, setTranslate] = useState([0, 100]);
   const [headerTranslate, setHeaderTranslate] = useState([0, -5]);
-  const [pageTranslate, setPageTranslate] = useState([0, 35]);
+  const [pageTranslate, setPageTranslate] = useState([0, 0]);
 
   const [imgStyles, setImgStyles] = useState([{}, {}, {}, {}]);
   const [boxStyles, setBoxStyles] = useState([{}, {}, {}, {}]);
+  
 
-
-  const revealPortfolio = () => {
-    setHeaderTranslate([-30, 10]);
-    setPageTranslate([0, -5])
-    setAppsOpacity(100);
-  }
-
-  const revealBio = () => {
-    setHeaderTranslate([30, 10]);
-    setPageTranslate([0, -5])
-    setAppsOpacity(0);
-  }
 
   let xOffset = 0;
   let maxOffset = window.innerWidth / 2
@@ -58,41 +62,13 @@ export function Home() {
   }
 
 
-  let hoverBoxStyle = {'transform': 'scale(1.2)', 'cursor': 'pointer'}
-  let hoverImgStyle = {'cursor': 'pointer', 'border': '3px solid rgb(97, 139, 218)', 'boxShadow': '0px 0px 20px rgb(97, 139, 218)'}
 
-
-  const mouseOver = (i) => {
-    //console.log(i)
-    if (freeze === false) {
-
-      let imgs = [{}, {}, {}, {}];
-      let boxes = [{'filter': `blur(1px)`}, {'filter': `blur(1px)`}, {'filter': `blur(1px)`}, {'filter': `blur(1px)`}];
-      let visibles = [0, 0, 0, 0]
-  
-      imgs[i] = hoverImgStyle;
-      boxes[i] = hoverBoxStyle;
-      visibles[i] = 100;
-  
-      setImgStyles(imgs);
-      setBoxStyles(boxes);
-      setInfoStyles(visibles);
-    }
-
-  }
-    
-
-  const mouseLeave = () => {
-    if (freeze === false) {
-      setImgStyles([{}, {}, {}, {}]);
-      setBoxStyles([{}, {}, {}, {}]);
-      setInfoStyles([0, 0, 0, 0]);
-    }
-  }
   
   useEffect(() => {
     setOpacity(100);
-    setHeaderTranslate([0, 0,])
+    setAppsOpacity(100);
+    setHeaderTranslate([0, 8])
+    setTranslate([0, 0])
   }, []);
 
 
@@ -105,28 +81,6 @@ export function Home() {
     }
   }
 
-  const appSelect = (i) => {
-    let percentages = [15, 5, -5, -15]
-
-    mouseOver(i);
-    setFreeze(true);
-    setPageTranslate([0, -30]);
-
-    setPercent(percentages[i]);
-    
-    let styles = infoStyles;
-    styles[i] = 100;
-    setInfoStyles(styles);
-  }
-
-  const appDeselect = () => {
-    setPageTranslate([0, -5]);
-    setInfoStyles([0, 0, 0, 0]);
-    setTimeout(() => {
-      setFreeze(false);
-    }, 3000)
-  }
-
 
   const handleVisit = (i) => {
     let addresses = ['/twitter', '/moviebattle', '/chess', ''];
@@ -137,7 +91,13 @@ export function Home() {
     }
   }
 
+  const cvDownload = () => {
+    window.location.href = "http://localhost:5173//src/assets/example-resume.docx"
+  }
 
+  const repoLink = () => {
+    window.location.href = 'https://github.com/andrew-wulf/portfolio-frontend'
+  }
 
   let trans = `${translate[0]}%, ${translate[1]}%`;
   let pageTrans = `${pageTranslate[0]}%, ${pageTranslate[1]}%`
@@ -148,51 +108,109 @@ export function Home() {
     <div className="portfolio-home">
     
 
-    <div className="port-content" style={{'transform': `translate(${pageTrans})`}}>
+    <div className="port-content">
 
       <div className="port-headers" style={{'transform': `translate(${headerTrans})`}}>
-        <h2 className="port-title" style={{'opacity': `${opacity}%`}}>Andrew Wulf | Full-Stack Developer</h2>
-
-        <div className="port-options">
-          <h2 className="port-about" style={{'opacity': `${opacity}%`}}>About Me</h2>
-          <h2 className="port-apps" onClick={revealPortfolio} style={{'opacity': `${opacity}%`}}>Projects</h2>
-        </div>
+        <h2 className="port-title" style={{'opacity': `100%`}}>Andrew Wulf | Full-Stack Developer</h2>
       </div>
 
-      <div className="track-container" onMouseMove={(e) => {shift(e)}} style={{'opacity': `${appsOpacity}%`, 'transform': `translate(${trans})`, 'transition': '3s ease-out'}}>
+      <button className="cv-download" style={{'opacity': `${opacity}%`}} onClick={cvDownload}>Download my CV!</button>
+      
+      <div className="bound-box left"/>
+
+
+        <div className="port-icon-track" style={{'opacity': opacity}}>
+          <div className="port-icon-tray left" >
+            <img className='port-icon' src={reactIcon}/>
+            <img className='port-icon' src={jsIcon}/>
+            <img className='port-icon' src={htmlIcon}/>
+            <img className='port-icon' src={cssIcon}/>
+            <img className='port-icon' src={pythonIcon}/>
+            <img className='port-icon' src={railsIcon}/>
+            <img className='port-icon' src={sqlIcon}/>
+            <img className='port-icon' src={rubygemsIcon}/>
+            <img className='port-icon' src={djangoIcon}/>
+            <img className='port-icon' src={postgresqlIcon}/>
+
+          </div>
+
+          <div className="port-icon-tray right" >
+            <img className='port-icon' src={reactIcon}/>
+            <img className='port-icon' src={jsIcon}/>
+            <img className='port-icon' src={htmlIcon}/>
+            <img className='port-icon' src={cssIcon}/>
+            <img className='port-icon' src={pythonIcon}/>
+            <img className='port-icon' src={railsIcon}/>
+            <img className='port-icon' src={sqlIcon}/>
+            <img className='port-icon' src={rubygemsIcon}/>
+            <img className='port-icon' src={djangoIcon}/>
+            <img className='port-icon' src={postgresqlIcon}/>
+
+          </div>
+        </div>
+
+
+
+      <div className="bound-box right"/>
+
+
+      <div className="track-container" style={{'opacity': `100%`, 'transform': `translate(${trans})`}}>
+        <h2>Projects</h2>
 
         <div className="img-track" style={{'transform': `translate(${percent}%)`}} >
-          <div className="port-container" id="blur-1" onMouseEnter={(e) => {mouseOver(0)}} onMouseLeave={mouseLeave} style={boxStyles[0]} onClick={() => {handleVisit(0)}}>
+
+          <div className="port-spacer"/>
+          
+          <div className="port-container" id="blur-1" onClick={() => {handleVisit(0)}}>
             <div className="port-img-container" style={imgStyles[0]}>
-              <img src={'twitter_logo.png'} className="twitter-logo" draggable='false'/>
+              <img src={'assets/twitter1.png'} draggable='false'/>
             </div>
-            <h1>Twitter</h1>
+
             <div className="port-info" style={{'opacity': `${infoStyles[0]}%`}}>
-              <h4>Full-stack CRUD Twitter clone, styled for all devices. Make an account and try it out!</h4>
-              
-            
+              <h1>Twitter</h1>
+              <div className="port-info">
+
+              </div>
+              <div className="port-description">
+                <p>A functioning twitter clone. Make an account and try it out!</p>
+                <div className="port-links">
+                <a href='https://github.com/andrew-wulf/portfolio-frontend' target="_blank" onClick={(e) => {e.stopPropagation()}}><FaGithub/></a>
+                <p><IoInformationCircleOutline/></p>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="port-container" id="blur-3" onMouseEnter={(e) => {mouseOver(2)}} onMouseLeave={mouseLeave} style={boxStyles[2]} onClick={() => {handleVisit(2)}}>
+          <div className="port-container" id="blur-3" onClick={() => {handleVisit(2)}}>
             <div className="port-img-container" style={imgStyles[2]}>
-              <img src={'assets/chess.png'} draggable='false'/>
+              <img src={'assets/chess1.png'} draggable='false'/>
             </div>
-            <h1>Chess</h1>
             <div className="port-info" style={{'opacity': `${infoStyles[2]}%`}}>
-              <h4>Html game built with Phaser.js</h4>
-              
-            
+              <h1>Chess</h1>
+              <div className="port-description">
+                <p>Chess game made from scratch using Javascript and the Phaser library.</p>
+                <div className="port-links">
+                  <a href='https://github.com/andrew-wulf/portfolio-frontend' target="_blank" onClick={(e) => {e.stopPropagation()}}><FaGithub/></a>
+                  <p><IoInformationCircleOutline/></p>
+                  
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="port-container" id="blur-2" onMouseEnter={(e) => {mouseOver(1)}} onMouseLeave={mouseLeave} style={boxStyles[1]}>
+          <div className="port-container" id="blur-2">
             <div className="port-img-container" style={imgStyles[1]}>
               <img src={'movie_battle.png'} draggable='false'/>
             </div>
-            <h1>Movie Battle</h1>
             <div className="port-info" style={{'opacity': `${infoStyles[1]}%`}}>
-              <h4>Multiplayer trivia battle royale inspired by cine2nerdle. Coming soon!</h4>
+              <h1>Movie Battle</h1>
+              <div className="port-description">
+                <p>Multiplayer trivia battle royale inspired by cine2nerdle. Coming soon!</p>
+                <div className="port-links">
+                  <a href='https://github.com/andrew-wulf/portfolio-frontend' target="_blank" onClick={(e) => {e.stopPropagation()}}><FaGithub/></a>
+                  <p><IoInformationCircleOutline/></p>
+                </div>
+              </div>
               
             </div>
           </div>
