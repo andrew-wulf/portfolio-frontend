@@ -6,7 +6,7 @@ import {Image} from "react-bootstrap";
 
 import { BiCameraMovie } from "react-icons/bi";
 
-import { FaGithub } from "react-icons/fa6";
+import { FaGithub, FaMapPin } from "react-icons/fa6";
 import { IoInformationCircleOutline } from "react-icons/io5";
 
 import reactIcon from '../assets/react.svg'
@@ -27,59 +27,33 @@ export function Home() {
   const [percent, setPercent] = useState(0);
 
   const [opacity ,setOpacity] = useState(0);
-  const [appsOpacity ,setAppsOpacity] = useState(0);
-  const [freeze, setFreeze] = useState(false);
-
 
   const [infoStyles, setInfoStyles] = useState([100, 100, 100, 100]);
 
   const [translate, setTranslate] = useState([0, 100]);
   const [headerTranslate, setHeaderTranslate] = useState([0, -5]);
-  const [pageTranslate, setPageTranslate] = useState([0, 0]);
+  const [cvTranslate, setCvTranslate] = useState([500, 0]);
+  const [leftSubTranslate, setLeftSubTranslate] = useState([-350, 0]);
+  const [rightSubTranslate, setRightSubTranslate] = useState([350, 0]);
 
-  const [imgStyles, setImgStyles] = useState([{}, {}, {}, {}]);
-  const [boxStyles, setBoxStyles] = useState([{}, {}, {}, {}]);
-  
-
-
-  let xOffset = 0;
-  let maxOffset = window.innerWidth / 2
-
-  const shift = (e) => {
-    if (freeze) {return}
-
-    let anchor = window.innerWidth / 2;
-    xOffset = anchor - e.clientX;
-    
-    let percentage = (xOffset / maxOffset) * 100
-    percentage = Math.max(-10, Math.min(10, percentage))
-    
-    let diff = Math.abs(percent - percentage);
-    if (diff > 4) {
-      setPercent(percentage);
-    }
-    //console.log(percentage);
-  }
+  const [iconStyle, setIconStyle] = useState({'opacity': '0%', 'transition': '3s', 'transition-delay': '4s'})
 
 
-
-  
   useEffect(() => {
     setOpacity(100);
-    setAppsOpacity(100);
-    setHeaderTranslate([0, 8])
-    setTranslate([0, 0])
+    setHeaderTranslate([0, 4]);
+    setTranslate([0, 0]);
+    setCvTranslate([0, 0]);
+    setLeftSubTranslate([0, 0]);
+    setRightSubTranslate([0, 0]);
+
+    setIconStyle({'opacity': '100%', 'transition': '3s', 'transition-delay': '4s'});
+
+    setTimeout(() => {
+      setIconStyle({'opacity': '100%', 'transition': '0.25s', 'transition-delay': '0s'}), 8000
+    })
   }, []);
 
-
-  const handleClick = (i) => {
-    if (freeze) {
-      appDeselect();
-    }
-    else {
-      appSelect(i);
-    }
-  }
 
 
   const handleVisit = (i) => {
@@ -100,9 +74,10 @@ export function Home() {
   }
 
   let trans = `${translate[0]}%, ${translate[1]}%`;
-  let pageTrans = `${pageTranslate[0]}%, ${pageTranslate[1]}%`
-  let headerTrans = `${headerTranslate[0]}%, ${headerTranslate[1]}%`
-
+  let headerTrans = `${headerTranslate[0]}%, ${headerTranslate[1]}%`;
+  let cvTrans = `${cvTranslate[0]}%, ${cvTranslate[1]}%`;
+  let leftSubTrans = `${leftSubTranslate[0]}%, ${leftSubTranslate[1]}%`;
+  let rightSubTrans = `${rightSubTranslate[0]}%, ${rightSubTranslate[1]}%`;
 
   return (
     <div className="portfolio-home">
@@ -111,15 +86,23 @@ export function Home() {
     <div className="port-content">
 
       <div className="port-headers" style={{'transform': `translate(${headerTrans})`}}>
-        <h2 className="port-title" style={{'opacity': `100%`}}>Andrew Wulf | Full-Stack Developer</h2>
+        <h2 className="port-title" style={{'opacity': `100%`}}>Andrew Wulf</h2>
+
+        <div className="port-subtitles">
+          <h2 style={{'transform': `translate(${leftSubTrans})`, transition: '0.5s', transitionDelay: '0.75s'}}>Full-Stack Developer</h2>
+          <div className="port-location" style={{'transform': `translate(${rightSubTrans})`, transition: '0.5s', transitionDelay: '1s'}}>
+            <h2>Chicago, IL</h2>
+            <div className="map-pin"><FaMapPin/></div>
+          </div>
+        </div>
       </div>
 
-      <button className="cv-download" style={{'opacity': `${opacity}%`}} onClick={cvDownload}>Download my CV!</button>
+      <button className="cv-download" style={{'transform': `translate(${cvTrans})`}} onClick={cvDownload}>Download my CV!</button>
       
       <div className="bound-box left"/>
 
 
-        <div className="port-icon-track" style={{'opacity': opacity}}>
+        <div className="port-icon-track" style={iconStyle}>
           <div className="port-icon-tray left" >
             <img className='port-icon' src={reactIcon}/>
             <img className='port-icon' src={jsIcon}/>
@@ -162,7 +145,7 @@ export function Home() {
           <div className="port-spacer"/>
           
           <div className="port-container" id="blur-1" onClick={() => {handleVisit(0)}}>
-            <div className="port-img-container" style={imgStyles[0]}>
+            <div className="port-img-container">
               <img src={'assets/twitter1.png'} draggable='false'/>
             </div>
 
@@ -182,7 +165,7 @@ export function Home() {
           </div>
 
           <div className="port-container" id="blur-3" onClick={() => {handleVisit(2)}}>
-            <div className="port-img-container" style={imgStyles[2]}>
+            <div className="port-img-container">
               <img src={'assets/chess1.png'} draggable='false'/>
             </div>
             <div className="port-info" style={{'opacity': `${infoStyles[2]}%`}}>
@@ -199,7 +182,7 @@ export function Home() {
           </div>
 
           <div className="port-container" id="blur-2">
-            <div className="port-img-container" style={imgStyles[1]}>
+            <div className="port-img-container">
               <img src={'movie_battle.png'} draggable='false'/>
             </div>
             <div className="port-info" style={{'opacity': `${infoStyles[1]}%`}}>

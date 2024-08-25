@@ -1,24 +1,10 @@
 
 
-.portfolio-header {
-  height: 140px;
-  background: radial-gradient(rgb(88, 38, 168), rgb(124, 70, 223));
-  box-shadow: 10px 10px 10px rgba(73, 6, 117, 0.432);
-  color: white;
-}
-
-
 .portfolio, .content {
   background-color: rgb(236, 236, 236);
   color: rgb(26, 26, 26);
 }
 
-.portfolio-footer {
-  margin-top: 50vh;
-  height: 80px;
-  background-color: rgb(34, 34, 34);
-  color: white;
-}
 
 .home-box {
   border: 2px solid rgb(53, 53, 53);
@@ -26,7 +12,6 @@
   border-radius: 25px;
   background-color: rgb(224, 178, 228);
 }
-
 
 
 @keyframes dazzle {
@@ -37,7 +22,7 @@
 .portfolio-home {
   position: absolute;
   display: flex;
-  background-color: rgb(248, 248, 248);
+  background-color: rgb(245, 245, 250);
   width: 100vw;
   height: 100vh;
   text-align: center;
@@ -52,43 +37,81 @@
 
   .port-headers {
     display: flex;
-    transition: 0.5s ;
+    flex-direction: column;
+    gap: 0.1em;
+    transition: 1s ;
+    transition-delay: 0.25s;
   }
 
 
   .port-title {
-    font-size: 36px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
 
-    @media(min-width: 700px) {
-      @media(max-width: 999px) {
-        font-size: 46px;
-      }
-      @media(min-width: 1000px) {
-        font-size: 54px;
+    font-size: 42px;
+
+
+    @media(max-width: 800px) {
+      font-size: 22px;
+      @media(min-width: 560px) {
+        font-size: 34px;
       }
     }
     transition-duration: 0.5s;
   }
 
-  .port-apps, .port-about {
-    font-size: 30px;
+  .port-subtitles {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
 
-    transition-delay: 2s;
-    transition-duration: 3s;
-
-    &:hover {
-      box-shadow: 30px 50px 60px 20px rgba(224, 182, 193, 0.151);
-      cursor: pointer;
-      transition: 0.3s;
-      color: rgb(226, 87, 145);
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: center;
+    
+    gap: 3em;
+    h2{
+      font-size: 40px;
     }
-
-    @media(min-width: 700px) {
-      @media(max-width: 999px) {
-        font-size: 38px;
+  
+    @media(max-width: 800px) {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.14em;
+      h2 {
+        font-size: 22px;
       }
-      @media(min-width: 1000px) {
-        font-size: 44px;
+
+      @media(min-width: 560px) {
+        flex-direction: row;
+        align-items: start;
+        gap: 1.3em;
+        h2 {
+          font-size: 32px;
+        }
+      }
+    }
+  }
+  .port-location {
+    display: flex;
+    flex-direction: row;
+    gap: 0.8em
+  }
+
+  .map-pin {
+    color: rgb(192, 20, 20);
+    font-size: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.2em;
+
+    @media(max-width: 800px) {
+      font-size: 26px;
+      margin-bottom: 0.3em;
+      @media(min-width: 560px) {
+        font-size: 38px;
+        margin-bottom: 0.4em;
       }
     }
   }
@@ -108,17 +131,6 @@
     }
   }
 
-  h4 {
-    font-size: 14px;
-    @media(min-width: 700px) {
-      @media(max-width: 999px) {
-        font-size: 18px;
-      }
-      @media(min-width: 1000px) {
-        font-size: 22px;
-      }
-    }
-  }
 
  
 
@@ -136,9 +148,16 @@
   .bound-box {
     position: absolute;
     width: calc((100vw - 650px)/2);
-    height: 100px;
-    top: 15%;
+    height: 90px;
+    top: 160px;
     z-index: 1000;
+
+    @media(max-width: 800px) {
+      top: 145px;
+      @media(min-width: 560px) {
+        top: 135px;
+      }
+    }
 
     &.left {
       left: 0
@@ -148,7 +167,7 @@
       right: 0;
     }
 
-    background-color: rgb(248, 248, 248);
+    background-color: rgb(245, 245, 250);
   }
 
   .port-icons {
@@ -160,20 +179,26 @@
     padding-left: 0.6em;
     padding-right: 0.6em;
     position: absolute;
-    top: 16%;
+    top: 160px;
 
     height: 80px;
     width: 920px;
     box-shadow: inset 0px -6px 12px -6px #dfe2e1;
-    transition: 3s;
-    transition-delay: 4s;
+    
+
+    @media(max-width: 800px) {
+      top: 145px;
+      @media(min-width: 560px) {
+        top: 135px;
+      }
+    }
   }
 
   .port-icon-tray {
     padding-left: 0.6em;
     padding-right: 0.6em;
     position: absolute;
-    top: 16%;
+    top: 17%;
 
     height: 60px;
     width: 920px;
@@ -191,6 +216,9 @@
       animation-delay: -40s;
     }
 
+    @media(max-width: 560px) {
+      width: 820px;
+    }
   }
 
 
@@ -202,17 +230,22 @@
       cursor: pointer;
       filter: brightness(110%);
     }
+
+    @media(max-width: 560px) {
+      width: 50px;
+      height: 50px;
+    }
   }
 
 
   
   .cv-download {
     position: absolute;
-    top: 26%;
+    top: 250px;
     width: 200px;
     height: 70px;
     transition: 1s;
-    transition-delay: 0.5s;
+    transition-delay: 1.25s;
 
     background: radial-gradient(rgb(131, 82, 187), rgb(92, 34, 117));
     color: white;
@@ -226,6 +259,13 @@
       background: radial-gradient(rgb(134, 57, 179), rgb(85, 12, 119));
       color: white;
       border: 1px solid rgb(108, 2, 134);
+    }
+
+    @media(max-width: 800px) {
+      top: 235px;
+      @media(min-width: 560px) {
+        top: 235px;
+      }
     }
   }
 
@@ -254,9 +294,9 @@
 
     opacity: 100%;
     transition: 2s ease-out;
-    transition-delay: 1.5s;
+    transition-delay: 1.25s;
 
-    background-color: rgb(248, 248, 248);
+    background-color: rgb(244, 244, 250);
     box-shadow: 0 0 4px rgb(182, 182, 182);
 
     h2 {
@@ -336,6 +376,7 @@
     justify-content: center;
     overflow: hidden;
 
+    background-color: rgb(248, 248, 248);;
     box-shadow: 0 0 6px rgb(142, 158, 160);
 
     height: 35vh;
@@ -361,5 +402,4 @@
     
     }
   }
-
 
