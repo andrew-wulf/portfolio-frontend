@@ -1,4 +1,8 @@
 
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
 
 .portfolio, .content {
   background-color: rgb(236, 236, 236);
@@ -7,15 +11,13 @@
 }
 
 
-
 @keyframes dazzle {
   from {transform: translate(-100%, 0);}
   to {transform: translate(100%, 0);}
 }
 
 .portfolio-home {
-  touch-action: pan-y;
-  overflow: hidden;
+  overflow-x: hidden;
   overflow-y: scroll;
 
   z-index: 1;

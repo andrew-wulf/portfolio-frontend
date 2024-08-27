@@ -162,6 +162,8 @@ export function Home() {
     });
   }
 
+
+
   let twitterImgs = ['./assets/twitter1.png', './assets/twitter2.png', './assets/twitter3.png', './assets/twitter4.png', './assets/twitter5.png']
   let twitterDescriptions = ['The "Timeline", which loads the most recent tweets & retweets from accounts you follow.', "Viewable user profiles with bios, banners, and the tweets they've made or interacted with.", 'Toggleable light & dark modes (your browser remembers your preference).', 'Accessing your account requires user authentication, and new users can be created.', 'App is styled for viewing on all devices, including mobile.']
 
