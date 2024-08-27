@@ -193,8 +193,6 @@ export function Home() {
 
         <button className="cv-download" style={{'transform': `translate(${cvTrans})`, transition: `${cvDelay[0]}s`, transitionDelay: `${cvDelay[1]}s`}} onClick={cvDownload}>Download my CV!</button>
         
-        <div onWheel={scroll} className="bound-box left"/>
-
 
           <div className="port-icon-track" style={iconStyle}>
             <div className="port-icon-tray left" >
@@ -225,11 +223,6 @@ export function Home() {
 
             </div>
           </div>
-
-
-
-        <div onWheel={scroll} className="bound-box right"/>
-
 
 
         <div className="port-bio" style={{'transform': `translate(${bioTrans})`, transition: `${bioDelay[0]}s`, transitionDelay: `${bioDelay[1]}s`}}>

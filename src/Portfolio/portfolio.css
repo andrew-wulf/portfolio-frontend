@@ -1,8 +1,4 @@
 
-html, body {
-  max-width: 100%;
-  overflow-x: hidden;
-}
 
 .portfolio, .content {
   background-color: rgb(236, 236, 236);
@@ -19,6 +15,10 @@ html, body {
 .portfolio-home {
   overflow-x: hidden;
   overflow-y: scroll;
+
+  @media(pointer: coarse) {
+    overflow-x: scroll;
+  }
 
   z-index: 1;
   position: absolute;
@@ -174,8 +174,9 @@ html, body {
 
     &.right {
       right: 17px;
+
       @media(pointer: coarse) {
-        right: 0px
+        right: 0;
       }
     }
     &.left {
@@ -190,14 +191,15 @@ html, body {
   }
 
   .port-icon-track {
-    padding-left: 0.6em;
-    padding-right: 0.6em;
     position: absolute;
+    overflow: hidden;
     top: 160px;
+    left: 50%;
+    transform: translate(-50%, 0);
 
     height: 80px;
-    width: 920px;
-    box-shadow: inset 0px -6px 12px -6px #d9ecff;
+    width: min(640px, 100vw);
+    box-shadow: inset 0px -7px 6px -5px rgb(219, 255, 255);
     
 
     @media(max-width: 800px) {
