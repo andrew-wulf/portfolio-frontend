@@ -33,6 +33,8 @@
 
 
   .port-headers {
+    margin-top: 2em;
+    height: 120px;
     display: flex;
     flex-direction: column;
     gap: 0.1em;
