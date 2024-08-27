@@ -34,7 +34,7 @@ export function Home() {
 
   const [appsTranslate, setAppsTranslate] = useState([0, 125]);
   const [headerTranslate, setHeaderTranslate] = useState([0, -100]);
-  const [cvTranslate, setCvTranslate] = useState([500, 0]);
+  const [cvTranslate, setCvTranslate] = useState([800, 0]);
   const [bioTranslate, setBioTranslate] = useState([-500, 0]);
   const [leftSubTranslate, setLeftSubTranslate] = useState([-350, 0]);
   const [rightSubTranslate, setRightSubTranslate] = useState([350, 0]);

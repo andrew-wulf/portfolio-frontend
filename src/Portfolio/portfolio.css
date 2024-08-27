@@ -3,6 +3,7 @@
 .portfolio, .content {
   background-color: rgb(236, 236, 236);
   color: var(--text);
+  overflow: hidden;
 }
 
 
@@ -14,8 +15,8 @@
 
 .portfolio-home {
   overflow: hidden;
+  overflow-y: scroll;
 
-  @media(max-width: 1200px) {overflow-y: scroll;}
   z-index: 1;
   position: absolute;
   display: flex;
@@ -163,36 +164,18 @@
     top: 160px;
     z-index: 500;
 
-    @media(max-width: 800px) {
-      top: 145px;
-      @media(min-width: 560px) {
-        top: 135px;
-      }
-      @media(min-width: 400px) {
-        top: 135px;
-      }
-    }
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    background: linear-gradient( rgb(117, 130, 201), rgb(193, 197, 224));
 
+    &.right {
+      right: 17px
+    }
     &.left {
       left: 0
     }
 
-    &.right {
-      right: 0;
-    }
-
-    background: linear-gradient(rgb(130, 141, 205), rgb(138, 149, 207));
-
-    @media(max-width: 1200px) {
-      position: fixed;
-      top: 0;
-      height: 100vh;
-      background: linear-gradient( rgb(117, 130, 201), rgb(193, 197, 224));
-
-      &.right {
-        right: 17px
-      }
-    }
   }
 
   .port-icons {
@@ -267,6 +250,7 @@
   }
   
   .cv-download {
+    z-index: 1000;
     position: absolute;
     top: 270px;
     width: 200px;
@@ -375,12 +359,12 @@
   }
 
   .track-container {
+    z-index: 1000;
     width: 100%;
     height: auto;
     position: absolute;
-    top: 58%;
+    top: 520px;
     left: 0%;
-
 
     display: flex;
     flex-direction: row;
