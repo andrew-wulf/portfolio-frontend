@@ -29,11 +29,16 @@ export function Gallery (props) {
     closeButton = <h2 onClick={props.close} className="port-modal-close">&#x2715;</h2>
   }
 
+  let img = imgs[index];
+  if (window.innerWidth <= 700) {
+    img = img.replace('.png', 'M.png')
+  }
+
   return (
     
     <div className="gallery">
       {closeButton}
-      <img src={imgs[index]} draggable='false'/>
+      <img src={img} draggable='false'/>
       <h3 onClick={(e) => {e.stopPropagation(); indexChange(-1)}} className="left"><FaChevronLeft/></h3>
       <h3 onClick={(e) => {e.stopPropagation(); indexChange(1)}} className="right"><FaChevronRight/></h3>
       <div className="gallery-description">

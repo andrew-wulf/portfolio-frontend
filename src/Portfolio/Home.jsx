@@ -33,7 +33,7 @@ export function Home() {
   const [infoStyles, setInfoStyles] = useState([100, 100, 100, 100]);
 
   const [appsTranslate, setAppsTranslate] = useState([0, 125]);
-  const [headerTranslate, setHeaderTranslate] = useState([0, -5]);
+  const [headerTranslate, setHeaderTranslate] = useState([0, -100]);
   const [cvTranslate, setCvTranslate] = useState([500, 0]);
   const [bioTranslate, setBioTranslate] = useState([-500, 0]);
   const [leftSubTranslate, setLeftSubTranslate] = useState([-350, 0]);
