@@ -6,13 +6,6 @@
 }
 
 
-.home-box {
-  border: 2px solid rgb(53, 53, 53);
-  box-shadow: 4px 4px 4px rgba(94, 94, 94, 0.432);
-  border-radius: 25px;
-  background-color: rgb(224, 178, 228);
-}
-
 
 @keyframes dazzle {
   from {transform: translate(-100%, 0);}
@@ -20,9 +13,13 @@
 }
 
 .portfolio-home {
+  overflow: hidden;
+
+  @media(max-width: 1200px) {overflow-y: scroll;}
+  z-index: 1;
   position: absolute;
   display: flex;
-  background-color: rgb(245, 245, 250);
+  background: linear-gradient( rgb(117, 130, 201), rgb(193, 197, 224));
   width: 100vw;
   height: 100vh;
   text-align: center;
@@ -41,19 +38,21 @@
     gap: 0.1em;
     transition: 1s ;
     transition-delay: 0.25s;
+    z-index: 1000;
   }
 
 
   .port-title {
-    font-family: "Open Sans", sans-serif;
+    color: rgb(212, 212, 255);
+    font-family: "Press Start 2P", sans-serif;
     font-weight: 400;
 
     font-size: 42px;
 
 
     @media(max-width: 800px) {
-      font-size: 22px;
-      @media(min-width: 560px) {
+      font-size: 17px;
+      @media(min-width: 400px) {
         font-size: 34px;
       }
     }
@@ -61,8 +60,9 @@
   }
 
   .port-subtitles {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-weight: 600;
+    color: rgb(30, 49, 66);
 
     display: flex;
     flex-direction: row;
@@ -79,13 +79,16 @@
       align-items: center;
       gap: 0.14em;
       h2 {
-        font-size: 22px;
+        font-size: 18px;
       }
 
       @media(min-width: 560px) {
         flex-direction: row;
         align-items: start;
         gap: 1.3em;
+      }
+
+      @media(min-width: 400px) {
         h2 {
           font-size: 32px;
         }
@@ -93,9 +96,14 @@
     }
   }
   .port-location {
+    font-family: "Roboto", sans-serif;
     display: flex;
     flex-direction: row;
-    gap: 0.8em
+    gap: 0.8em;
+
+    h2 {
+      color: rgb(30, 49, 66);
+    }
   }
 
   .map-pin {
@@ -109,7 +117,7 @@
     @media(max-width: 800px) {
       font-size: 26px;
       margin-bottom: 0.3em;
-      @media(min-width: 560px) {
+      @media(min-width: 400px) {
         font-size: 38px;
         margin-bottom: 0.4em;
       }
@@ -122,11 +130,11 @@
     width: 6em;
     border-radius: 10px;
     @media(min-width: 700px) {
-      @media(max-width: 999px) {
-        font-size: 28px;
+      @media(max-width: 1299px) {
+        font-size: 24px;
       }
-      @media(min-width: 1000px) {
-        font-size: 32px;
+      @media(min-width: 1300px) {
+        font-size: 28px;
       }
     }
   }
@@ -150,11 +158,14 @@
     width: calc((100vw - 650px)/2);
     height: 90px;
     top: 160px;
-    z-index: 1000;
+    z-index: 500;
 
     @media(max-width: 800px) {
       top: 145px;
       @media(min-width: 560px) {
+        top: 135px;
+      }
+      @media(min-width: 400px) {
         top: 135px;
       }
     }
@@ -167,7 +178,18 @@
       right: 0;
     }
 
-    background-color: rgb(245, 245, 250);
+    background: linear-gradient(rgb(130, 141, 205), rgb(138, 149, 207));
+
+    @media(max-width: 1200px) {
+      position: fixed;
+      top: 0;
+      height: 100vh;
+      background: linear-gradient( rgb(117, 130, 201), rgb(193, 197, 224));
+
+      &.right {
+        right: 17px
+      }
+    }
   }
 
   .port-icons {
@@ -183,13 +205,17 @@
 
     height: 80px;
     width: 920px;
-    box-shadow: inset 0px -6px 12px -6px #dfe2e1;
+    box-shadow: inset 0px -6px 12px -6px #d9ecff;
     
 
     @media(max-width: 800px) {
-      top: 145px;
-      @media(min-width: 560px) {
-        top: 135px;
+      top: 125px;
+      
+      @media(min-width: 400px) {
+        top: 170px;
+        @media(min-width: 560px) {
+          top: 135px;
+        }
       }
     }
   }
@@ -216,7 +242,7 @@
       animation-delay: -40s;
     }
 
-    @media(max-width: 560px) {
+    @media(max-width: 400px) {
       width: 820px;
     }
   }
@@ -231,20 +257,18 @@
       filter: brightness(110%);
     }
 
-    @media(max-width: 560px) {
+    @media(max-width: 400px) {
       width: 50px;
       height: 50px;
     }
   }
-
-
   
   .cv-download {
     position: absolute;
-    top: 250px;
+    top: 270px;
     width: 200px;
     height: 70px;
-    transition: 1s;
+    transition: 1.25s;
     transition-delay: 1.25s;
 
     background: radial-gradient(rgb(131, 82, 187), rgb(92, 34, 117));
@@ -262,46 +286,115 @@
     }
 
     @media(max-width: 800px) {
-      top: 235px;
-      @media(min-width: 560px) {
-        top: 235px;
+      top: 225px;
+      @media(min-width: 400px) {
+        top: 270px;
+
+        @media(min-width: 560px) {
+          top: 235px
+        }
       }
     }
   }
 
 
+  .port-bio {
+    position: absolute;
+    left: 50%;
+    top: 370px;
+    width: min(1200px, 90vw);
+    z-index: 1000;
+    transition: 2s;
+    transition-delay: 0.9s;
+    line-height: 1.6em;
+
+    p {
+      color: rgb(54, 70, 83);
+      font-size: 24px;
+    }
+
+    @media(max-width: 800px) {
+      top: 315px;
+      line-height: 2em;
+      p {font-size: 14px;}
+      @media(min-width: 400px) {
+        top: 360px;
+        p {font-size: 20px;}
+
+        @media(min-width: 560px) {
+          top: 330px;
+          p {font-size: 22px;}
+        }
+      }
+    }
+
+  }
+
+
   .img-track {
-    display: grid;
-    grid-template-columns: 0 1fr 1fr 1fr;
-    gap: 4vw;
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    gap: 5vw;
+    padding-right: 5vw;
+    
     align-items: center;
     justify-content: center;
+
+    @media(max-width: 620px) {
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media(max-width: 1700px) {
+
+      gap: 4vw;
+      padding-right: 4vw;
+    }
+    @media(max-width: 1500px) {
+      gap: 3vw;
+      padding-right: 3vw;
+    }
+    @media(max-width: 1200px) {
+      flex-direction: column;
+      padding-right: 0;
+      width: 600px;
+      gap: 6em;
+      margin-top: -4em;
+    }
+
+    @media(max-width: 800px){
+      width: 500px;
+    }
+    @media(max-width: 600px){
+      width: 90%;
+    }
   }
 
   .track-container {
- 
     width: 100%;
-    height: 55%;
+    height: auto;
     position: absolute;
-    top: 50%;
+    top: 58%;
     left: 0%;
 
+
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: start;
+    justify-content: center;
     gap: 4vh;
 
     opacity: 100%;
     transition: 2s ease-out;
-    transition-delay: 1.25s;
+    transition-delay: 2.15s;
 
-    background-color: rgb(244, 244, 250);
-    box-shadow: 0 0 4px rgb(182, 182, 182);
+    background: none;
 
     h2 {
       font-size: 40px;
     }
+
   }
 
   
@@ -316,20 +409,54 @@
     overflow: hidden;
 
     box-shadow: 0px 0px 4px rgb(214, 214, 214);
-    width: 500px;
+    border-radius: 0;
+    width: 110%;
     height: 70%;
     border-radius: 25px;
+
+    &:hover {
+      h3 {
+        opacity: 100%;
+      }
+    }
+
+    h3 {
+      opacity: 0%;
+      display: flex;
+      gap: 0.4em;
+      align-items: center;
+      color: rgba(255, 255, 255, 0.75);
+      position: absolute;
+      top: 4%;
+      left: 3%;
+      
+      &.left {
+        top: 32%;
+        left: 3%;
+      }
+      &.right {
+        top: 32%;
+        left: 90%;
+      }
+
+      &:hover {
+        cursor: pointer;
+        color: white;
+      }
+    }
 
   }
   
   .port-info {
     width: 100%;
-    height: 30%;
+    height: 35%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding-top: 0.4em;
+
+    line-height: 2em;
 
     p {
       font-size: 17px;
@@ -337,7 +464,64 @@
     }
 
     h1 {
-      height: 24px;
+      margin-top: -0.2em;
+      margin-bottom: -0.1em;
+      font-size: 30px;
+      height: 30px
+    }
+
+    @media(max-width: 1500px) {
+      line-height: 1.4em;
+      p {font-size: 16px}
+      h1 {
+        font-size: 26px;
+        height: 28px;
+      }
+    }
+
+    @media(max-width: 1200px) {
+      p {font-size: 22px}
+      h1 {
+        font-size: 34px;
+        height: 50px
+
+      }
+    }
+    @media(max-width: 800px) {
+      p {font-size: 20px}
+      h1 {
+        font-size: 32px;
+        height: 40px
+
+      }
+    }
+    @media(max-width: 600px) {
+      p {font-size: 18px}
+      h1 {
+        font-size: 26px;
+        height: 30px;
+        margin-bottom: 0.1em
+      }
+
+    }
+    @media(max-width: 460px) {
+      line-height: 1em;
+      p {font-size: 16px}
+      h1 {
+        font-size: 22px;
+        height: 25px
+
+      }
+    }
+
+    @media(max-width: 340px) {
+      align-items: start;
+      line-height: 1em;
+      p {display: none}
+      h1 {
+        font-size: 22px;
+        height: 25px
+      }
     }
   }
 
@@ -347,59 +531,197 @@
     grid-template-columns: 85% 15%;
   }
   .port-links {
+    position: absolute;
+    top: 65%;
+    height: 35%;
+    justify-self: right;
+    margin-right: 0.6em;
     display: flex;
-    flex-direction: row;
-    align-items: start;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
    
     gap: 0.4em;
     p, a {
-      font-size: 26px;
+      margin: 0;
       color: rgb(26, 26, 26);
 
       &:hover {
         cursor: pointer;
-        color: rgb(69, 154, 211);
       }
     }
 
+    p {
+      font-size: 30px;
+      &:hover{color: rgb(10, 129, 207);}
+    }
     a {
-      display: table-cell
+      font-size: 26px;
+      display: table-cell;
+      &:hover {color: rgb(192, 27, 214);}
+    }
+
+    @media(max-width: 1200px) {
+      a {font-size: 28px}
+      p {font-size: 32px}
+    }
+
+    @media(max-width: 540px) {
+      a {font-size: 24px}
+      p {font-size: 28px}
+    }
+
+    @media(max-width: 340px) {
+      flex-direction: row-reverse;
+      p {display: block;
+        font-size: 30px;
+      }
+      a {font-size: 26px}
+    }
+
+    @media(max-width: 220px) {
+      a {font-size: 18px}
+      p {font-size: 22px}
     }
   }
 
   .port-container {
+    position: relative;
     display: flex;
     flex-direction: column;
-    grid-template-rows: 60% 10% 30%;
     align-items: center;
-    justify-content: center;
     overflow: hidden;
 
     background-color: rgb(248, 248, 248);;
     box-shadow: 0 0 6px rgb(142, 158, 160);
 
-    height: 35vh;
+    width: 100%;
+    aspect-ratio: 13/9;
     border-radius: 15px;
-
-    @media(max-width: 1199px) {
-      width: 95%
-    }
-    @media(min-width: 1200px) {
-
-      @media(max-width: 1600px) {
-        width: 90%
-   
-      }
-      width: 85%
-    }
-
+  
     &:hover {
       cursor: pointer;
       border: 1px solid rgb(97, 139, 218);
-      box-Shadow: 0px 0px 8px rgb(97, 139, 218)
+      box-Shadow: 0px 0px 12px rgb(97, 139, 218);
     }
     
     }
   }
+
+  .gallery {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 100%;
+
+      h3 {
+        opacity: 100%;
+      }
+    }
+
+    img {
+      width: 100%;
+      height: 85%
+    }
+    
+    h3 {
+      opacity: 50%;
+    }
+    h2, h3 {
+      font-size: 50px;
+      display: flex;
+      gap: 0.4em;
+      align-items: center;
+      color: rgba(255, 255, 255, 0.459);
+      position: absolute;
+
+      &.left {
+        top: 42%;
+        left: 3%;
+      }
+      &.right {
+        top: 42%;
+        left: 92%;
+      }
+
+      &:hover {
+        cursor: pointer;
+        color: white;
+      }
+    }
+  }
+
+  .gallery-description {
+    position: absolute;
+    width: 100%;
+    height: 15%;
+    bottom: 0;
+
+    background-color: rgba(31, 31, 31, 0.952);
+    color: rgba(230, 230, 230, 0.897);
+
+    &:hover {
+      color: rgb(255, 255, 255);
+      background-color: rgb(31, 31, 31);
+    }
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p {
+      font-size: 32px;
+    }
+  }
+
+
+  .port-modal-background {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.582);
+    z-index: 1500;
+  }
+  
+  .port-modal {
+    position: fixed;
+    background-color: rgb(0,0,0, 0.4);
+    width: 75vw;
+    height: 45vw;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 25px;
+    z-index: 2000;
+    overflow: hidden;
+  }
+  
+  .port-modal-content {
+    width: 80%;
+    height: 100%;
+    position: relative;
+  }
+  
+  .port-modal-close {
+    background: none;
+    border: none;
+    position: absolute;
+    top: 4%;
+    left: 4%;
+    opacity: 100%;
+  
+    &:hover {
+      cursor: pointer;
+      color: white;
+      opacity: 100%;
+    }
+  }
+
+
 
