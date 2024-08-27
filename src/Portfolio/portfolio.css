@@ -14,6 +14,7 @@
 }
 
 .portfolio-home {
+  touch-action: pan-y;
   overflow: hidden;
   overflow-y: scroll;
 
@@ -170,7 +171,10 @@
     background: linear-gradient( rgb(117, 130, 201), rgb(193, 197, 224));
 
     &.right {
-      right: 17px
+      right: 17px;
+      @media(pointer: coarse) {
+        right: 0px
+      }
     }
     &.left {
       left: 0
@@ -288,7 +292,7 @@
   .port-bio {
     position: absolute;
     left: 50%;
-    top: 370px;
+    top: 380px;
     width: min(1200px, 90vw);
     z-index: 1000;
     transition: 2s;
@@ -301,20 +305,25 @@
     }
 
     @media(max-width: 800px) {
-      top: 315px;
+      top: 330px;
       line-height: 2em;
-      p {font-size: 14px;}
-      @media(min-width: 400px) {
-        top: 360px;
-        p {font-size: 20px;}
 
-        @media(min-width: 560px) {
-          top: 330px;
-          p {font-size: 22px;}
-        }
-      }
     }
 
+    @media(max-width: 560px) {
+      top: 360px;
+      line-height: 1.6em;
+      p {font-size: 20px;}
+    }
+    @media(max-width: 400px) {
+      line-height: 1.4em;
+      top: 345px;
+      p {font-size: 18px;}
+    }
+    @media(max-width: 300px) {
+      line-height: 1.2em;
+      p {font-size: 14px;}
+    }
   }
 
 
@@ -426,9 +435,14 @@
         left: 90%;
       }
 
-      &:hover {
+      &:hover, &:active {
         cursor: pointer;
         color: white;
+      }
+
+      @media(pointer: coarse) {
+        opacity: 100%;
+        color: rgba(255, 255, 255, 0.75);;
       }
     }
 
@@ -646,6 +660,19 @@
         font-size: 44px;
       }
 
+      @media(pointer: coarse) {
+        @media(max-width: 700px) {
+          &.right{left: calc(88%)}
+        }
+        @media(max-width: 500px) {
+          &.right{left: calc(85%)}
+        }
+        @media(max-width: 320px) {
+          &.right{left: calc(82%)}
+          font-size: 44px;
+        }
+      }
+
       &:hover {
         cursor: pointer;
         color: white;
@@ -713,6 +740,9 @@
 
     @media(max-width: 1200px) {
       width: min(900px, 100vw - 17px);
+      @media(pointer: coarse) {
+        width: min(900px, 100vw);
+      }
     }
     @media(max-width: 930px) {
       left: 0;
@@ -720,6 +750,9 @@
     }
     @media(max-width: 700px) {
       width: calc(100vw - (10vw + 17px));
+      @media(pointer: coarse) {
+        width: calc(100vw - (10vw));
+      }
       left: 5vw;
       aspect-ratio: 7/10;
     }
