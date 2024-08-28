@@ -21,6 +21,7 @@ import djangoIcon from '../assets/django.svg'
 import postgresqlIcon from '../assets/postgresql.svg'
 import { GrGallery } from "react-icons/gr";
 import { PortModal } from "./PortModal";
+import { Modal } from "./Modal";
 
 
 export function Home() {
@@ -56,6 +57,10 @@ export function Home() {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedImgs, setSelectedImgs] = useState([]);
   const [selectedDescriptions, setSelectedDescriptions] = useState([]);
+
+
+  const [gitModalShow, setGitModalShow] = useState(false);
+
 
   useEffect(() => {
     setOpacity(100);
@@ -110,11 +115,11 @@ export function Home() {
     if (type === 'twitter') {
       let index = twitterIndex + direction;
     
-      if (index > 4) {
+      if (index > 5) {
         index = 1;
       }
       if (index < 1) {
-        index = 4;
+        index = 5;
       }
 
       setTwitterIndex(index);
@@ -154,14 +159,14 @@ export function Home() {
     setModalVisible(false);
   }
 
-  const scroll = (e) => {
-    let doc = document.querySelector('.portfolio-home');
-    doc.scrollBy({
-      top: e.deltaY / 1,
-      left: 0,
-    });
+
+  const showGitModal = () => {
+    setGitModalShow(true);
   }
 
+  const closeGitModal = () => {
+    setGitModalShow(false);
+  }
 
 
   let twitterImgs = ['./assets/twitter1.png', './assets/twitter2.png', './assets/twitter3.png', './assets/twitter4.png', './assets/twitter5.png']
@@ -257,8 +262,9 @@ export function Home() {
                 <div className="port-description">
                   <p>Full stack social media app. Make an account and try it out!</p>
                   <div className="port-links">
-                  <p><IoInformationCircleOutline/></p>
-                  <a href='https://github.com/andrew-wulf/portfolio-frontend' target="_blank" onClick={(e) => {e.stopPropagation()}}><FaGithub/></a>
+                    <p><IoInformationCircleOutline/></p>
+                    <p onClick={(e) => {e.stopPropagation(); showGitModal()}}><FaGithub/></p>
+                    <Modal />
                   </div>
                 </div>
               </div>
@@ -277,7 +283,7 @@ export function Home() {
                   <p>Chess game made from scratch using Javascript and the Phaser library.</p>
                   <div className="port-links">
                     <p><IoInformationCircleOutline/></p>
-                    <a href='https://github.com/andrew-wulf/portfolio-frontend' target="_blank" onClick={(e) => {e.stopPropagation()}}><FaGithub/></a>
+                    <a href='https://github.com/andrew-wulf/portfolio-frontend/tree/main/src/Chess/src' target="_blank" onClick={(e) => {e.stopPropagation()}}><FaGithub/></a>
                     
                   </div>
                 </div>
