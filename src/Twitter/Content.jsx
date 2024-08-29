@@ -26,13 +26,19 @@ export function Content(props) {
 
 
   const [tweetModalVisible, setTweetModalVisible] = useState(false);
+  const [selectedTweet, setSelectedTweet] = useState(false);
   
   
   const toggleTweetModal = () => {
-    setTweetModalVisible(!tweetModalVisible)
+    setTweetModalVisible(!tweetModalVisible);
+    setSelectedTweet(false);
   }
   
 
+  const editTweet = (tweet) => {
+    setSelectedTweet(tweet);
+    setTweetModalVisible(true);
+  }
 
 
   return (
@@ -46,11 +52,11 @@ export function Content(props) {
       <div className="middle-container">
         <Routes>
     
-          <Route path = "/home" element={<Home user={user}/>}/>
+          <Route path = "/home" element={<Home user={user} editTweet={editTweet}/>}/>
 
-          <Route path = "/tweet/:id" element={<TweetView user={user}/>}/>
+          <Route path = "/tweet/:id" element={<TweetView user={user} editTweet={editTweet}/>}/>
           
-          <Route path = "/users/:name/*" element={<UserPage user={user}/>}/>
+          <Route path = "/users/:name/*" element={<UserPage user={user} editTweet={editTweet}/>}/>
 
           <Route path = "/loading" element={<Loading/>}/>
         </Routes>
@@ -63,7 +69,7 @@ export function Content(props) {
         <RightSidebar current={props.user}/>
       </div>
       
-      <TweetModal show={tweetModalVisible} onClose={toggleTweetModal} user={props.user}/>
+      <TweetModal show={tweetModalVisible} onClose={toggleTweetModal} user={props.user} tweet={selectedTweet}/>
             
     </div>
   )

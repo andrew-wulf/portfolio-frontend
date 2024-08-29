@@ -310,7 +310,10 @@
 }
 
 
+
+
 .tweet {
+  position: relative;
   padding-left: 1em;
   padding-right: 1em;
 
@@ -525,6 +528,10 @@
   p {
     margin: 0
   }
+
+  i {
+    color: var(--text4);
+  }
 }
 
 .tweet .tweet-header {
@@ -645,7 +652,15 @@
   }
 }
 
-.tweet-like, .tweet-unlike, .tweet-retweet, .tweet-no-retweet, .tweet-stats, .tweet-reply, .tweet-bookmark, .tweet-share {
+.tweet-options {
+  position: absolute;
+  top: 0.6em;
+  right: 1em;
+  padding-bottom: 0.2em;
+}
+
+
+.tweet-like, .tweet-unlike, .tweet-retweet, .tweet-no-retweet, .tweet-stats, .tweet-reply, .tweet-bookmark, .tweet-share, .tweet-options{
   color: var(--text4);
   display: inline-flex;
   padding-left: 0.5em;
@@ -783,7 +798,7 @@
   }
 }
 
-.tweet-stats:hover, .tweet-reply:hover, .tweet-bookmark:hover, .tweet-share:hover {
+.tweet-stats:hover, .tweet-reply:hover, .tweet-bookmark:hover, .tweet-share:hover, .tweet-options:hover {
   background-color: rgba(100, 132, 238, 0.137);
   p, .tweet-icon {
     color: #2051d6;

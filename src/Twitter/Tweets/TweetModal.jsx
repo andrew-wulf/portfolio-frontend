@@ -1,5 +1,6 @@
 
 import "../css/tweetmodal.css"
+
 import { NewTweet } from "./NewTweet";
 
 
@@ -16,6 +17,13 @@ export function TweetModal(props) {
   }
 
 
+  let content = <NewTweet user={user} onSubmit={handleSubmit} minHeight={100} tweet={props.tweet}/>;
+
+  // if (props.tweet) {
+  //   content = <EditTweet user={user} tweet={props.tweet} onSubmit={handleSubmit} />
+  // }
+
+
   if (props.show) {
     return (
       <div className="modal-background">
@@ -25,7 +33,11 @@ export function TweetModal(props) {
             &#x2715;
           </button>
 
-          <NewTweet user={user} onSubmit={handleSubmit} minHeight={100}/>
+          <div className="edit-tweet-header">
+            Edit Tweet
+          </div>
+
+          {content}
         </section>
       </div>
     );

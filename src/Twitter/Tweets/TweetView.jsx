@@ -45,7 +45,7 @@ export function TweetView(props) {
     let parents = <></>;
 
     if (tweet.subtweets && tweet.subtweets.length > 0) {
-      subtweets = <TweetsIndex tweets={tweet.subtweets}/>;
+      subtweets = <TweetsIndex tweets={tweet.subtweets} user={user}/>;
     }
 
     if (tweet.parents && tweet.parents.length > 0) {
@@ -53,7 +53,7 @@ export function TweetView(props) {
       let output = arr.map((item, i) => arr[arr.length - 1 - i])
 
       console.log(output)
-      parents = <TweetsIndex tweets={output} parents={true}/>;
+      parents = <TweetsIndex tweets={output} parents={true} user={user} editTweet={props.editTweet}/>;
     }
 
     return (
@@ -68,7 +68,7 @@ export function TweetView(props) {
           {parents}
 
           <div className="big-tweet">
-            <Tweet tweet={tweet} view={true} parents={tweet.parents && tweet.parents.length > 0}/>
+            <Tweet tweet={tweet} view={true} parents={tweet.parents && tweet.parents.length > 0} user={user} editTweet={props.editTweet}/>
           </div>
 
           <div className="tweet-view-new-tweet">

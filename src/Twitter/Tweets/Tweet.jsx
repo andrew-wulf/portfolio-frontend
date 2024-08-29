@@ -17,12 +17,23 @@ import axios from 'axios';
 import { RetweetButton } from "./RetweetButton";
 import { MdVerified } from "react-icons/md";
 
-export function Tweet(props) {
+import { BsThreeDots } from "react-icons/bs";
+import { TweetModal } from "./TweetModal";
 
+export function Tweet(props) {
 
   const handleQuote = () => {
   }
 
+  const viewOptions = (tweet) => {
+    //this should trigger a modal but I don't want to do that right now
+    
+    handleTweetEdit(tweet);
+  }
+
+  const handleTweetEdit = (tweet) => {
+    props.editTweet(tweet)
+  }
 
   const abbrTime = (time) => {
     if (time) {
@@ -90,6 +101,8 @@ export function Tweet(props) {
   let view = props.view;
   let first = props.first;
 
+  
+
   if (tweet.username) {
     let display = <p className="user-display-name">{tweet.display_name}</p>
     if (tweet.verified) {
@@ -135,6 +148,13 @@ export function Tweet(props) {
         }
       }
     }
+
+    let edited = <></>;
+      if (tweet.edited) {
+        edited = 
+                     <div>&#183; <i>Edited</i></div>
+                  
+      }
   
     let img = avi;
     let header = 
@@ -146,6 +166,7 @@ export function Tweet(props) {
         <div className="flex flex-row gap-1">
           <p className="user-username">@{tweet.username}</p>
           <p className="tweet-time">&#183; {abbrTime(tweet.timestamp)}</p>
+          {edited}
         </div>
       </div>;
     
@@ -156,6 +177,7 @@ export function Tweet(props) {
                 </div>
   
     if (view) {
+
       img = <></>;
 
       header =
@@ -176,6 +198,7 @@ export function Tweet(props) {
         <div>
         &#183; {displayViews(tweet.views) + ' Views'}
         </div>
+        {edited}
       </div>;
   
       stats = <></>
@@ -192,10 +215,21 @@ export function Tweet(props) {
       replying_to = <div className="replying-to">Replying to <p>@{tweet.replying_to.username}</p></div>
     }
 
+    let edit = <div onClick={(e) => {e.stopPropagation()}} className="tweet-options"> <BsThreeDots /></div>;
+
+    if (props.user) {
+      if (props.user.username === tweet.username) {
+        edit = <div onClick={(e) => {e.stopPropagation(); viewOptions(tweet)}} className="tweet-options"> <BsThreeDots /></div>;
+      }
+    }
+
+
 
     let content = 
       <div className="tweet-main">
         
+        {edit}
+
         {retweeted_by}
 
         <div className="flex flex-row gap-2">

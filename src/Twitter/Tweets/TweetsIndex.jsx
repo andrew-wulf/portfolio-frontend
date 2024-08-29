@@ -18,7 +18,7 @@ export function TweetsIndex(props) {
                   if (i === 0) { first = true}
                   return (
                     <div key={i}>
-                      <Tweet tweet={tweet} parents={props.parents} view={false} first={first}/>
+                      <Tweet tweet={tweet} parents={props.parents} view={false} first={first} user={props.user} editTweet={props.editTweet}/>
                     </div>
                   )
                 })

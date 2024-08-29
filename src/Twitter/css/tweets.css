@@ -52,6 +52,30 @@
   align-items: center;
 }
 
+.edit-tweet-footer {
+  border-top: var(--border2);
+  bottom: 0;
+  min-height: 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+}
+
+.edit-tweet-header {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 50px;
+  transform: translate(-50%, 0);
+  font-weight: 600;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 .new-tweet-icon {
   display: flex;
   justify-content: center;
@@ -79,6 +103,34 @@
 
   &:hover {
     background-color: rgb(21, 104, 221);
+  };
+}
+
+.edit-button {
+  background-color: rgba(49, 120, 219, 0.952);
+  color: white;
+  
+  height: 40px;
+  width: 120px;
+  border-radius: 25px;
+  font-weight: 500;
+
+  &:hover {
+    background-color: rgb(21, 104, 221);
+  };
+}
+
+.delete-button {
+  background-color: rgba(212, 21, 21, 0.877);
+  color: white;
+  
+  height: 40px;
+  width: 80px;
+  border-radius: 25px;
+  font-weight: 500;
+
+  &:hover {
+    background-color: rgba(196, 2, 2, 0.877);
   };
 }
 

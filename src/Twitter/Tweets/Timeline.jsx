@@ -185,7 +185,7 @@ export function Timeline(props) {
                   <div className='suggested-title'>
                     <h4>Trending Now</h4>       
                   </div>
-                  <TweetsIndex tweets={suggestedTweets}/>      
+                  <TweetsIndex tweets={suggestedTweets} user={user} editTweet={props.editTweet}/>      
                 </>
   }
 
@@ -207,7 +207,7 @@ export function Timeline(props) {
         </div>
 
         <div className='tweets-index'>
-          <TweetsIndex tweets={tweets}/>
+          <TweetsIndex tweets={tweets} user={user} editTweet={props.editTweet}/>
           {suggested}
         </div>
         

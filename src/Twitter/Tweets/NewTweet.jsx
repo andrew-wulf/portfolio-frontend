@@ -12,15 +12,23 @@ export function NewTweet(props) {
   let minHeight = props.minHeight;
   let tweetID = props.tweetID;
 
+  let tweet = props.tweet;
+
+
   let placeholder = "What is happening?!";
   if (props.placeholder) {
     placeholder = props.placeholder;
   }
 
-
   const [inputVal, setInputVal] = useState("");
 
-  const handleUpdate = (e) => {
+  useEffect(() => {
+    if (tweet) {
+      setInputVal(tweet.text);
+    }
+  }, [tweet])
+
+  const handleChange = (e) => {
     e.preventDefault();
 
     e.target.style.height = '0';
@@ -71,29 +79,82 @@ export function NewTweet(props) {
     }
   }
 
-  return (
-    <div className="new-tweet">
-      <form onSubmit={handleSubmit}>
-        <div className="new-tweet-main">
-          <div className="avi-container">
-            <img src={user.avi} className="avi"/>
+  const handleUpdate = (id) => {
+    axios.post(`/update/${id}.json`, {text: inputVal})
+      .then(response => {
+        console.log(response);
+        window.location.reload();
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  const handleDelete = (id) => {
+    axios.post(`/delete/${id}.json`)
+      .then(response => {
+        console.log(response);
+        window.location.reload();
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+
+  if (tweet) {
+
+    return (
+      <div className="new-tweet">
+        <form onSubmit={handleSubmit}>
+          <div className="new-tweet-main">
+
+            <div className="avi-container">
+              <img src={user.avi} className="avi"/>
+            </div>
+
+            <div>
+              <textarea className="new-tweet-input" type='textarea' autoFocus={true} value={inputVal}
+              onChange={handleChange} />
+            </div>
           </div>
-
-          <div>
-
-              <textarea className="new-tweet-input" type='textarea' placeholder={placeholder} autoFocus={true} value={inputVal}
-              onChange={handleUpdate} />
-              
+  
+          <div className="edit-tweet-footer">
+            <div className="new-tweet-icon"><IoImageOutline/></div>
+            <div className="new-tweet-icon"><FaRegFaceSmileBeam/></div>
+            <button onClick={() => {handleUpdate(tweet.id)}} type='button' className="edit-button">Save Changes</button>
+            <button onClick={() => {handleDelete(tweet.id)}} type='button' className="delete-button">Delete</button>
           </div>
-        </div>
+        </form>
+      </div>
+    )
+  }
 
-        <div className="new-tweet-footer">
-
-          <div className="new-tweet-icon"><IoImageOutline/></div>
-          <div className="new-tweet-icon"><FaRegFaceSmileBeam/></div>
-          <button type='submit' className="post-button">Post</button>
-        </div>
-      </form>
-    </div>
-  )
+  else {
+    return (
+      <div className="new-tweet">
+        <form onSubmit={handleSubmit}>
+          <div className="new-tweet-main">
+            <div className="avi-container">
+              <img src={user.avi} className="avi"/>
+            </div>
+  
+            <div>
+  
+                <textarea className="new-tweet-input" type='textarea' placeholder={placeholder} autoFocus={true} value={inputVal}
+                onChange={handleChange} />
+                
+            </div>
+          </div>
+  
+          <div className="new-tweet-footer">
+  
+            <div className="new-tweet-icon"><IoImageOutline/></div>
+            <div className="new-tweet-icon"><FaRegFaceSmileBeam/></div>
+            <button type='submit' className="post-button">Post</button>
+          </div>
+        </form>
+      </div>
+    )
+  }
 }

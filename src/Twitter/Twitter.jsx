@@ -16,6 +16,7 @@ import { SignIn } from "./SignIn";
 import { SignUp } from "./SignUp";
 
 
+
 export function Twitter() {
 
   const [currentUser, setCurrentUser] = useState("none");
@@ -138,13 +139,13 @@ export function Twitter() {
     return (
       <div className="twitter">
 
-        <Routes>
-          <Route path = "/" element= {<Redirect user={currentUser} setUser={setCurrentUser}/>}/>
-          <Route path = "/signin" element={<SignIn user={currentUser}/>}/>
-          <Route path = "/signup" element={<SignUp user={currentUser}/>}/>
+          <Routes>
+            <Route path = "/" element= {<Redirect user={currentUser} setUser={setCurrentUser}/>}/>
+            <Route path = "/signin" element={<SignIn user={currentUser}/>}/>
+            <Route path = "/signup" element={<SignUp user={currentUser}/>}/>
 
-          <Route path = "/*" element={<Content user={currentUser} setUser={setCurrentUser} theme={theme} themeToggle={themeToggle}/>}/>
-        </Routes>
+            <Route path = "/*" element={<Content user={currentUser} setUser={setCurrentUser} theme={theme} themeToggle={themeToggle}/>}/>
+          </Routes>
     
       </div>
 
