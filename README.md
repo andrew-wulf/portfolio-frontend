@@ -15,7 +15,7 @@ breakdown coming soon...
 # Chess
 **View the code [here!](https://github.com/andrew-wulf/portfolio-frontend/tree/main/src/Chess/src)**
 
-A fully functional chess match created with javascript and the phaser library. The entire game was written from scratch, with the exeption of the piece image assets and sound files (they're publically available and created by chess.com).  
+A fully functional chess match created with javascript and the phaser library. The entire game was written from scratch, with the exception of the piece image assets and sound files (they're publically available and created by chess.com).  
   
 You can click and drag pieces to move, or click once on a piece and then click again on a destination square.  
 The game engine only allows legal moves, and accounts for different piece movements, piece collision, captures, checks, discovered checks, legal castling, piece promotion and, even en passant!  
