@@ -3,7 +3,6 @@
 .portfolio, .content {
   background-color: rgb(236, 236, 236);
   color: var(--text);
-  overflow: hidden;
 }
 
 
@@ -386,8 +385,8 @@
     gap: 4vh;
 
     opacity: 100%;
-    transition: 2s ease-out;
-    transition-delay: 2.15s;
+    transition: 3s ease-out;
+    transition-delay: 2s;
 
     background: none;
 

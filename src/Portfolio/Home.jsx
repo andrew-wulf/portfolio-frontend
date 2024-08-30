@@ -33,7 +33,7 @@ export function Home() {
 
   const [infoStyles, setInfoStyles] = useState([100, 100, 100, 100]);
 
-  const [appsTranslate, setAppsTranslate] = useState([0, 125]);
+  const [appsTranslate, setAppsTranslate] = useState([0, 200]);
   const [headerTranslate, setHeaderTranslate] = useState([0, -100]);
   const [cvTranslate, setCvTranslate] = useState([800, 0]);
   const [bioTranslate, setBioTranslate] = useState([-500, 0]);
@@ -48,7 +48,7 @@ export function Home() {
   const [rightSubDelay, setRightSubDelay] = useState([0.5, 0.75]);
 
 
-  const [iconStyle, setIconStyle] = useState({'opacity': '0%', 'transition': '3s', 'transition-delay': '4s'})
+  const [iconStyle, setIconStyle] = useState({'opacity': '0%', 'transition': '3s', 'transitionDelay': '4s'})
 
   const [twitterIndex, setTwitterIndex] = useState(1);
   const [chessIndex, setChessIndex] = useState(1);
@@ -71,7 +71,7 @@ export function Home() {
     setLeftSubTranslate([0, 0]);
     setRightSubTranslate([0, 0]);
 
-    setIconStyle({'opacity': '100%', 'transition': '3s', 'transition-delay': '4s'});
+    setIconStyle({'opacity': '100%', 'transition': '3s', 'transitionDelay': '4s'});
 
     setTimeout(() => {
       setAppsDelay([0.5, 0]);
@@ -80,7 +80,7 @@ export function Home() {
       setBioDelay([0.5, 0]);
       setLeftSubDelay([0.5, 0]);
       setRightSubDelay([0.5, 0]);
-      setIconStyle({'opacity': '100%', 'transition': '0.25s', 'transition-delay': '0s'}), 8000
+      setIconStyle({'opacity': '100%', 'transition': '0.25s', 'transitionDelay': '0s'}), 8000
     })
   }, []);
 
@@ -263,7 +263,7 @@ export function Home() {
                   <p>Full stack social media app. Make an account and try it out!</p>
                   <div className="port-links">
                     <p><IoInformationCircleOutline/></p>
-                    <p onClick={(e) => {e.stopPropagation(); showGitModal()}}><FaGithub/></p>
+                    <a href='https://github.com/andrew-wulf/portfolio-frontend/tree/main?tab=readme-ov-file#twitter' target="_blank" onClick={(e) => {e.stopPropagation()}}><FaGithub/></a>
                     <Modal />
                   </div>
                 </div>
@@ -283,7 +283,7 @@ export function Home() {
                   <p>Chess game made from scratch using Javascript and the Phaser library.</p>
                   <div className="port-links">
                     <p><IoInformationCircleOutline/></p>
-                    <a href='https://github.com/andrew-wulf/portfolio-frontend/tree/main/src/Chess/src' target="_blank" onClick={(e) => {e.stopPropagation()}}><FaGithub/></a>
+                    <a href='https://github.com/andrew-wulf/portfolio-frontend/tree/main?tab=readme-ov-file#chess' target="_blank" onClick={(e) => {e.stopPropagation()}}><FaGithub/></a>
                     
                   </div>
                 </div>
@@ -303,7 +303,7 @@ export function Home() {
                   <p>Multiplayer trivia battle royale inspired by cine2nerdle. Coming soon!</p>
                   <div className="port-links">
                     <p><IoInformationCircleOutline/></p>
-                    <a href='https://github.com/andrew-wulf/portfolio-frontend' target="_blank" onClick={(e) => {e.stopPropagation()}}><FaGithub/></a>
+                    <a href='https://github.com/andrew-wulf/portfolio-frontend/tree/main?tab=readme-ov-file#movie-battle' target="_blank" onClick={(e) => {e.stopPropagation()}}><FaGithub/></a>
                   </div>
                 </div>
                 

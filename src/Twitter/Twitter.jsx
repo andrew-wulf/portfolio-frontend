@@ -62,8 +62,8 @@ export function Twitter() {
         '--toggle-color': ''
       },
       light: {
-        '--bg': 'rgb(230, 230, 230)',
-        '--bg2': 'rgb(242, 242, 242)',
+        '--bg': 'rgb(240, 240, 240)',
+        '--bg2': 'rgb(250, 250, 250)',
         '--text': 'rgb(5, 5, 5)',
         '--text2': 'rgb(30, 30, 30)',
         '--text3': 'rgb(70, 70, 70)',

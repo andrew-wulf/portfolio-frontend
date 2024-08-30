@@ -25,8 +25,8 @@ export function LeftSidebar(props) {
 
   const [accountModalVisible, setAccountModalVisible] = useState(false);
  
-  const [toggleVerticalStyle, setToggleVerticalStyle] = useState({transform: 'translate(0, 0)'});
-  const [toggleHorizontalStyle, setToggleHorizontalStyle] = useState({transform: 'translate(0, 0)'});
+  const [toggleVerticalStyle, setToggleVerticalStyle] = useState({'transform': 'translate(0, 0)', 'transition': '0s'});
+  const [toggleHorizontalStyle, setToggleHorizontalStyle] = useState({'transform': 'translate(0, 0)', 'transition': '0s'});
 
   const [sunVal, setSunVal] = useState(0);
   const [moonVal, setMoonVal] = useState(0);
@@ -34,22 +34,36 @@ export function LeftSidebar(props) {
   let theme = props.theme;
 
 
-
   const updateTheme = () => {
+    let horizontal = {...toggleHorizontalStyle};
+    let vertical = {...toggleVerticalStyle};
+
     if (theme === 'light') {
-      setToggleHorizontalStyle({transform: 'translate(200%, 0)'});
-      setToggleVerticalStyle({transform: 'translate(0%, 150%)'});
+
+      horizontal['transform'] = 'translate(200%, 0)';
+      vertical['transform'] = 'translate(0%, 150%)';
+
+      setToggleHorizontalStyle(horizontal);
+      setToggleVerticalStyle(vertical);
       setSunVal(100);
       setMoonVal(0);
     }
     else {
-      setToggleHorizontalStyle({transform: 'translate(0%, 0)'});
-      setToggleVerticalStyle({transform: 'translate(0%, 0%)'});
+      horizontal['transform'] = 'translate(0%, 0)';
+      vertical['transform'] = 'translate(0%, 0%)';
+
+      setToggleHorizontalStyle({horizontal});
+      setToggleVerticalStyle({vertical});
       setSunVal(0);
       setMoonVal(100);
     }
   }
   useEffect(updateTheme, [theme]);
+
+  useEffect(() => {
+    updateTheme()
+  }, [])
+
 
   const toggle = () => {
     props.themeToggle();
@@ -72,7 +86,11 @@ export function LeftSidebar(props) {
     window.location.href = "/twitter/"
   }
 
-
+  const portfolioLink = () => {
+    let url = window.location.href;
+    let dest = url.slice(0, url.indexOf('/twitter'));
+    window.location.href = dest;
+  }
 
   let user = props.user;
   console.log(user);
@@ -196,7 +214,7 @@ export function LeftSidebar(props) {
         </span>
       </div>
 
-      
+      <h6 onClick={portfolioLink}className='header-portfolio-link'>Back to Portfolio Site</h6>
     </div>
   </div>
   )

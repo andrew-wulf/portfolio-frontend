@@ -73,7 +73,16 @@ export function UserPage(props) {
   }
   useEffect(getUserInfo, []);
 
+  let tabs = ['block', 'none', 'none'];
 
+  if (url.includes('/replies')) {
+    tabs = ['none', 'block', 'none'];
+  }
+  if (url.includes('/likes')) {
+    tabs = ['none', 'none', 'block'];
+  }
+
+  
   
 
   let user = props.user;
@@ -138,10 +147,21 @@ export function UserPage(props) {
           </div>
 
           <div className="user-tabs">
-            <h2 onClick={() => {window.location.href = `/twitter/users/${viewedUser.username}`}}>Tweets</h2>
-            <h2 onClick={() => {window.location.href = `/twitter/users/${viewedUser.username}/replies`}}>Replies</h2>
-            <h2 onClick={() => {window.location.href = `/twitter/users/${viewedUser.username}/likes`}}>Likes</h2>
+            <div className="user-tab">
+              <h2 onClick={() => {window.location.href = `/twitter/users/${viewedUser.username}`}}>Tweets</h2>
+              <div className="tab-select" style={{display: tabs[0]}}/>
+            </div>
+            <div className="user-tab">
+              <h2 onClick={() => {window.location.href = `/twitter/users/${viewedUser.username}/replies`}}>Replies</h2>
+              <div className="tab-select" style={{display: tabs[1]}}/>
+            </div>
+            <div className="user-tab">
+              <h2 onClick={() => {window.location.href = `/twitter/users/${viewedUser.username}/likes`}}>Likes</h2>
+              <div className="tab-select" style={{display: tabs[2]}}/>
+            </div>
             <h2>Media</h2>
+
+            
           </div>
         </div>
 

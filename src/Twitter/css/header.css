@@ -202,3 +202,19 @@
   }
 
 }
+
+.header-portfolio-link {
+  color: var(--text3);
+  opacity: 70%;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 100%;
+    color: var(--text);
+    text-decoration: underline;
+  }
+
+  @media(max-width: 1299px) {
+    display: none;
+  }
+}
