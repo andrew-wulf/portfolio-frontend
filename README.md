@@ -6,8 +6,8 @@ My page contains three projects, two being near finished and one in early develo
 
 # Twitter
 
-**To view the back end API, click [here!](https://github.com/andrew-wulf/portfolio-backend/tree/main)**
-**To view the front end code, click [here!](https://github.com/andrew-wulf/portfolio-frontend/tree/main/src/Twitter)**
+**To view the back end API, click [here!](https://github.com/andrew-wulf/portfolio-backend/tree/main)**  
+**To view the front end code, click [here!](https://github.com/andrew-wulf/portfolio-frontend/tree/main/src/Twitter)**  
 breakdown coming soon...
 
 
