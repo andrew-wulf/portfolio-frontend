@@ -27,6 +27,7 @@ export function SignUp(props) {
   const [userVal, setUserVal] = useState("");
   const [emailVal, setEmailVal] = useState("");
   const [passVal, setPassVal] = useState("");
+  const [passConfirmVal, setPassConfirmVal] = useState("");
   const [displayVal, setDisplayVal] = useState("");
   const [aviVal, setAviVal] = useState("");
   const [bannerVal, setBannerVal] = useState("");
@@ -52,7 +53,7 @@ export function SignUp(props) {
     e.preventDefault();
     const params = new FormData();
 
-    axios.post('/users.json', {username: userVal, email: emailVal, password: passVal, password_confirmation: passVal, display_name: displayVal})
+    axios.post('/users.json', {username: userVal, email: emailVal, password: passVal, password_confirmation: passConfirmVal, display_name: displayVal})
 
       .then(response => {
         console.log(response);
@@ -160,14 +161,19 @@ export function SignUp(props) {
     }
   }
 
-  const handlePasswordUpdate = (e) => {
+  const handlePasswordUpdate = (e, type) => {
     console.log('updating')
     e.preventDefault();
     let val = e.target.value;
     val = val.replaceAll(/[ \0\n\r\t\\'";<>]/g, '');
 
     if (val.length < 40) {
-      setPassVal(val);
+      if (type === 'password') {
+        setPassVal(val);
+      }
+      if (type === 'confirm') {
+        setPassConfirmVal(val);
+      }
     }
   }
 
@@ -194,6 +200,7 @@ export function SignUp(props) {
   let emailValidErr = "";
 
   let passValidErr = "";
+  let passConfirmValidErr = "";
 
   let userSuccess = "Nice name!"
   let userExistsErr = "";
@@ -210,6 +217,9 @@ export function SignUp(props) {
     passValidErr = "password must contain 8 or more characters, a number, and a capital letter.";
   }
 
+  if (passConfirmVal.length > 0 && passConfirmVal !== passVal) {
+    passConfirmValidErr = "passwords must match."
+  }
  
   var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   if (emailRegex.test(emailVal) === false) {
@@ -239,7 +249,7 @@ export function SignUp(props) {
               <p>{emailExistsErr}</p>
               <p>{emailValidErr}</p>
               
-                <div className='flex flex-col gap-3 place-items-center'>
+                <div className='flex flex-col gap-1 place-items-center'>
                   <div className= "signin-field">
                     <p>Email</p>
                     <Form.Control type="email" name="email" placeholder="example@email.com" value={emailVal} onChange={(e) => {handleEmailUpdate(e)}}/>
@@ -248,8 +258,15 @@ export function SignUp(props) {
                   <div className= "signin-field">
                     <p>{passValidErr}</p>
                     <p>Password</p>
-                    <Form.Control type="password" name="password" placeholder="Password" value={passVal} onChange={(e) => {handlePasswordUpdate(e)}}/>
+                    <Form.Control type="password" name="password" placeholder="Password" value={passVal} onChange={(e) => {handlePasswordUpdate(e, 'password')}}/>
                   </div>
+
+                  <div className= "signin-field">
+                    <p>{passConfirmValidErr}</p>
+                    <p>Confirm Password</p>
+                    <Form.Control type="password" name="password" placeholder="Password" value={passConfirmVal} onChange={(e) => {handlePasswordUpdate(e, 'confirm')}}/>
+                  </div>
+
                   <div className='mt-2'/>
                   {emailButton}
                 </div>

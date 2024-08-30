@@ -165,7 +165,7 @@ export function UserPage(props) {
           </div>
         </div>
 
-        <TweetsIndex tweets={tweets}/>
+        <TweetsIndex tweets={tweets} user={user} editTweet={props.editTweet}/>
 
       </div>
     )
