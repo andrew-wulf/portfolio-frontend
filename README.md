@@ -7,13 +7,14 @@ My page contains three projects, two being near finished and one in early develo
 # Twitter
 
 **To view the back end API, click [here!](https://github.com/andrew-wulf/portfolio-backend/tree/main)**
-
-breakdown coming soon!
+[View the code here!](https://github.com/andrew-wulf/portfolio-frontend/tree/main/src/Twitter)
+breakdown coming soon...
 
 
 # Chess
+[View the code here!](https://github.com/andrew-wulf/portfolio-frontend/tree/main/src/Chess/src)
 
-breakdown coming soon!
+breakdown coming soon...
 
 
 
