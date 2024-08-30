@@ -1,8 +1,22 @@
-# React + Vite
+# Welcome! This is the page for my portfolio frontend.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+My page contains three projects, two being near finished and one in early development.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+# Twitter
+
+**To view the back end API, click [here!](https://github.com/andrew-wulf/portfolio-backend/tree/main)**
+
+breakdown coming soon!
+
+
+# Chess
+
+breakdown coming soon!
+
+
+
+# Movie Battle
+
+coming soon!
