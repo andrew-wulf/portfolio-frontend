@@ -96,7 +96,7 @@ export function Home() {
   }
 
   const cvDownload = () => {
-    window.location.href = "http://localhost:5173//src/assets/example-resume.docx"
+    window.location.href = "http://localhost:5173//src/assets/Andrew_Wulf_Resume.docx"
   }
 
   const repoLink = () => {

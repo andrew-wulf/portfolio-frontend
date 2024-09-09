@@ -2,17 +2,13 @@ import Form from 'react-bootstrap/Form';
 
 import Stack from 'react-bootstrap/Stack';
 
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-
 import Button from 'react-bootstrap/Button';
 
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { SearchResults } from './SearchResults';
 import { Timer } from './Timer';
-import { Menu } from './Menu';
+
 
 
 export function GameWindow() {

@@ -1,7 +1,6 @@
 import { Button, Form, Stack } from "react-bootstrap"
 import { Lobby } from "./Lobby"
 import { useState } from "react"
-import { Conn } from "./Server";
 
 
 
@@ -71,7 +70,7 @@ export function Menu(props) {
         </div>
 
         <div>
-          <Conn />
+   
         </div>
         
     </div>
