@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
+import { VideoPlayer } from "./VideoPlayer";
 
 
 export function Gallery (props) {
@@ -30,20 +31,36 @@ export function Gallery (props) {
   }
 
   let img = imgs[index];
+
   if (window.innerWidth <= 700) {
     img = img.replace('.png', 'M.png')
   }
 
-  return (
-    
-    <div className="gallery">
-      {closeButton}
-      <img src={img} draggable='false'/>
-      <h3 onClick={(e) => {e.stopPropagation(); indexChange(-1)}} className="left"><FaChevronLeft/></h3>
-      <h3 onClick={(e) => {e.stopPropagation(); indexChange(1)}} className="right"><FaChevronRight/></h3>
-      <div className="gallery-description">
-        <p>{descriptions[index]}</p>
+  if (img.includes('assets/')) {
+    return (
+      
+      <div className="gallery">
+        {closeButton}
+        <img src={img} draggable='false'/>
+        <h3 onClick={(e) => {e.stopPropagation(); indexChange(-1)}} className="left"><FaChevronLeft/></h3>
+        <h3 onClick={(e) => {e.stopPropagation(); indexChange(1)}} className="right"><FaChevronRight/></h3>
+        <div className="gallery-description">
+          <p>{descriptions[index]}</p>
+        </div>
       </div>
+    )
+  }
+else {
+  return (
+    <div className="gallery">
+    {closeButton}
+    <VideoPlayer id={img}/>
+    <h3 onClick={(e) => {e.stopPropagation(); indexChange(-1)}} className="left"><FaChevronLeft/></h3>
+    <h3 onClick={(e) => {e.stopPropagation(); indexChange(1)}} className="right"><FaChevronRight/></h3>
+    <div className="gallery-description">
+      <p>{descriptions[index]}</p>
     </div>
+  </div>
   )
+}
 }
