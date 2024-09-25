@@ -96,7 +96,7 @@ export function Home() {
   }
 
   const cvDownload = () => {
-    window.location.href = "http://localhost:5173//src/assets/Andrew_Wulf_Resume.docx"
+    window.location.href = "http://localhost:5173/src/assets/Andrew_Wulf_Resume.docx"
   }
 
   const repoLink = () => {
@@ -167,7 +167,6 @@ export function Home() {
   const closeGitModal = () => {
     setGitModalShow(false);
   }
-
 
   let twitterImgs = ['./assets/twitter1.png', 'FW76dFTtGDs', './assets/twitter2.png', './assets/twitter3.png', './assets/twitter4.png', './assets/twitter5.png']
   let twitterDescriptions = ['The "Timeline", which loads the most recent tweets & retweets from accounts you follow.', 'Demo Video!', "Viewable user profiles with bios, banners, and the tweets they've made or interacted with.", 'Toggleable light & dark modes (your browser remembers your preference).', 'Accessing your account requires user authentication, and new users can be created.', 'App is styled for viewing on all devices, including mobile.']

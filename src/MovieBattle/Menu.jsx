@@ -1,13 +1,41 @@
 import { Button, Form, Stack } from "react-bootstrap"
 import { Lobby } from "./Lobby"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 
 export function Menu(props) {
 
+  let socket = props.socket;
 
   const [option, setOption] = useState(3);
+
+
+  const [messages, setMessages] = useState([]);
+  const [msginput, setMsgInput] = useState('')
+
+
+  const sendMessage = (e) => {
+    e.preventDefault();
+
+    socket.emit('send_message', msginput);
+    setMsgInput('');
+  }
+
+
+  const connect = () => {
+    socket.connect();
+  }
+  useEffect(connect, []);
+
+
+  useEffect(() => {
+    socket.on("messages", (data) => {
+      console.log(data);
+      setMessages(data);
+    })
+  }, [socket])
+
 
 
   let content = "";
@@ -53,7 +81,24 @@ export function Menu(props) {
 
   return (
     <div className="movie-front-page">
+
+        <div className="test">
+          <div className="messages">
+            {messages.map((msg) => {
+              return (
+              <p>{msg}</p>
+              )
+            })}
+          </div>
+
+          <form onSubmit={sendMessage}>
+              <input name='msg' value={msginput} onChange={(e) => {setMsgInput(e.target.value)}}/>
+              <Button type='submit' variant='primary'>Send</Button>
+            </form>
+        </div>
+
         <div className="movie-menu">
+
           <h1>Movie Battle</h1>
 
           <Stack gap={3} className="menu-options">
@@ -61,7 +106,6 @@ export function Menu(props) {
             <h3 onClick={() => {setOption(2)}}>Local Match</h3>
             <h4 onClick={() => {setOption(3)}}>Settings</h4>
             <h5 onClick={() => {setOption(4)}}>What's Movie Battle?</h5>
-
           </Stack>
         </div>
     

@@ -102,3 +102,18 @@
   padding: 1em;
   
 }
+
+
+
+.test {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.messages { 
+  display: flex;
+  flex-direction: column;
+  color: white;
+}

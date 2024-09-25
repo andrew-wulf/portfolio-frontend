@@ -1,15 +1,27 @@
 import { Button, Container, Form, Stack } from "react-bootstrap";
 
-import { Socket } from "socket.io-client";
+import io from "socket.io-client";
 
 export function Lobby() {
+
+
+
+  const getID = () => {
+
+  }
+
   return (
     <div className="movie-lobby">
       
       <Container>
-        <Button variant='dark'>Create Game Lobby</Button>
+        <Form.Label>Name</Form.Label>
+        <Form.Control />
+        
+        <Button variant='dark'>Create Public Lobby</Button>
+        <Button variant='dark'>Create Private Lobby</Button>
         <Stack>
           <Form.Group>
+          
             <Form.Label>Lobby Code</Form.Label>
             <Form.Control />
           </Form.Group>
@@ -19,11 +31,6 @@ export function Lobby() {
 
 
         <br></br>
-        <h4>For Testing:</h4>
-
-        <h5>User 1:</h5>
-        <h5>User 2:</h5>
-
 
       </Container>
 
