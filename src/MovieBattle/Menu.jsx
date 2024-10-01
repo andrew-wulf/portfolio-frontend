@@ -6,42 +6,17 @@ import { useEffect, useState } from "react"
 
 export function Menu(props) {
 
+
   let socket = props.socket;
 
   const [option, setOption] = useState(3);
 
 
-  const [messages, setMessages] = useState([]);
-  const [msginput, setMsgInput] = useState('')
-
-
-  const sendMessage = (e) => {
-    e.preventDefault();
-
-    socket.emit('send_message', msginput);
-    setMsgInput('');
-  }
-
-
-  const connect = () => {
-    socket.connect();
-  }
-  useEffect(connect, []);
-
-
-  useEffect(() => {
-    socket.on("messages", (data) => {
-      console.log(data);
-      setMessages(data);
-    })
-  }, [socket])
-
-
-
+  
   let content = "";
 
   if (option === 1) {
-    content = <Lobby />
+    content = <Lobby socket={socket} setRoomID={props.setRoomID} roomId={props.roomID}/>
   }
 
 
@@ -79,6 +54,7 @@ export function Menu(props) {
     </div>
   }
 
+  
   return (
     <div className="movie-front-page">
 
@@ -114,7 +90,7 @@ export function Menu(props) {
         </div>
 
         <div>
-   
+    
         </div>
         
     </div>

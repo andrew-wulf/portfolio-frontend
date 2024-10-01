@@ -11,7 +11,11 @@ import { Timer } from './Timer';
 
 
 
-export function GameWindow() {
+export function GameWindow(props) {
+
+  
+
+
   const [inputVal, setInputVal] = useState("");
   const [activeTurn, setActiveTurn] = useState(true);
   const [activeTimer, setActiveTimer] = useState(true);

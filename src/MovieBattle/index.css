@@ -9,6 +9,17 @@
   color: rgb(216, 216, 216)
 }
 
+.name-header {
+  position: absolute;
+  right: 0;
+  transform: translate(-50%);
+}
+.movie-intro {
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%);
+}
 
 .input-area {
   position: absolute;

@@ -1,38 +1,50 @@
-import { GameWindow } from './GameWindow';
-import { Menu } from './Menu'
 import './index.css'
-
-import { useState } from 'react';
-
-
 import io from "socket.io-client"
 
+import { Content } from './Content';
+
+
+import { useEffect, useState } from 'react';
+
+
+const socket = io.connect("http://localhost:4000", {
+  autoConnect: false
+});
 
 
 export function MovieBattle() {
   
-  const [page, setPage] = useState(1);
+  const [name, setName] = useState(null);
+  const [socketID, setSocketID] = useState(null);
+  const [roomID, setRoomID] = useState(null);
 
-  const startGame = () => {
-    setPage(2);
+
+  const connect = () => {
+    socket.connect();
   }
+  useEffect(connect, []);
+
+
+  const updateName = (name) => {
+    setName(name);
+    socket.emit('update_name', name);
+    socket.emit('get_info')
+  }
+
+  useEffect(() => {
+    socket.on("get_id", (id) => {
+      setSocketID(id);
+    })
+  }, [socket])
+
+  return (
+    <div className='movie-content'>
+      <div className='name-header'>
+        <h5>Name: {name}</h5>
+        <h5>Socket: {socketID}</h5>
+      </div>
+      <Content name={name} updateName={updateName} socket={socket} setRoomID={setRoomID} roomId={roomID}/>
+    </div>
+  )
   
-  const socket = io.connect("http://localhost:4000", {
-    autoConnect: false
-  });
-
-
-  if (page === 1) {
-    return (
-
-      <Menu startGame={startGame} socket={socket}/>
-
-    )
-  }
-
-  if (page === 2) {
-    return (
-      <GameWindow  socket={socket}/>
-    )
-  }
 }
